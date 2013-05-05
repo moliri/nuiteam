@@ -5,7 +5,7 @@ using System.Collections;
     {
         Transform playerTransform;
 
-        Vector3 cameraOrientationVector = new Vector3 (0, 15, -10f);
+        public Vector3 cameraOrientationVector = new Vector3 (0, 25, -20f);
 
  
         void Start () 

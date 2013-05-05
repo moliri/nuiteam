@@ -17,11 +17,11 @@ public class Movement : MonoBehaviour {
         }
         if (Input.GetKey("right")) {
             rigidbody.AddForce(Vector3.right*force);
-        }/*
+        }
         if (Input.GetKey("down")) {
             if (rigidbody.velocity.z > 0) {
                 rigidbody.AddForce(-Vector3.forward*force);
             } 
-        }   */
+        }   
 	}
 }
