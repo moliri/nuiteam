@@ -47,6 +47,7 @@
      <Compile Include="Assets\CameraScript.cs" />
      <Compile Include="Assets\FollowCamera.cs" />
      <Compile Include="Assets\Movement.cs" />
+     <Compile Include="Assets\RollingControllin.cs" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
   </ItemGroup>
   <ItemGroup>
