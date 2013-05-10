@@ -17,16 +17,22 @@ public class Movement : MonoBehaviour {
 		float y = rigidbody.position.y - 1.5f;
 		
         if (Input.GetKey("left")) {
-            rigidbody.AddForce(-Vector3.right*force);
+            rigidbody.AddForce(-Vector3.right*force*5);
         }
         if (Input.GetKey("right")) {
-            rigidbody.AddForce(Vector3.right*force);
+            rigidbody.AddForce(Vector3.right*force*5);
         }
         if (Input.GetKey("down")) {
             if (rigidbody.velocity.z > 0) {
-                rigidbody.AddForce(-Vector3.forward*force);
+                rigidbody.AddForce(-Vector3.forward*force*4);
             } 
         }
+        if (Input.GetKey("up")) {
+            if (rigidbody.velocity.z > 0) {
+                rigidbody.AddForce(Vector3.forward*force*2);
+            } 
+        }
+		
 		if (Input.GetKey(KeyCode.Space) && (y <= 0))
 		{
 			jump = Vector3.up;
