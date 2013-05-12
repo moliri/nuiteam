@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{E15A45E6-19D3-237E-A666-72394E1EB5F9}</ProjectGuid>
+	<ProjectGuid>{BB932E1B-B580-726D-96A5-7D99264AA7F0}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,21 +44,24 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraScript.cs" />
-     <Compile Include="Assets\FollowCamera.cs" />
-     <Compile Include="Assets\Movement.cs" />
-     <Compile Include="Assets\RollingControllin.cs" />
-     <Compile Include="Assets\SpawnBlock.cs" />
-     <Compile Include="Assets\Timer.cs" />
-     <Compile Include="Assets\p2move.cs" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Destroy.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Character Controllers\Sources\Scripts\FPSInputControllerP1.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Character Controllers\Sources\Scripts\FPSInputControllerP2.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Character Controllers\Sources\Scripts\PlatformInputController.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Scripts\Camera Scripts\MouseOrbit.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Scripts\Camera Scripts\SmoothFollow.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Scripts\Camera Scripts\SmoothLookAt.js" />
+     <Compile Include="Assets\WorkingSplitScreenAssets\Standard Assets\Scripts\General Scripts\DragRigidbody.js" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
- <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
- </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{53101EFC-FF3F-0AD7-516A-74119761DA1C}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{53101EFC-FF3F-0AD7-516A-74119761DA1C}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{E850EC39-3B80-1E5F-1E78-61AA740298F2}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
