@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CameraScript.cs" />
+     <Compile Include="Assets\CameraScript1.cs" />
      <Compile Include="Assets\FollowCamera.cs" />
      <Compile Include="Assets\Movement.cs" />
      <Compile Include="Assets\RollingControllin.cs" />
