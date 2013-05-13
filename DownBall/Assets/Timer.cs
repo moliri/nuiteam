@@ -2,14 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class Timer : MonoBehaviour {
+	public int myFontSize;
+	void Start(){
+		myFontSize = 60;
+	}
 	
-    public float maxTime = 6.0F;
-	public float currentTime = 0;	
+	void OnGUI () {
+		GUI.skin.label.fontSize = myFontSize;
+		GUI.Label (new Rect (0,0,200,200), Time.time.ToString().Substring(0,4));
+	}
 	
-    void Update() {
-		if(currentTime >= maxTime){
-			//do stuff when time is reached
-        }
+    void Update(){ 
+		OnGUI();
     }
 }
 
