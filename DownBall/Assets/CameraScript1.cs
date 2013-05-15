@@ -15,8 +15,9 @@ using System.Collections;
  
         void LateUpdate () 
         { 
-            float temp = playerTransform.position.z;
-            Vector3 temp2 = new Vector3 (0,0,temp);
+            float tempz = playerTransform.position.z;
+            float tempy = playerTransform.position.y;
+            Vector3 temp2 = new Vector3 (0,tempy,tempz);
             transform.position = temp2+cameraOrientationVector;
         }
     }
