@@ -47,14 +47,71 @@
      <Compile Include="Assets\CameraScript.cs" />
      <Compile Include="Assets\CameraScript1.cs" />
      <Compile Include="Assets\FollowCamera.cs" />
+     <Compile Include="Assets\LHandCursor.cs" />
+     <Compile Include="Assets\MotionToolkit\SampleAssets\Scripts\CheckforCamera.cs" />
+     <Compile Include="Assets\MotionToolkit\SampleAssets\Scripts\DebugButtonListener.cs" />
+     <Compile Include="Assets\MotionToolkit\SampleAssets\Scripts\NormalButton.cs" />
+     <Compile Include="Assets\MotionToolkit\SampleAssets\Scripts\RestPositionOnEnter.cs" />
+     <Compile Include="Assets\MotionToolkit\SampleAssets\Scripts\TextColor.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\General\MovementBox.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\General\ScreenPositionHelper.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\General\UnityConverter.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\General\UnityLog4NetAppender.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Management\DebugInformation.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Management\EscalationManager.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Management\UnityBeckonManager.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Management\UnityPlayerColorThemes.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Management\UnityPlayerManagement.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\PersonRadar\SimplePersonRadar.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\PersonRadar\TrapezoidPersonRadar.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Pointer\GestureButton.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Pointer\HotSpotButton.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Pointer\PointerListener.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Pointer\PointersVisualization.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\Pointer\UnityPointerManager.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\SensorImage\DepthCamImage.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\SensorImage\MultiplayerMasks.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\SensorImage\OnGUIDepthCamImage.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\SensorImage\OnGUIPlayerMask.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\SensorImage\PlayerMask.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\SensorImage\SensorImageConfigurator.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\SensorImage\UnityImageConverters.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\TrackingControllers\JointImagePositionTransformer.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\TrackingControllers\JointPositionTransformer.cs" />
+     <Compile Include="Assets\MotionToolkit\Scripts\TrackingControllers\SkeletonTrackingAnimation.cs" />
      <Compile Include="Assets\Movement.cs" />
      <Compile Include="Assets\RollingControllin.cs" />
      <Compile Include="Assets\SpawnBlock.cs" />
      <Compile Include="Assets\Timer.cs" />
      <Compile Include="Assets\p2move.cs" />
+     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNetFramework.xml" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\rightswiperight.xml" />
+     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNet.xml" />
+     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\leftswipeleft.xml" />
+     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\rightclick.xml" />
+     <None Include="Assets\MotionToolkit\Plugins\CommonFrameworkForBeckon.xml" />
+     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\leftclick.xml" />
+     <None Include="Assets\MotionToolkit\Prefabs\Images\Shaders\PlayerMaskShaderPlusGlowForPlanes.shader" />
+     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNetWrapper.xml" />
+     <None Include="Assets\MotionToolkit\Prefabs\Images\Shaders\PlayerMaskShaderGlowForPlanes.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
+ <Reference Include="BeckonDotNet">
+ <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNet.dll</HintPath>
+ </Reference>
+ <Reference Include="BeckonDotNetFramework">
+ <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetFramework.dll</HintPath>
+ </Reference>
+ <Reference Include="BeckonDotNetWrapper">
+ <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetWrapper.dll</HintPath>
+ </Reference>
+ <Reference Include="CommonFrameworkForBeckon">
+ <HintPath>Assets\MotionToolkit\Plugins\CommonFrameworkForBeckon.dll</HintPath>
+ </Reference>
+ <Reference Include="log4net">
+ <HintPath>Assets\MotionToolkit\Plugins\log4net.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
