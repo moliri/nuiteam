@@ -1,0 +1,1130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BeckonDotNetWrapper</name>
+    </assembly>
+    <members>
+        <member name="T:Omek.IMotionSensorDotNet">
+            <summary>
+            IMotionSensorDotNet is the .Net interface for the Omek Beckon SDK.
+            It's main cause is to be useful when developing in managed environments (Unity for example).
+            All of the functions are static functions that invokes, eventually, it's parallel C++ functions.
+            Most of them receives the relevant handle, instead of an object, because of the bridge between the 
+            C++ interface and the .Net interface - is a static C interface. There's no way to connect .Net and C++ directly.
+            
+            The Omek Beckon SDK provides a robust solution for real-time, 3D motion tracking using 
+            a depth camera. The thin and intuitive event-based C++ interface allows developers to quickly create 
+            immersive applications, and easily change existing user interfaces with 3D interaction. 
+            </summary>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.createCameraSensor(System.IntPtr@)">
+             
+            	<summary>
+            	Live camera mode is used for running the application with a connected camera. In this case, 
+            	the camera needs to be set up before instantiating the MotionSensor object. The SDK provides 
+            	a standard camera interface for choosing the frame-rate, resolution, and other parameters.
+            	</summary>
+            	<remarks> In case there are more than one cameras connected, the first one will be chosen.
+            	In case no camera is detected the creation will fail.</remarks>
+            	<param name="motionSensorHandle">an output param, will be filled with a handle to the motionSensor interface</param>
+            	<returns>  0 (Success) if sensor was created and camera is ready, error code otherwise </returns>
+            
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.createExternalCameraSensor(System.IntPtr@)">
+            <summary>
+            Live camera mode is used for running the application with a connected camera. In this case, 
+            the camera must be turned on and ready to use before instantiating the MotionSensor object. 
+            The SDK provides a standard camera interface for choosing the frame-rate, resolution, 
+            and other parameters.
+            </summary>
+            <remarks> In case there are more than one cameras connected, the first one will be chosen.
+            In case no camera is detected the creation will fail.</remarks>
+            <param name="motionSensorHandle">an output param, will be filled with a handle to the motionSensor interface</param>
+            <returns> 0 (Success) if sensor was created and connected to camera, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.createSequenceSensor(System.Text.StringBuilder,System.IntPtr@)">
+            <summary>
+            Get an instance of an offline sequence sensor. Sequence mode is useful for development and debugging 
+            of applications. It allows the developer to run the application without a camera, based on an offline 
+            pre-recorded file sequence.
+            </summary>
+            <param name="seqPath">the directory in which the recorded sequence resides (e.g. "C:\\data\\set1")</param>
+            <param name="motionSensorHandle">an output param, will be filled with a handle to the motionSensor interface</param>
+            <returns>0 (Success) if sensor was created successfully, error code otherwise </returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.createSkeleton(System.IntPtr@)">
+            <summary>
+            Creates a new skeleton object
+            </summary>
+            <param name="skeletonHandle">an output parameter - a handle to a new skeleton interface</param>
+            <returns>0 (success) if the skeleton was created successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.releaseSkeleton(System.IntPtr)">
+            <summary>
+            Release the memory of the skeleton
+            </summary>
+            <param name="skeletonHandle">the skeleton to delete</param>
+            <returns>0 (Success) if succeeded, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getLastError">
+            <summary>
+            Return the latest error value for this session
+            </summary>
+            <returns>The latest error value for this session</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setVerbosityLevel(System.UInt32,System.Text.StringBuilder)">
+            <summary>
+            Set verbosity level of the SDK
+            All output will be written according to the	settings in the configuration file.
+            See an example file installed in /bin.
+            If the configFile is empty, the output will be written to stdout.
+            </summary>
+            <param name="level"> 0 = none, 1 = critical, 2 = errors, 3 = warnings</param>
+            <param name="logFile">optional name of output log file.</param>
+            <returns>0 (Success) if succeeded, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.releaseMotionSensor(System.IntPtr)">
+            <summary>
+            Cleanup all the data and release camera and release the motion sensor allocation
+            This is the opposite function of createCameraSensor/createSequenceSensor
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getSensor(System.IntPtr,System.IntPtr@)">
+            <summary>
+            Get a handle to the sensor (camera/sequence) interface
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="sensorHandle">output parameter - a handle to the sensor interface</param>
+            <returns>0 (Success) if the sensor handle was retrieved successfully, or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.runSensor(System.IntPtr)">
+            <summary>
+            Start the loop of grabbing, tracking, gesture detection etc.
+               This method start a new thread, where all the processing is performed.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>0 (Success) if the new processing thread was initiated successfully, 
+            and an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.pauseSensor(System.IntPtr)">
+            <summary>
+            Pause the processing loop
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>0 (Success) if the process was successfully paused, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.resumeSensor(System.IntPtr)">
+            <summary>
+            Resume the processing loop
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>0 (Success) if the process was successfully resumed, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.stopSensor(System.IntPtr)">
+            <summary>
+            Stop the processing loop
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>0 (Success) if the process was successfully resumed, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.restartSensor(System.IntPtr)">
+            <summary>
+            Restart the session (in sequence mode: start from the first frame)
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>0 (Success) if the process was successfully restarted, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.resetBackground(System.IntPtr)">
+            <summary>
+            Reset the image background information for this session 
+            (the backround around the players and candidates) of this session.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>0 (Success) if background was successfully reset, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.resetTracking(System.IntPtr)">
+            <summary>
+            Reset all tracking information (players, etc) for this session
+            </summary>
+            <param name="motionSensorHandle">>a handle to the motion sensor interface</param>
+            <returns>0 (Success) if background was successfully reset, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.isAlive(System.IntPtr,System.Boolean@)">
+            <summary>
+            In sequence mode this will return false when reached the end of the sequence/or when there are no more frames to show 
+            In camera mode this will return true unless an error occurred, or the camera was not connected
+            </summary>
+            <param name="sensorHandle">a handle to the sensor</param>
+            <param name="isAlive">an output param - will be true if more frames are available, false otherwise</param>
+            <returns>0 (Success) if the data was successefully retrieved, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFps(System.IntPtr,System.Int32@)">
+            <summary>
+            Get the frames per second (frame rate)
+            </summary>
+            <param name="sensorHandle">a handle to the sensor</param>
+            <param name="fps">an output param which will be filled with the retrieved FPS</param>
+            <returns>0 (Success) if the data was successefully retrieved, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.processNextImage(System.IntPtr,System.Boolean,System.Boolean@)">
+            <summary>
+            Fully process the next image, using the existing grabber and managers
+            This method works in two ways: 
+            - If the "waitForImage" is turned on, the method will return only when a new image was processed
+            - If the "waitForImage" is turned off, the method will return immediately (check the hasNewImage flag in this case)
+            NOTE: You must not mix calls to "processNextImage" with calls to "run".
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="waitForImage">decides if the method will wait for a new image, or return immediately</param>
+            <param name="hasNewImage">(output param) indicates if a new image was processed</param>
+            <returns>0 (Success) if a new image was fully processed, or an error if a problem occurred</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.recordSequence(System.IntPtr,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Record a sequence for a specified number of frames
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="filename">The output file</param>
+            <param name="nFrames">The number of frames to record</param>
+            <returns>0 (Success) if the sequence was recorded successfully, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.stopRecording(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="motionSensorHandle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.startTracking(System.IntPtr,System.UInt32)">
+            <summary>
+            Start tracking a specific blob of interest.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">the index of the blob to be track</param>
+            <returns>0 (Success) if tracking successfully started, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.stopTracking(System.IntPtr,System.UInt32)">
+            <summary>
+            Stop tracking a specific blob of interest.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">the index of the player to be untracked</param>
+            <returns>0 (Success) if tracking successfully started, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.cloneSkeleton(System.IntPtr,System.IntPtr)">
+            <summary>
+            Clone another skeleton instance
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="skeletonHandleToCopy">pointer to the skeleton to be copied</param>
+            <returns>0 (Success) if the skeleton was succeesully cloned, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.addJoint(System.IntPtr,System.Int32)">
+            <summary>
+            Add a joint to the skeleton's tracked joints 
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The joint id to be added</param>
+            <returns>0 (Success) if this joint was added, error if this joint already exist</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.jointIdToName(System.Int32)">
+            <summary>
+            Convert a JointID to it's name
+            </summary>
+            <param name="jointId">The joint id</param>
+            <returns>The joint name</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.jointNameToId(System.Text.StringBuilder)">
+            <summary>
+            Convert a joint name to JointID
+            </summary>
+            <param name="jointName">The joint name</param>
+            <returns>The joint id</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getNumOfPlayers(System.IntPtr,System.UInt32@)">
+            <summary>
+            Get the number of active players that are tracked
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="numOfSkeletons">(output) The number of tracked skeletons</param>
+            <returns>0 (Success) if the number of skeleton was retrieved succeddfully, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.isPlayerActive(System.IntPtr,System.UInt32,System.Boolean@)">
+            <summary>
+            Check if a specific player is active
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">The id of the player we want to check</param>
+            <param name="isActive">(output) true If player is active (i.e. being tracked)</param>
+            <returns>0 (Success) if the data successfully retrieved, error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.isBlobActive(System.IntPtr,System.UInt32,System.Boolean@)">
+            <summary>
+            Check if a specific player has a blob (i.e. segmentation mask)
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">The id of the player we want to check</param>
+            <param name="isActive">(output) true If the blob exists (i.e. has a mask)</param>
+            <returns>0 (Success) if the data successfully retrieved, error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getSkeleton(System.IntPtr,System.UInt32,System.IntPtr)">
+            <summary>
+            Fill the given skeleton interface with the wanted full-body tracking data of a player
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">the ID of the player that should be retrieved</param>
+            <param name="skeleton">(output) skeleton handle to a preallocated Skeleton, will hold the retrieved player's skeleton</param>
+            <returns>0 (Success) if a legal player was found and the skeleton successfully filled</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getRawSkeleton(System.IntPtr,System.UInt32,System.IntPtr)">
+            <summary>
+            Get raw skeleton (no smoothing, etc.) for a given player
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">the label of the player, who's skeleton should be returned</param>
+            <param name="skeleton">(output) to a preallocated Skeleton, will hold the retrieved player's skeleton</param>
+            <returns>0 (Success) if a legal player was found and the skeleton successfully filled</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getRetargetedSkeleton(System.IntPtr,System.Text.StringBuilder,System.IntPtr)">
+            <summary>
+            Fill the given skeleton handle with the joints data for the retargeted skeleton.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="characterName">the name of the retargeted character.</param>
+            <param name="skeleton">(output) a preallocated skeleton interface to fill the joints data</param>
+            <returns>0 (Success) if a legal skeleton was retrieved, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getJointConfidence(System.IntPtr,System.Int32,System.UInt32@)">
+            <summary>
+            Get confidence measure for specific joint.
+            The confidence of a joint is a percentage measure of how confident the tracking algorithm
+            is of a result of tracking that specific joint. For example, when a joint is occluded, its
+            confidence drops to a lower value. Similarly, confidence drops to a low value when a joint 
+            is outside of the sensor's field of view.
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="confidence">(output) Resultant confidence measure (0-100)</param>
+            <returns>0 (Success) if the data successfully retrieved, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setJointConfidence(System.IntPtr,System.Int32,System.UInt32)">
+            <summary>
+            Set confidence for specified joint 
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="confidence">The joint's confidence</param>
+            <returns>0 (Success) if the data was set successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getJointRotation(System.IntPtr,System.Int32,System.Single[],System.Boolean)">
+            <summary>
+            Get global/local rotation for specified joint
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="quaternionArr">The quaternion representing the global/local 3D rotation</param>
+            <param name="bGlobalRotation">Is global rotation, else – local rotation</param>
+            <returns>0 (Success) if the data successfully retrieved, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setJointRotation(System.IntPtr,System.Int32,System.Single[],System.Boolean)">
+            <summary>
+            Set local rotation for specified joint
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="quaternionArr">The quaternion representing the local/global 3D rotation</param>
+            <param name="bGlobalRotation">Is global rotation, else – local rotation</param>
+            <returns>0 (Success) if the data was set successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getJointPosition(System.IntPtr,System.Int32,System.Single[],System.Boolean)">
+            <summary>
+            Get the world/image joint position
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="results">The world/image position of this joint</param>
+            <param name="worldPosition">Is world position, else – image position</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setJointPosition(System.IntPtr,System.Int32,System.Single[],System.Single[])">
+            <summary>
+            Set the world space and image space joint position
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="worldCoordiantes">The world position of this joint</param>
+            <param name="imageCoordiantes">The image position of this joint</param>
+            <returns>0 (Success) if the data was set successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setJointImagePosition(System.IntPtr,System.Int32,System.Single[])">
+            <summary>
+            Set the image space  joint position
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="imageCoordiantes">The image position of this joint</param>
+            <returns>0 (Success) if the data was set successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.clearJoint(System.IntPtr,System.Int32)">
+            <summary>
+            Clear the values of the given joint, but does not delete the joint. 
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <returns>0 (Success) if the joint's values were successfully cleared, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getJointSize(System.IntPtr,System.Int32,System.Single@,System.Single@)">
+            <summary>
+            Get the 2D bounding region of a specific joint
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="width">(output) The width of this joint</param>
+            <param name="height">(output) The height of this joint</param>
+            <returns>0 (Success) if succeeded, an error otherwise. 
+             In case were there is no meaning for the joint’s size – return an error.</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setJointSize(System.IntPtr,System.Int32,System.Single,System.Single)">
+            <summary>
+            Set the 2D bounding region of a specific joint
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="width">The width of this joint</param>
+            <param name="height">The height of this joint</param>
+            <returns>0 (Success) if succeeded, an error otherwise. </returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getNumOfJoints(System.IntPtr,System.UInt32@)">
+            <summary>
+            Return the number of tracked joints in this skeleton
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="numOfJoints">output param, the number of tracked joints in this skeleton</param>
+            <returns>0 (Success) if succeeded, an error otherwise.</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getJointId(System.IntPtr,System.Int32@,System.UInt32)">
+            <summary>
+            Get the joint id in the specific index, useful for iterating through all joints in this skeleton
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">(output) the joint id in the specific index</param>
+            <param name="index">the index of the wanted joint</param>
+            <returns>>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.containsJoint(System.IntPtr,System.Int32,System.Boolean@)">
+            <summary>
+            Check if a joint is tracked in this skeleton
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="jointId">The id of this joint</param>
+            <param name="isContained">(output) true if this skeleton contains a joint named jointId</param>
+            <returns>>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.clearAllJoints(System.IntPtr)">
+            <summary>
+            Clear values of all joints <see cref="M:Omek.IMotionSensorDotNet.clearJoint(System.IntPtr,System.Int32)"/>
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <returns>0 (Success) or an error code</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCenterOfMass(System.IntPtr,System.Single[],System.Boolean)">
+            <summary>
+            Get the center of mass in world/image space
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="pnt">(output) 3D center of mass</param>
+            <param name="worldSpace">Is world space, else – image space</param>
+            <returns>0 (Success) if computation was successful, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getTorsoWidth(System.IntPtr,System.Single@)">
+            <summary>
+            Torso width in world coordinates (cm). Gets updated continuously at
+            every frame, even after calibration is done. 
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="fTorsoWidth">(output) The torso width</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCalibratedHeight(System.IntPtr,System.Single@)">
+            <summary>
+            Get the height of the skeleton
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="height">(output) The calculated height of the player</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCalibratedShouldersWidth(System.IntPtr,System.Single@)">
+            <summary>
+            Get the distance between the shoulders
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="shoulderWidth">(output) The calculated distance from left to right shoulder</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCalibratedArmLength(System.IntPtr,System.Single@)">
+            <summary>
+            
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="armLength"></param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCalibratedLegLength(System.IntPtr,System.Single@)">
+            <summary>
+            Get the geodesic length of the arm
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="legLength">(output) The calculated length of the arm</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getOffsetFromCamera(System.IntPtr,System.Single[])">
+            <summary> Get the offset of the skeleton from the camera origin.</summary>
+            The coordinates of the skeleton's joints are translated so that the feet are located at Y=0.
+            In other words the coordinate system's origin is moved from the camera to the floor.
+            <returns> 0 (Success) </returns>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="offsetFromCamera">(output) the offset in (X,Y,Z) coordinates (in cm)</param>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCalibratedTorsoWidth(System.IntPtr,System.Single@)">
+            <summary>
+            Torso width in world coordinates (cm). This is
+            similar to getTorsoWidth, but does not change after
+            calibration is done <see cref="M:Omek.IMotionSensorDotNet.getTorsoWidth(System.IntPtr,System.Single@)"/>
+            </summary>
+            <param name="skeletonHandle">a handle to the skeleton interface</param>
+            <param name="torsoWidth"></param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.removeTarget(System.IntPtr,System.Text.StringBuilder)">
+            <summary>
+            Remove the target character with the given name
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="name">identifier of the character to be removed</param>
+            <returns>0 (Success) if the target was successfully removed, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFrameNum(System.IntPtr,System.UInt64@)">
+            <summary>
+            Return the current frame number
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="frameNum">(output) the current frame number, or -1 in case of error</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFrameTimestamp(System.IntPtr,System.UInt64@)">
+            <summary>
+            Get the time stamp for the current frame (in milliseconds)
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="timestamp">(output) the time stamp for the current frame (in milliseconds)</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getNumOfFrames(System.IntPtr,System.Int32@)">
+            <summary>
+            Get the total number of frames in a sequence
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="numOfFrames">(output) the total number of frames in a sequence</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.goToFramenum(System.IntPtr,System.UInt64)">
+            <summary>
+            Set the current frame number
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="frameNum">the new frame-number to be go to</param>
+            <returns>0 (Success) if succeeded , an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getStatus(System.IntPtr,System.UInt32@)">
+            <summary>
+            Get the current status of the Sensor instance
+            0 - connected, 1 - not-connected, 3 - EOF (for sequence)
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="sensorStatus">An output param with the current sensor status</param>
+            <returns>0 (Success) if the status could be retrieved, an error otherwise </returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.retargetMotion(System.IntPtr,System.Text.StringBuilder,System.Text.StringBuilder,System.Int32@,System.Text.StringBuilder,System.Int32@,System.UInt32)">
+            <summary>
+            DEPRECTAED: Please use other variant of retargetMotion
+            Creates a new animated character target, reading the skeleton's info from an FBX file
+            Note: in case of error SHADOW_C_WRAPPER_BUFFER_TOO_SHORT (36) the boneNamesBufferSize 
+            variable will hold the needed buffer size
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="characterName">The identifier of the new character</param>
+            <param name="characterFilePath">The path to the FBX file containing the character definition</param>
+            <param name="usedBonesCount">The number of the actually used joints</param>
+            <param name="usedBoneNames">A string containing the names of the bones used in the retargetting, each separated by "\n"</param>
+            <param name="boneNamesBufferSize">The size of the usedBoneNames buffer. (out) The actual size needed for the bone-names string</param>
+            <param name="label">ID of the tracked player</param>
+            <returns>0 (Success) if a new target was successfully created and added, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.retargetMotionFromSkeleton(System.IntPtr,System.Text.StringBuilder,System.IntPtr,System.UInt32)">
+            <summary>
+            Creates a new animated character target, using the info of the given skeleton
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="characterName">identifier of the new character</param>
+            <param name="skeletonHandle">skeleton defining the new character, to be added as a target</param>
+            <param name="label">ID of the tracked player</param>
+            <returns>0 (Success) if a new target was successfully created and added, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.enableGesture(System.IntPtr,System.Text.StringBuilder)">
+            <summary>
+            Enable the report of specific gesture using hasMoreGestures/popNextGesture
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="gestureName">the name of the gesture to enable</param>
+            <returns>0 (Success) if registration to the gesture succeeded</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.disableGesture(System.IntPtr,System.Text.StringBuilder)">
+            <summary>
+            Disable the report of specific gesture (unregister)
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="gestureName">the name of the gesture to disable</param>
+            <returns>0 (Success) if unregistering to the gesture succeeded</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.disableAllGestures(System.IntPtr)">
+            <summary>
+            Disable report of all gestures
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>0 (Success) if unregistering all of the gestures succeeded</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.hasMoreGestures(System.IntPtr,System.Boolean@)">
+            <summary>
+            Check if there are more gestures in the queue
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="hasMoreGestures">(output)true if there are more gesture in the queue, false otherwise</param>
+            <returns></returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.popNextGesture(System.IntPtr)">
+            <summary>
+            Get the next gesture and call releaseGesture to release the memory of this gesture
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>a handle to the next gesture or null in case of failure</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.releaseGesture(System.IntPtr,System.IntPtr)">
+            <summary>
+            Release the memory allocated for the gesture
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="pGesture">a handle to the gesture event that should be released</param>
+            <returns>0 (Success) if the memory was correctly released, or an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getNumOfGestures(System.IntPtr,System.UInt32@,System.Int32)">
+            <summary>
+            Return the number of activated / all available gestures
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="numOfGestures">(output) the amount of gestures.</param>
+            <param name="listGesturesMode">0 for "all" gestures, 1 for "active" gestures <see cref="M:Omek.IMotionSensorDotNet.getGestureName(System.IntPtr,System.UInt32,System.Text.StringBuilder,System.UInt32,System.Int32)"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getGestureName(System.IntPtr,System.UInt32,System.Text.StringBuilder,System.UInt32,System.Int32)">
+            <summary>Get a gesture name by its index</summary>
+            Returns the gesture name at the requested index<br/>
+            If listGesturesMode == 1: 
+            Get the gesture name from the "activated gestures" list.
+            When tracking is used, these are all the gestures that were enabled,
+            otherwise its the gestures that were activated in the file<br/>
+            If listGesturesMode == 0:
+            Get the gesture name out of all gestures in the system
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="gestureIndex">the index of the wanted gesture</param>
+            <param name="gestureName">(output) the gesture name in the wanted index</param>
+            <param name="bufferSize">size of allocated buffer for the gesture name</param>
+            <param name="listGesturesMode">0 for "all" gestures, 1 for "active" gestures</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCharacterStateData(System.IntPtr,System.IntPtr,System.Text.StringBuilder)">
+            <summary>
+            fill array with TQS (translate,quaternion,scale) of the skeleton joints, with the tracking info of the given character
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="allocatedArray">(output) pre-allocated pointer to the effectors buffer</param>
+            <param name="name">the user-given name of the retargetted skeleton</param>
+            <returns>0 (Success) if success, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.enableAlert(System.IntPtr,System.Text.StringBuilder)">
+            <summary>
+            Enable the report of a specific alert
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="alertName">the name of the alert</param>
+            <returns>0 (Success) if registration to the alert succeeded, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.disableAlert(System.IntPtr,System.Text.StringBuilder)">
+            <summary>
+            Disable the report of a specific alert
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="alertName">The name of the alert</param>
+            <returns>0 (Success) if unregistering to the alert succeeded, error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.disableAllAlerts(System.IntPtr)">
+            <summary>
+            Disable report of all alerts
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>0 (Success) if unregistering all alert succeeded, error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.hasMoreAlerts(System.IntPtr,System.Boolean@)">
+            <summary>
+            Check if there are more alerts in the queue
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="hasMoreAlerts">(output) true if there are more alerts in the queue, false otherwise</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.popNextAlert(System.IntPtr)">
+            <summary>
+            Get the next alert in the queue and call releaseAlert to release the memory of this alert
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <returns>a handle to the next alert event in the queue</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.releaseAlert(System.IntPtr,System.IntPtr)">
+            <summary>
+            Release the memory allocated for this alert
+            </summary> 
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="pAlert">a handle to the alert event that should be released
+            <see cref="M:Omek.IMotionSensorDotNet.popNextGesture(System.IntPtr)"/></param>
+            <returns>0 (Success) if the memory was correctly released, error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.hasNewFrameData(System.IntPtr,System.Int32,System.Boolean@)">
+            <summary>
+            This method can be called by different clients at the same time,
+            as long as every client uses a different id. Each client should use the same id for successive calls
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="id">a unique identification of the caller client, typically the actual pointer of the 
+            invoking object</param>
+            <param name="hasNewFrameData">(output) true if there is new frame data, false otherwise</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.copyRawImage(System.IntPtr,System.Byte[],System.UInt32,System.Int32@,System.Boolean)">
+            <summary>
+            Fill the given image with the last captured image	
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="image">a pre-allocated image buffer large enough to hold the image</param>
+            <param name="bufferSize">the size of the a pre-allocated buffer <see cref="M:Omek.IMotionSensorDotNet.getRawImageSize(System.IntPtr,System.UInt32@,System.UInt32)"/> </param>
+            <param name="widthStep">(output) size of an aligned image row in bytes</param>
+            <param name="bColor">if true (default), this image will be the colo, or IR image (depending on the camera); if false, the image will contain the depth data</param>
+            <returns>0 (Success) if a current image exists and could be copied</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getRawImageSize(System.IntPtr,System.UInt32@,System.UInt32)">
+            <summary>
+            Get the needed buffer size (in bytes) for holding the requested image
+            </summary>
+            Call this method to find out the required buffer size, before copying any of the images
+            <see cref="M:Omek.IMotionSensorDotNet.copyRawImage(System.IntPtr,System.Byte[],System.UInt32,System.Int32@,System.Boolean)"/>
+            <see cref="M:Omek.IMotionSensorDotNet.copyPlayerMask(System.IntPtr,System.Byte[],System.UInt32,System.UInt32,System.Int32@,System.Int32@,System.Single[],System.Single[])"/>
+            <see cref="M:Omek.IMotionSensorDotNet.copyCandidateMask(System.IntPtr,System.Byte[],System.UInt32,System.UInt32,System.Int32@,System.Int32@,System.Single[],System.Single[])"/>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="bufferSize">(output) the buffer size of the raw image</param>
+            <param name="imageType">The requested image-type: Color=0, Depth=1, Mask=2</param>
+            <returns>0 (Success) if a current image exists, or the relevant error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.copyPlayerMask(System.IntPtr,System.Byte[],System.UInt32,System.UInt32,System.Int32@,System.Int32@,System.Single[],System.Single[])">
+            <summary>
+            Get a copy of the 2D binary mask of the requested player
+            In the output mask each pixel occupied by the player
+            is white (value of 255) and all other pixels are black (value of 0)
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="copyMask">the pre-allocated buffer that will hold the image</param>
+            <param name="bufferSize">the size of the allocated buffer (should be large enough) <see cref="M:Omek.IMotionSensorDotNet.getRawImageSize(System.IntPtr,System.UInt32@,System.UInt32)"/> </param>
+            <param name="label"> the ID of the player who's mask should be retrieved</param>
+            <param name="width">the width of the player's bounding rectangle</param>
+            <param name="height">the height of the player's bounding rectangle</param>
+            <param name="center3D">the player blob's 3D center of mass in world space (cm)</param>
+            <param name="center2D">the player blob's 2D center of mass in local image space (pixels)</param>
+            <returns>0 (Success) if a current image exists and could be copied</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getNumOfCandidates(System.IntPtr,System.UInt32@)">
+            <summary>
+            Candidates are observers that are typically behind the active players in the game.
+            This function is useful in determining the number of people in the scene.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="numCandidates">(output) the number of player candidates in the scene</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.copyCandidateMask(System.IntPtr,System.Byte[],System.UInt32,System.UInt32,System.Int32@,System.Int32@,System.Single[],System.Single[])">
+            <summary>
+            Get a copy of the 2D binary mask of a specific candidate
+            A candidate is a person detected in the scene which is not the main player. For example, when tracking
+            one person and several people in the background, all those people will appear as candidate blobs. As soon
+            as a person is tracked, his status changes from candidate to player, and his blob can then be accessed
+            using copyPlayerMask instead. The size of the image is as the size of the depth image.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="copyMask">the pre-allocated buffer that will hold the image</param>
+            <param name="bufferSize">the size of the allocated buffer (should be large enough) <see cref="M:Omek.IMotionSensorDotNet.getRawImageSize(System.IntPtr,System.UInt32@,System.UInt32)"/> </param>
+            <param name="label">the serial number of the candidate, who's mask was requested</param>
+            <param name="width">the width of the candidate's bounding rectangle</param>
+            <param name="height">the height of the candidate's bounding rectangle</param>
+            <param name="center3D">the player blob's 3D center of mass in world space (cm)</param>
+            <param name="center2D">the player blob's 2D center of mass in local image space (pixels)</param>
+            <returns>0 (Success) if a current image exists</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getTrackingOptions(System.IntPtr,System.UInt32@)">
+            <summary>
+            Get the tracker options flags
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="options">(output) the tracker flags</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setTrackingOptions(System.IntPtr,System.UInt32)">
+            <summary>
+            Set tracking options on the fly. 
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="options">the flags of the tracking to be set</param>
+            <returns>0 (Success) if the new flags were successfully set</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setSmoothStrength(System.IntPtr,System.UInt32,System.Int32,System.UInt32)">
+            <summary>
+            Set the strength of smoothing for a specific joint
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">The player index</param>
+            <param name="jointId">The joint id</param>
+            <param name="strength">smooth value (0 means no smooth --> higher values means stronger smoothing)</param>
+            <returns>0 (Success) if success, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getSmoothStrength(System.IntPtr,System.UInt32,System.Int32,System.UInt32@)">
+            <summary>
+            Get the strength of smoothing for a specific joint
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">The player index</param>
+            <param name="jointId">The joint id</param>
+            <param name="strength">smooth value (0 means no smooth --> higher values means stronger smoothing)</param>
+            <returns>0 (Success) if success, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setCameraParameter(System.IntPtr,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Set specific sensor parameters 
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="name">name can be one of the following values, depending on specific sensor: 
+            	"flipped" - set to 1 to flip raw data input horizontally (mirror), 0 for default 
+            	"enableRGB" - set to 1 to grab RGB or IR data (depending on camera), or 0 to grab depth only 
+            	"matchRGB" - set to 1 for a 1-to-1 pixel match of RGB and depth data, or 0 to disable. This is
+            				typically a CPU heavy operation, and this is turned off by default.
+            	"frequency" - change the operating frequency of the sensor (if supported by sensor)</param>
+            <param name="value">the new value to set parameter to </param>
+            <returns>0 (Success) if success, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCameraParameter(System.IntPtr,System.Text.StringBuilder,System.Int32@)">
+            <summary>
+            Get specific sensor parameters
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="name">name can be one of the following values, depending on specific sensor: 
+            	"flipped" - set to 1 to flip raw data input horizontally (mirror), 0 for default 
+            	"enableRGB" - set to 1 to grab RGB or IR data (depending on camera), or 0 to grab depth only 
+            	"matchRGB" - set to 1 for a 1-to-1 pixel match of RGB and depth data, or 0 to disable. This is
+            				typically a CPU heavy operation, and this is turned off by default.
+            	"frequency" - change the operating frequency of the sensor (if supported by sensor)</param>
+            <param name="value">output param - the return value for the requested parameter</param>
+            <returns>0 (Success) if success, error code otherwise</returns> 
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getImageWidth(System.IntPtr,System.Int32,System.Int32@)">
+            <summary>
+            Get the image width.
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="imageType">the imageType (color/ depth/ mask)</param>
+            <param name="imageWidth">(output) the color/depth/mask width of a frame.</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getImageHeight(System.IntPtr,System.Int32,System.Int32@)">
+            <summary>
+            Get the image height.
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="imageType">the imageType (color/ depth / mask).</param>
+            <param name="imageHeight">(output) the color/depth/mask height of a frame</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getImageChannels(System.IntPtr,System.Int32,System.Int32@)">
+            <summary>
+            Get the image channels number.
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="imageType">the imageType (color/ depth/ mask)</param>
+            <param name="imageChannels">(output) the color/depth/mask channels of a frame</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getImageBpp(System.IntPtr,System.Int32,System.Int32@)">
+            <summary>
+            Get the image bit per pixel
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="imageType">the imageType (color/ depth/ mask)</param>
+            <param name="imageBpp">(output) the depth of a pixel in the color/depth/mask image (bit per pixel).</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCameraName(System.IntPtr,System.Boolean,System.Text.StringBuilder,System.UInt32)">
+            <summary>
+            Get the current camera type
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="bShortName">"true" (default) will return the short (single word) version,
+            while "false" returns the full name</param>
+            <param name="cameraType">an output buffer for the name of the current camera </param>
+            <param name="bufferSize">the size of the buffer</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFiredEventType(System.IntPtr,System.UInt32@)">
+            <summary>
+            Get the type of this event 
+            </summary>
+            <param name="firedEventHandle">a handle to the firedEvent interface</param>
+            <param name="eventType">(output) the type of this event </param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFiredEventId(System.IntPtr,System.UInt32@)">
+            <summary>
+            Get the unique ID of this event
+            </summary>
+            <param name="firedEventHandle">a handle to the firedEvent interface</param>
+            <param name="id">(output) the unique ID of this event</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFiredEventTimestamp(System.IntPtr,System.UInt64@)">
+            <summary>
+            Get the fired event timestamp
+            </summary>
+            <param name="firedEventHandle">a handle to the firedEvent interface</param>
+            <param name="timeStamp">(output) the fired event timestamp</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFiredEventFrameNum(System.IntPtr,System.UInt64@)">
+            <summary>
+            Get the fired event frame number
+            </summary>
+            <param name="firedEventHandle">a handle to the firedEvent interface</param>
+            <param name="frameNum">(output) the fired event frame number</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFiredEventPlayerId(System.IntPtr,System.Int32@)">
+            <summary>
+            Get the ID of the relevant player
+            </summary>
+            <param name="firedEventHandle">a handle to the firedEvent interface</param>
+            <param name="label">(output) the ID of the relevant player, or an error code, when no such player exists</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFiredEventName(System.IntPtr,System.Text.StringBuilder,System.UInt32)">
+            <summary>
+            Get the name of the fired event
+            </summary>
+            <param name="firedEventHandle">a handle to the firedEvent interface</param>
+            <param name="eventName">an output buffer to fill with the name of the fired event</param>
+            <param name="bufferSize">the buffer size</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getMaxPlayers(System.IntPtr,System.UInt32@)">
+            <summary>
+            Get the maximal number of players that can be tracked
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor handle</param>
+            <param name="maxPlayers">(output) the maximal number of players that can be tracked</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setMaxPlayers(System.IntPtr,System.UInt32)">
+            <summary>
+            DEPRECATED: please use setMaxCandidatesAndPlayers
+            Set the maximum number of players, to be tracked in the scene.
+            Note that the number of tracked players highly depends on the field of view 
+            of the camera. In general, tracking more players works better as the field 
+            of view of the camera is wider.
+            The upper limit of supported players is 5.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor handle</param>
+            <param name="maxPlayers"> the new number of players to be tracked</param>
+            <returns>0 (Success) if the data was set successfully, or an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getMaxCandidates(System.IntPtr,System.UInt32@)">
+            <summary>
+            Get the maximal number of players that can be tracked
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor handle</param>
+            <param name="maxCandidates">(output) a handle to the motion sensor handle</param>
+            <returns>0 (Success) if the data was retrieved successfully, error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setMaxCandidates(System.IntPtr,System.UInt32)">
+            <summary>
+            DEPRECATED: please use setMaxCandidatesAndPlayers
+            Set the maximum number of blobs, to restricts the number of tracked 
+            blobs in the scene. 
+            Note that the number of tracked blobs highly depends on the field of view 
+            of the camera. In general, tracking more blobs works better as the field 
+            of view of the camera is wider.
+            The upper limit of supported players is 5.
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor handle</param>
+            <param name="maxCandidates"> the new number of blobs to restricts.</param>
+            <returns>0 (Success) if the data was set successfully, or an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getFloorPlaneParams(System.IntPtr,System.Single[],System.Single[])">
+            <summary>
+            Obtain the parameters defining the floor-plane in 3D Euclidean space in 
+            world-coordinates.
+            The 3D floor-plane parameters are defined using a point within the plane, 
+            and a vector normal to the plane: 
+            	n * ( v - v0 ) = 0,
+            where v0 is a 3D point within (on) the plane, n is the 3D vector normal 
+            to the plane, v is any point within (on) the plane (infinitely many), 
+            and "*" is the dot-product (non-normalized inner-product).
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor handle</param>
+            <param name="point">output param, corresponds to v0 in the definition above.</param>
+            <param name="normal"> output param, corresponds to n in the definition above.</param>
+            <returns>0 (Success) if succeeded , or an error code othherwise. 
+            If the floor-plane not valid for (i.e., real and visible), then ignore the other outputs.</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setFloorPlaneKnownTrueParams(System.IntPtr,System.Single,System.Single)">
+            <summary>
+            Re-initialize the floor plane object with known true floor plane parameter 
+            values, over-writing any previous estimation and re-initializing the internal 
+            state.
+            <remarks> Call this function only after checking that ISensor::isAlive() is true</remarks>
+            <remarks>  Calling this function will prevent any future estimation of floor plane parameters. Therefore, call it only if you are certain of the high 
+            accuracy of the input arguments. </remarks>
+            <remarks> Following a call to this function, the human user must let the floor be fully visible to the camera (un-occluded) for a few seconds, exactly 
+            as during start-up of the application.</remarks>
+            </summary>
+            <param name="motionSensorHandle">a handle to the motion sensor handle</param>
+            <param name="cameraHeightCm"> the perpendicular height of the camera from the floor plane > 0, in cm.</param>
+            <param name="cameraLookdownAngleDegrees">the camera's look-down inclination angle > 0, in degrees, where 0 deg corresponds to no look-down.</param>
+            <returns> 0 (Success) if succeeded , or an error code othherwise.</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getCameraSetup(System.IntPtr,System.Single@,System.Single@)">
+            <summary>
+            Obtain the estimated parameters defining the setup of the camera, relative to the floor plane.
+            </summary>
+            The height is the distance between the camera to the closest point on the floor plane.
+            The angle is relative to the floor, where a value of 0 degrees means that the camera is parallel to the floor,
+            while 90 degrees means that the camera is looking straight down.
+            If this function returns an error, it means that the camera setup could not be calculated (e.g. the floor is not visible), 
+            then the output arguments should be ignored.
+            <param name="motionSensorHandle"> a handle to the motion sensor handle</param>
+            <param name="cameraHeight"> (output) The distance between the floor plane and the camera in cm.</param>
+            <param name="cameraLookdownAngle"> (output) The angle of the camera on the Y direction in degrees.</param>
+            <returns> 0 (Success) when the camera is in high-up position and the floor is visible, or an error code otherwise.</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setCameraSetup(System.IntPtr,System.Single,System.Single)">
+            <summary>
+            Re-initialize the camera setup (i.e. the floor plane object) with known true measurements.
+            </summary>
+            Calling this method will force overwriting any previous estimation and re-initializing the internal state.
+            The height is the distance between the camera to the closest point on the floor plane.
+            The angle is relative to the floor, where a value of 0 degrees means that the camera is parallel to the floor,
+            while 90 degrees means that the camera is looking straight down.
+            <remarks>Call this function only when the sensor is running (e.g. after checking that ISensor::isAlive() is true)</remarks>
+            <remarks>Calling this function will prevent any future estimation of floor plane parameters. 
+            	  Therefore, call it only if you are certain of the accuracy of the input arguments.</remarks>
+            <remarks>Following a call to this function, the floor must be fully visible to the camera (not occluded) for a few seconds.
+                  This is the same as during start-up of the application.</remarks>
+            <param name="motionSensorHandle"> a handle to the motion sensor handle</param>
+            <param name="cameraHeight"> The distance between the floor plane and the camera in cm.</param>
+            <param name="cameraLookdownAngle"> The angle of the camera on the Y direction in degrees.</param>
+            <returns> 0 (Success) when the setup succeeded (i.e. the camera is in high-up position and the floor is visible), 
+            or an error code otherwise.</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getStatusString(System.UInt32,System.Text.StringBuilder,System.UInt32)">
+            <summary>
+            This method converts an OMKStatus value to a human readable string
+            </summary>
+            <returns>a specific string that describes the given status </returns>
+            <param name="status">the error value to be described</param>
+            <param name="statusString">(output) a string describing the given status</param>
+            <param name="bufferSize">size of allocated buffer for the status string</param>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.project(System.IntPtr,System.Single,System.Single,System.Single,System.Int32@,System.Int32@)">
+            <summary>
+            Project 3D position into 2D image space
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="xWorld"> world x position</param>   
+            <param name="yWorld"> world y position</param>   
+            <param name="zWorld"> world z position</param>   
+            <param name="xImage"> image x position</param>
+            <param name="yImage"> image y position</param>        
+            <returns>0 (Success) if success, error code otherwise</returns> 
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.backProject(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Single@,System.Single@,System.Single@)">
+            <summary>
+            Backproject 2D position into 3D world space
+            </summary>
+            <param name="sensorHandle">a handle to the sensor interface</param>
+            <param name="xImage"> image x position</param>
+            <param name="yImage"> image y position</param>
+            <param name="zImage"> image z position</param> 
+            <param name="xWorld"> world x position</param>   
+            <param name="yWorld"> world y position</param>   
+            <param name="zWorld"> world z position</param>   
+            <returns>0 (Success) if success, error code otherwise</returns> 
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getWorkingDirectory(System.IntPtr,System.Text.StringBuilder,System.UInt32)">
+            <summary>Return the path to the working directory, where the application was started</summary>
+            <remarks>This method will return an error if the value could not be retrieved, or if the allocated buffer is too short</remarks>
+            <param name="motionSensorHandle"> a handle to the motion sensor handle</param>
+            <param name="workingDirectory">output buffer, which will hold the path of the requested directory</param>
+            <param name="bufferSize">the allocated length of the workingDirectory buffer</param>
+            <returns>OMK_SUCCESS if the working-directory was returned, or the relevant error (see the notes above)</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.getTrackingVersion(System.IntPtr,System.Boolean,System.Text.StringBuilder,System.UInt32)">
+            <summary>Return a string representing the version of the current build</summary>
+            The string is made of four segments, each composed of digits, and separated by a period (".")<br/>
+            For Example: 1.2.34.5555<br/>
+            The leftmost segment is the major version number, and the rightmost is the minor<br/>
+            <remarks>The number of digits in each segment can vary from build to build</remarks>
+            <remarks>This method will return an error if the value could not be retrieved, or if the allocated buffer is too short</remarks>
+            <param name="motionSensorHandle"> a handle to the motion sensor handle</param>
+            <param name="readFromFile">	set to "false" to get the current (latest) tracking version, 
+            set to "true" to read it from the .seq file (only available when TRACK_FROM_FILE is used)</param>
+            <param name="buildVersion">output buffer, which will hold the version string</param>
+            <param name="bufferSize">the allocated length of the buildVersion buffer</param>
+            <returns>OMK_SUCCESS if the build-version was returned, or the relevant error (see the notes above)</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.setMaxCandidatesAndPlayers(System.IntPtr,System.UInt32,System.UInt32)">
+            <summary> Set the maximum number of candidates and players, to be tracked in the scene</summary>
+            Once detected, for each candidate we can obtain the blob (segmentation mask) and the center of mass.
+            For each tracked player we can obtain, in addition, the skeleton information.
+            <remarks> The number of tracked players highly depends on the field of view 
+            of the camera. In general, tracking more players works better as the field 
+            of view of the camera is wider</remarks>
+            <remarks> The number of tracked players is limited by the number of supported candidates, and the upper limit is 5</remarks>
+            <see cref="M:Omek.IMotionSensorDotNet.getMaxPlayers(System.IntPtr,System.UInt32@)"/>
+            <see cref="M:Omek.IMotionSensorDotNet.getMaxCandidates(System.IntPtr,System.UInt32@)"/>
+            <param name="motionSensorHandle">a handle to the motion sensor handle</param>
+            <param name="nCandidates"> the new limitation on the number of blobs that can be detected</param>
+            <param name="nPlayers"> the new limitation on the number of players that can be tracked</param>
+            <returns> OMK_SUCCESS if the maximal number of candidates and players was successfully set</returns>
+        </member>
+        <member name="M:Omek.IMotionSensorDotNet.copySkeleton(System.IntPtr,System.UInt32,System.IntPtr)">
+            <summary>
+            Fill the given skeleton interface with the wanted full-body tracking data of a player
+            </summary>
+            The output skeleton is using a "left-hand" coordinates system, with Y pointing up, X pointing right, and Z pointing away from the camera
+            <param name="motionSensorHandle">a handle to the motion sensor interface</param>
+            <param name="label">the ID of the player that should be retrieved</param>
+            <param name="skeleton">(output) skeleton handle to a preallocated Skeleton, will hold the retrieved player's skeleton</param>
+            <returns>0 (Success) if a legal player was found and the skeleton successfully filled</returns>
+        </member>
+    </members>
+</doc>

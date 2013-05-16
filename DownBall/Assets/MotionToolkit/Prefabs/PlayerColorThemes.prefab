@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 3
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: PlayerColorThemes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398e0601876ae45498f78e1603851b4d, type: 1}
+  m_Name: 
+  m_themeLists:
+    m_nonPlayer:
+    - m_primary:
+        serializedVersion: 2
+        rgba: 0
+      m_secondary:
+        serializedVersion: 2
+        rgba: 0
+      m_mask:
+        serializedVersion: 2
+        rgba: 4287795858
+      m_radar:
+        serializedVersion: 2
+        rgba: 4286808963
+      m_cursor:
+        serializedVersion: 2
+        rgba: 0
+      m_highlight:
+        serializedVersion: 2
+        rgba: 0
+      m_custom1:
+        serializedVersion: 2
+        rgba: 0
+      m_custom2:
+        serializedVersion: 2
+        rgba: 0
+      m_custom3:
+        serializedVersion: 2
+        rgba: 0
+    m_player:
+    - m_primary:
+        serializedVersion: 2
+        rgba: 0
+      m_secondary:
+        serializedVersion: 2
+        rgba: 0
+      m_mask:
+        serializedVersion: 2
+        rgba: 4294901760
+      m_radar:
+        serializedVersion: 2
+        rgba: 4294836224
+      m_cursor:
+        serializedVersion: 2
+        rgba: 4294770688
+      m_highlight:
+        serializedVersion: 2
+        rgba: 0
+      m_custom1:
+        serializedVersion: 2
+        rgba: 0
+      m_custom2:
+        serializedVersion: 2
+        rgba: 0
+      m_custom3:
+        serializedVersion: 2
+        rgba: 0
+    - m_primary:
+        serializedVersion: 2
+        rgba: 0
+      m_secondary:
+        serializedVersion: 2
+        rgba: 0
+      m_mask:
+        serializedVersion: 2
+        rgba: 4290396928
+      m_radar:
+        serializedVersion: 2
+        rgba: 4290331392
+      m_cursor:
+        serializedVersion: 2
+        rgba: 4290265856
+      m_highlight:
+        serializedVersion: 2
+        rgba: 0
+      m_custom1:
+        serializedVersion: 2
+        rgba: 0
+      m_custom2:
+        serializedVersion: 2
+        rgba: 0
+      m_custom3:
+        serializedVersion: 2
+        rgba: 0
+    - m_primary:
+        serializedVersion: 2
+        rgba: 0
+      m_secondary:
+        serializedVersion: 2
+        rgba: 0
+      m_mask:
+        serializedVersion: 2
+        rgba: 4294947840
+      m_radar:
+        serializedVersion: 2
+        rgba: 4294882048
+      m_cursor:
+        serializedVersion: 2
+        rgba: 4294816256
+      m_highlight:
+        serializedVersion: 2
+        rgba: 0
+      m_custom1:
+        serializedVersion: 2
+        rgba: 0
+      m_custom2:
+        serializedVersion: 2
+        rgba: 0
+      m_custom3:
+        serializedVersion: 2
+        rgba: 0
+    m_pointerControllingPlayer:
+    - m_primary:
+        serializedVersion: 2
+        rgba: 0
+      m_secondary:
+        serializedVersion: 2
+        rgba: 0
+      m_mask:
+        serializedVersion: 2
+        rgba: 4278255393
+      m_radar:
+        serializedVersion: 2
+        rgba: 4278255137
+      m_cursor:
+        serializedVersion: 2
+        rgba: 4278254881
+      m_highlight:
+        serializedVersion: 2
+        rgba: 0
+      m_custom1:
+        serializedVersion: 2
+        rgba: 0
+      m_custom2:
+        serializedVersion: 2
+        rgba: 0
+      m_custom3:
+        serializedVersion: 2
+        rgba: 0
+    - m_primary:
+        serializedVersion: 2
+        rgba: 0
+      m_secondary:
+        serializedVersion: 2
+        rgba: 0
+      m_mask:
+        serializedVersion: 2
+        rgba: 4279534852
+      m_radar:
+        serializedVersion: 2
+        rgba: 4279534596
+      m_cursor:
+        serializedVersion: 2
+        rgba: 4279534340
+      m_highlight:
+        serializedVersion: 2
+        rgba: 0
+      m_custom1:
+        serializedVersion: 2
+        rgba: 0
+      m_custom2:
+        serializedVersion: 2
+        rgba: 0
+      m_custom3:
+        serializedVersion: 2
+        rgba: 0
+    - m_primary:
+        serializedVersion: 2
+        rgba: 0
+      m_secondary:
+        serializedVersion: 2
+        rgba: 0
+      m_mask:
+        serializedVersion: 2
+        rgba: 4284808559
+      m_radar:
+        serializedVersion: 2
+        rgba: 4284808303
+      m_cursor:
+        serializedVersion: 2
+        rgba: 4284808047
+      m_highlight:
+        serializedVersion: 2
+        rgba: 0
+      m_custom1:
+        serializedVersion: 2
+        rgba: 0
+      m_custom2:
+        serializedVersion: 2
+        rgba: 0
+      m_custom3:
+        serializedVersion: 2
+        rgba: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

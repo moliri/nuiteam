@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 3
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: TrapezoidRadar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97837b2676f2e7489559a2d9df6e075, type: 1}
+  m_Name: 
+  m_screenCoordinates:
+    serializedVersion: 2
+    x: 50
+    y: 50
+    width: 200
+    height: 200
+  m_screenTrapezoid:
+    nearWidth: 60
+    farWidth: 180
+    nearPlane: 20
+    farPlane: 180
+  m_boundarySize: .200000003
+  m_bgTexture: {fileID: 2800000, guid: ddf889509ffeeec41a34dc0c5c8993ee, type: 1}
+  m_playerTexture: {fileID: 2800000, guid: d51a2dd90a37d8f499ea674957cd0a77, type: 1}
+  m_playerRectSize: 32
+  m_playersToShow: 
+  m_showNonPlayers: 1
+  m_radarColors:
+    m_nonPlayer:
+    - serializedVersion: 2
+      rgba: 4285624689
+    - serializedVersion: 2
+      rgba: 4287659646
+    m_player:
+    - serializedVersion: 2
+      rgba: 4287131849
+    - serializedVersion: 2
+      rgba: 4283159696
+    m_pointerControllingPlayer:
+    - serializedVersion: 2
+      rgba: 4288184825
+    - serializedVersion: 2
+      rgba: 4284411558
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

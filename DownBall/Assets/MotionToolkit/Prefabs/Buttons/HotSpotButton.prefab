@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 3
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
+  m_Layer: 0
+  m_Name: HotSpotButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79eb076af25a2d141b36fea28e5e255d, type: 1}
+  m_Name: 
+  m_listnerScreenCollider:
+    serializedVersion: 2
+    x: 100
+    y: 180
+    width: 200
+    height: 200
+  m_useMouse: 1
+  PointerMoveListnerName: OnPointerMove
+  PointerEnterListnerName: OnPointerEnter
+  PointerLeaveListnerName: OnPointerLeave
+  m_drawScreenCollider: 0
+  m_debugScreenColliderColor: {r: .264925361, g: .5, b: .264925361, a: 1}
+  m_curInPointers: []
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011e6220539402a48a7f8e69a13b7659, type: 1}
+  m_Name: 
+  ButtonClickListnerName: OnButtonClick
+  m_hotspotDelay: 2
+  m_hotSpotTextures:
+  - {fileID: 2800000, guid: ed9b37e4fd769694c8d392a83079da1c, type: 1}
+  - {fileID: 2800000, guid: f3406433952af1645b41933dc2f217ca, type: 1}
+  - {fileID: 2800000, guid: 216ce6601917e7a48969533a6b217eb1, type: 1}
+  - {fileID: 2800000, guid: 042c881e2805a374499dfe4086df8ca7, type: 1}
+  - {fileID: 2800000, guid: 9fca8e244c5aa434ca3e479a95925a4b, type: 1}
+  - {fileID: 2800000, guid: c44dd6c704af33149b781972a8245578, type: 1}
+  - {fileID: 2800000, guid: b8ef762c95a9638409a9ab53cdfb8827, type: 1}
+  - {fileID: 2800000, guid: c583ab97278b0b34bbca7b83a7f6ebfb, type: 1}
+  - {fileID: 2800000, guid: fc55804d9056d9e4f9b9da6b952195ac, type: 1}
+  - {fileID: 2800000, guid: d7e08ae5d22b5af41afea6de91ef0005, type: 1}
+  - {fileID: 2800000, guid: cc69e1061648ae84e9c84b57a1f39c74, type: 1}
+  - {fileID: 2800000, guid: 0993dd5e24e25074ea78bfc0bf4e65ac, type: 1}
+  - {fileID: 2800000, guid: d38b4f0a3fa7ee84cbf181c24913557b, type: 1}
+  - {fileID: 2800000, guid: e7fa1d4d47699a74bb2240f92222e211, type: 1}
+  - {fileID: 2800000, guid: a187df7263db82a4782bcd4e9ae0ec8a, type: 1}
+  - {fileID: 2800000, guid: 4799ba590b108674cb2ebc7d6072f870, type: 1}
+  - {fileID: 2800000, guid: b921c8edd6bdfbb4dbd8d1aa3c8b6f85, type: 1}
+  - {fileID: 2800000, guid: 882a6df22506b5d46baacfcf1e6e0534, type: 1}
+  m_useUnityDefaultGUISkin: 1
+  m_GUIStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_ImagePosition: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_TextClipping: 1
+    m_ContentOffset: {x: 0, y: 0}
+    m_ClipOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be4250a21010b248b24567369def153, type: 1}
+  m_Name: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

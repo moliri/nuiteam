@@ -1,0 +1,60 @@
+<ClassifierParams hidden="false">
+    <GestureDataParams vectorSize="9" voteSize="2" refractoryPeriod="14" isRefractoryPerGroup="true" usePositions="false" usePositionsX="false" usePositionsY="true" usePositionsZ="false" useDeltas="false" useDeltasX="true" useDeltasY="false" useDeltasZ="false" useRelativePositions="false" useRelativePositionsX="false" useRelativePositionsY="false" useRelativePositionsZ="true" useRotation="false" useRotationX="false" useRotationY="false" useRotationZ="false" flipx="true" useHeadConfidence="false" relativeJoint="head" isRepetitive="false" fps="30">
+        <Joints>
+            <Joint name="head" X="true" Y="true" Z="true" />
+            <Joint name="leftFingerTip" X="true" Y="true" Z="true" />
+            <Joint name="rightFingerTip" X="true" Y="true" Z="true" />
+            <Joint name="hips" X="true" Y="true" Z="true" />
+        </Joints>
+        <Scale normalizeMean="false" normalizeSTD="false" doLocalScale="false" doGlobalScale="false" perCoordScaling="false" useSmooth="false" smoothStrength="0" />
+    </GestureDataParams>
+    <LearningParams useLinear="false" gestureExpand="0" otherOverlap="0.0000" useWeights="false" weightFactor1="0.55" weightFactor2="1" testToleranceRight="3" testToleranceLeft="7" cost="4.50" gamma="-14.00" linearSolver="0" useSynthetic="false">
+        <TrainFiles>
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq0\Seq0.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq24\Seq10.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq10\Seq10.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq7\Seq7.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\seq35\seq35.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq17\Seq17.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq20\Seq20.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq21\Seq21.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq1\Seq1.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq9\Seq9.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq19\Seq19.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq18\Seq18.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq2\Seq2.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq3\Seq3.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq15\Seq15.seq" />
+        </TrainFiles>
+        <TestFiles>
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq5\Seq5.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq29\Seq6.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq30\Seq7.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq31\Seq8.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq26\Seq3.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq34\seq36.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq22\Seq0.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq23\Seq1.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq25\Seq2.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq16\Seq16.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq32\Seq9.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq14\Seq14.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq8\Seq8.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq13\Seq13.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq6\Seq6.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq4\Seq4.seq" />
+            <File path="C:\Users\maxim\Desktop\RCPack\Sequences\Seq12\Seq12.seq" />
+        </TestFiles>
+        <OutputFile path="C:\Users\maxim\Desktop\RCPack\Build\leftclick.xml" />
+        <Result avgAccuracy="1" trainAccuracy="1" testAccuracy="0.982234" confusionMatrix="" />
+    </LearningParams>
+    <Gestures framesBefore="8">
+        <Gesture categoryName="leftClick" gestureName="leftClick" label="3" />
+        <Gesture categoryName="xnegative" gestureName="xnegative" label="2" />
+        <Gesture categoryName="xnegative" gestureName="rightSwipeRight" label="2" />
+        <Gesture categoryName="other" gestureName="other" label="1" />
+    </Gestures>
+    <Model fileName="rightclick.model" />
+    <Date created="29/10/2012 10:50:46" published="" />
+    <Comment value="" />
+</ClassifierParams>

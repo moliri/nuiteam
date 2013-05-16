@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 3
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: SensorImageConfigurator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5daa02eb9e8932b40bfffb177446f842, type: 1}
+  m_Name: 
+  g_backgroundImageGUIPrefab: {fileID: 100000, guid: 66b0e6d91e84bed49b45739ca6cd3fd1,
+    type: 2}
+  g_backgroundImagePlanePrefab: {fileID: 100000, guid: 6303e68eafdbe8b478ba41c23c54f5e0,
+    type: 2}
+  g_backgroundImageOnGUIPrefab: {fileID: 100000, guid: ad3be69f674443e418d9cad0f931b7fb,
+    type: 2}
+  g_playerMaskGUIPrefabs: {fileID: 100000, guid: 5650c28495bdc6e4c9d9257fd9acaac2,
+    type: 2}
+  g_playerMaskPlanePrefabs: {fileID: 100000, guid: 068abde93ec7ff34b9c2b933e50ca856,
+    type: 2}
+  g_playerMaskOnGUIPrefabs: {fileID: 100000, guid: 09783b2193ddb0c4c8ce7b1f7692320b,
+    type: 2}
+  g_colorPointerControllingMaskMaterial: {fileID: 2100000, guid: 77a356220a910b44d88cddb6e39f3618,
+    type: 2}
+  g_colorPlayerMaskMaterial: {fileID: 2100000, guid: 7be911baa4782f745ab200d499112cff,
+    type: 2}
+  g_simplePointerControllingPlayerMaskMaterial: {fileID: 2100000, guid: 624bf309ea45d2d4f8cef33782d159ac,
+    type: 2}
+  g_simplePlayerMaskMaterial: {fileID: 2100000, guid: f01e97acd76522f4db26ce54d533ce94,
+    type: 2}
+  g_simpleDiffuse: {fileID: 2100000, guid: 9ab899a8678eb134e8c7ca7e7797ec05, type: 2}
+  g_transparentDiffuse: {fileID: 2100000, guid: 7eee09f347537cc459ee00f702f81f6b,
+    type: 2}
+  m_renderType: 0
+  m_bgType: 1
+  m_maskType: 2
+  m_outline: 1
+  m_colors:
+    m_nonPlayer:
+    - serializedVersion: 2
+      rgba: 4282071867
+    - serializedVersion: 2
+      rgba: 4287861645
+    m_player:
+    - serializedVersion: 2
+      rgba: 4278255601
+    - serializedVersion: 2
+      rgba: 4279342732
+    m_pointerControllingPlayer:
+    - serializedVersion: 2
+      rgba: 4278216447
+    - serializedVersion: 2
+      rgba: 4278350500
+  m_rect:
+    serializedVersion: 2
+    x: 0
+    y: 90
+    width: 160
+    height: 120
+  m_snapToPosition: 4
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

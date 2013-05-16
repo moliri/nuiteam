@@ -1,0 +1,1629 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BeckonDotNet</name>
+    </assembly>
+    <members>
+        <member name="T:Omek.BodyDimensions">
+            <summary>
+            contain various body measurements
+            </summary>
+        </member>
+        <member name="F:Omek.BodyDimensions.calibratedArmLength">
+            <summary>
+            The estimted length of an arm.
+            Calculated as part of the inner calibration process
+            </summary>
+        </member>
+        <member name="F:Omek.BodyDimensions.calibratedHeight">
+            <summary>
+            The estimted Height of the person.
+            Calculated as part of the inner calibration process
+            </summary>
+        </member>
+        <member name="F:Omek.BodyDimensions.calibratedLegLength">
+            <summary>
+            The estimted length of a leg.
+            Calculated as part of the inner calibration process
+            </summary>
+        </member>
+        <member name="F:Omek.BodyDimensions.calibratedShouldersWidth">
+            <summary>
+            The estimted distance between the person shoulders.
+            Calculated as part of the inner calibration process
+            </summary>
+        </member>
+        <member name="F:Omek.BodyDimensions.calibratedTorsoWidth">
+            <summary>
+            The estimeted width of the persons torso
+            Calculated as part of the inner calibration process
+            </summary>
+        </member>
+        <member name="F:Omek.BodyDimensions.currentTorsoWidth">
+            <summary>
+            The torso width as calculated from the current frame
+            </summary>
+        </member>
+        <member name="T:Omek.ITrackedObject">
+            <summary>
+            ITrackedObject class serves as an interface to a tracked object and its respective features
+            </summary>
+        </member>
+        <member name="M:Omek.ITrackedObject.getBoundingBox(System.Int32@,System.Int32@)">
+            <summary>
+             Get the 2D dimensions of the mask
+            </summary>
+            <param name="width">width of the mask's 2D bounding rectangle</param>
+            <param name="height">height of the mask's 2D bounding rectangle</param>
+            <returns>OMK_SUCCESS if computation was successful or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ITrackedObject.getCenterOfMass(System.Boolean,System.Single[])">
+            <summary>
+            Get the center of mass in world/image space
+            </summary>
+            /// <param name="worldSpace">s world space, else – image space</param>
+            <param name="pnt">3D center of mass</param>        
+            <returns>OMK_SUCCESS if computation was successful or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ITrackedObject.getCircumference(System.Int32@)">
+            <summary>
+            Get the circumference of the blob
+            </summary>
+            <param name="circumference">2D circumference of hand</param>
+            <returns>OMK_SUCCESS if computation was successful or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ITrackedObject.getID(System.UInt32@)">
+            <summary>
+            get the tracked object id
+            </summary>
+            <param name="id">the hand label</param>
+            <returns>OMK_SUCCESS on success or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ITrackedObject.copySkeleton(Omek.ISkeleton)">
+            <summary>
+            Fill the given skeleton object with the current tracking data of the tracked object
+            </summary>
+            <param name="skeleton">pointer to an instantiated skeleton interface, which will be filled by the method</param>
+            <returns>OMK_SUCCESS if the skeleton was successfully filled or an error otherwise</returns>
+        </member>
+        <member name="M:Omek.ITrackedObject.getState">
+            <summary>
+            *Not supported in the current version*
+            return the object's state
+            </summary>
+            <returns>the object's state (i.e. is valid, .... )</returns>
+        </member>
+        <member name="M:Omek.ITrackedObject.hasMask">
+            <summary>
+            Check if a specific object has a mask (i.e. silhouette)
+            </summary>
+            <returns>true If the object has a mask or false otherwise </returns>
+        </member>
+        <member name="M:Omek.ITrackedObject.copyMask(System.Byte[])">
+            <summary>
+            Get a copy of the 2D mask of the tracked object
+            </summary>
+            <param name="copyImage">the pre allocated buffer to copy to,the size of the buffer, should be big enough</param>
+            <returns>OMK_SUCCESS if the mask was successfully copied or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ITrackedObject.hasSkeleton">
+            <summary>
+            Check if a specific object is active
+            </summary>
+            <returns>true If the object is active (i.e. have a skeleton information)</returns>
+        </member>
+        <member name="T:Omek.ImageDef">
+            <summary>
+            contain all inforametion about image format
+            </summary>
+        </member>
+        <member name="P:Omek.ImageDef.BPP">
+            <summary>
+            Bytes per channel
+            </summary>
+        </member>
+        <member name="P:Omek.ImageDef.height">
+            <summary>
+            the height of the image in pixels
+            </summary>
+        </member>
+        <member name="P:Omek.ImageDef.illegalValue">
+            <summary>
+            the value of a pixel in the image that represent a pixel with no information, relevant for depth images
+            </summary>
+        </member>
+        <member name="P:Omek.ImageDef.maxVal">
+            <summary>
+            the maximum value of a pixel in the image, relevant for depth images
+            </summary>
+        </member>
+        <member name="P:Omek.ImageDef.minVal">
+            <summary>
+            the minimum value of a pixel in the image, relevant for depth images
+            </summary>
+        </member>
+        <member name="P:Omek.ImageDef.nChannels">
+            <summary>
+            number of channels for each pixel
+            </summary>
+        </member>
+        <member name="P:Omek.ImageDef.width">
+            <summary>
+            the width of the image in pixels
+            </summary>
+        </member>
+        <member name="T:Omek.ListGestureMode">
+            <summary>
+            type of gesture lists
+            </summary>
+        </member>
+        <member name="T:Omek.HandType">
+            <summary>
+            Type of hand
+            </summary>
+        </member>
+        <member name="T:Omek.ISkeleton">
+            <summary>
+            serves as an interface to a Skeleton class which is a data structure containing
+            the tracked rotation and translation data, as well as the bounding region for each joint.
+            </summary>
+        </member>
+        <member name="M:Omek.ISkeleton.clone(Omek.ISkeleton)">
+            <summary>
+            Clone another skeleton instance
+            </summary>
+            <param name="skeleton">skeleton pointer to the skeleton to be copied</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISkeleton.containsJoint(Omek.JointID)">
+            <summary>
+            Check if a joint is tracked in this skeleton
+            </summary>
+            <param name="jointId">jointId The id of this joint</param>
+            <returns>if this skeleton contain a joint named jointId</returns>
+        </member>
+        <member name="M:Omek.ISkeleton.getJointConfidence(Omek.JointID,System.UInt32@)">
+            <summary>
+            Get confidence measure for specific joint.
+            The confidence of a joint is a percentage measure of how confident the tracking algorithm
+            is of a result of tracking that specific joint. For example, when a joint is occluded, its
+            confidence drops to a lower value. Similarly, confidence drops to a low value when a joint
+            is outside of the sensor's field of view.
+            </summary>
+            <param name="id">The id of this joint</param>
+            <param name="confidence">confidence Resultant confidence measure [0-100]</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISkeleton.getJointId(System.UInt32)">
+            <summary>
+            get the ID of the joint according to it's index (received from iterating on the number of joints)
+            </summary>
+            <param name="index">index the index of the wanted joint, useful for iterating through all joints in this skeleton</param>
+            <returns>the joint id in the specific index</returns>
+        </member>
+        <member name="M:Omek.ISkeleton.getJointOrientation(Omek.JointID,System.Boolean,System.Single[])">
+            <summary>
+            Get global/local orientation for specified joint  as quaternion  as Euler angles
+            </summary>
+            <param name="id">The id of this joint</param>
+            <param name="globalOrientation">Is global orientation, else – local orientation</param>
+            <param name="orientation">orientation an array of length 4contains the quaternion representing the global/local 3D orientation</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISkeleton.getJointEulerAngles(Omek.JointID,System.Boolean,System.Single[])">
+            <summary>
+            *Not supported in the current version*
+            
+            Get global/local orientation for specified joint  
+            </summary>
+            <param name="id">The id of this joint</param>
+            <param name="globalOrientation">Is global orientation, else – local orientation</param>
+            <param name="eulerAngles">orientation  a array contains the Euler of length 3 representing the global/local 3D orientation, oriented in XYZ order in radians</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISkeleton.getJointPosition(Omek.JointID,System.Boolean,System.Single[])">
+            <summary>
+            Get the world/image joint position
+            </summary>
+            <param name="id">The id of this joint</param>
+            <param name="worldPosition">worldPosition Is world position, else – image position</param>
+            <param name="results">results a 3 dimension array contains the world/image position of this joint</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISkeleton.getNumOfJoints">
+            <summary>
+            Get the number of joints in the current skeleton
+            </summary>
+            <returns>the number of tracked joints in this skeleton</returns>
+        </member>
+        <member name="T:Omek.ImageType">
+            <summary>
+            Type of images
+            </summary>
+        </member>
+        <member name="T:Omek.CameraStatus">
+            <summary>
+            represent the current status of the camera
+            </summary>
+        </member>
+        <member name="T:BeckonDotNet.BeckonWrapperSkeleton">
+            <summary>
+            Implement ISkeleton interface above Beckon 3.0 dot net interace
+            </summary>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.clone(Omek.ISkeleton)">
+            <summary>
+            Clone another skeleton instance
+            </summary>
+            <param name="skeleton">skeleton pointer to the skeleton to be copied</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise, could be one of the following: OMK_ERROR_NULL_POINTER in case the given skeleton is NULL</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.containsJoint(Omek.JointID)">
+            <summary>
+            Check if a joint is tracked in this skeleton
+            </summary>
+            <param name="jointId">jointId The id of this joint</param>
+            <returns>true if this skeleton contain a joint named jointId</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.getJointConfidence(Omek.JointID,System.UInt32@)">
+            <summary>
+            Get confidence measure for specific joint.
+            The confidence of a joint is a percentage measure of how confident the tracking algorithm
+            is of a result of tracking that specific joint. For example, when a joint is occluded, its
+            confidence drops to a lower value. Similarly, confidence drops to a low value when a joint
+            is outside of the sensor's field of view.
+            </summary>
+            <param name="id">id The id of this joint</param>
+            <param name="confidence">confidence Resultant confidence measure [0-100]</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise, could be one of the following: OMK_ERROR_NOT_INITIALIZED in case the skeleton is not initialized</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.getJointOrientation(Omek.JointID,System.Boolean,System.Single[])">
+            <summary>
+            Get global/local orientation for specified joint as quaternion
+            </summary>
+            <param name="id">The id of this joint</param>
+            <param name="globalOrientation">Is global orientation, else – local orientation</param>
+            <param name="orientation">orientation an array of length 4 contains the quaternion representing the global/local 3D orientation</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.getJointEulerAngles(Omek.JointID,System.Boolean,System.Single[])">
+            <summary>
+            *Not supported in the current version*
+            
+            Get global/local orientation for specified joint as Euler angles
+            </summary>
+            <param name="id">The id of this joint</param>
+            <param name="globalOrientation">Is global orientation, else – local orientation</param>
+            <param name="eulerAngles">orientation  a array contains the Euler of length 3 representing the global/local 3D orientation, oriented in XYZ order in radians</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.getJointPosition(Omek.JointID,System.Boolean,System.Single[])">
+            <summary>
+            Get the world/image joint position
+            </summary>
+            <param name="id">The id of this joint</param>
+            <param name="worldPosition">Is world position, else – image position</param>
+            <param name="results">a 3 dimension array contains the world/image position of this joint</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise, could be one of the following: OMK_ERROR_NOT_INITIALIZED in case the skeleton is not initialized</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.getNumOfJoints">
+            <summary>
+            Get the number of joints in the current skeleton
+            </summary>
+            <returns>the number of tracked joints in this skeleton</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.getSmoothStrength(Omek.JointID)">
+            <summary>
+            Not avaliable at this version
+            </summary>
+            <param name="jointId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.setSmoothStrength(Omek.JointID,System.Single)">
+            <summary>
+            Not avaliable at this version
+            </summary>
+            <param name="jointId"></param>
+            <param name="smoothStrength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSkeleton.getJointId(System.UInt32)">
+            <summary>
+            Not avaliable at this version
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Omek.IEditableSkeleton">
+            <summary>
+            A skeleton which joint position may be set from outside
+            Usable in IPersonAnalyzer.retargetMotion
+            </summary>
+        </member>
+        <member name="M:Omek.IEditableSkeleton.setJointPosition(Omek.JointID,System.Single[],System.Single[])">
+            <summary>
+            set the position of a joint
+            </summary>
+            <param name="id">the joint ID</param>
+            <param name="worldPosition">the world position of the joint</param>
+            <param name="imagePosition">the image coordinates of the joint</param>
+            <returns></returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperEditableSkeleton.setJointPosition(Omek.JointID,System.Single[],System.Single[])">
+            <summary>
+            set the position of a joint
+            </summary>
+            <param name="id">the joint ID</param>
+            <param name="worldPosition">the world position of the joint</param>
+            <param name="imagePosition">the image coordinates of the joint</param>
+            <returns></returns>
+        </member>
+        <member name="T:Omek.IAnalyzer">
+            <summary>
+            Interface for a class that analyze a depth image and track object in it
+            </summary>
+        </member>
+        <member name="M:Omek.IAnalyzer.disableAlert(Omek.AlertEventType)">
+            <summary>
+            Disable an alert
+            </summary>
+            <param name="alertEvent">the alert type to disable</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.disableAllAlerts">
+            <summary>
+            Enable all alerts
+            </summary>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.disableAllGestures">
+            <summary>
+            Enable all gestures
+            </summary>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.disableGesture(System.String)">
+            <summary>
+            Disable a gesture
+            </summary>
+            <param name="gestureName">name of the gesture</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.enableAlert(Omek.AlertEventType)">
+            <summary>
+            Enable an alert
+            </summary>
+            <param name="alertEvent">type of the alert</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.enableGesture(System.String)">
+            <summary>
+            Enable a gesture
+            </summary>
+            <param name="gestureName">name of the gesture</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.getGestureName(System.UInt32,Omek.ListGestureMode,System.String@)">
+            <summary>
+            return the name of gesture by its index
+            </summary>
+            <param name="gestureIndex">gesture index</param>
+            <param name="isActived">what type of gesture is referenced (activate/all)</param>
+            <param name="gestureName">the gesture name</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.getNumOfGestures(Omek.ListGestureMode,System.UInt32@)">
+            <summary>
+            Get the number of possible gestures
+            </summary>
+            <param name="isActivated">what type of gesture should be counted (activate/all)</param>
+            <param name="numOfGestures">the number of gestures</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.getSensor(Omek.ISensor@)">
+            <summary>
+            Get a handle of the interface - ISensor
+            </summary>
+            <param name="sensor">the sensor</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.getTrackedObject(System.UInt32,Omek.ITrackedObject@)">
+            <summary>
+            Get the tracked object with the given unique id.
+            </summary>
+            <param name="uniqueID">uniqueID of a tracked object</param>
+            <param name="trackedObject">the tracked object</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.getTrackingOptions">
+            <summary>
+            Get the tracking mode
+            </summary>
+            <returns>the tracker mode</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.setTrackingOptions(Omek.TrackingMode)">
+            <summary>
+            Set tracking mode on the fly
+            </summary>
+            <param name="trackingMode">the wanted tracking mode</param>
+            <returns>OMK_SUCCESS if tracking mode was set successfuly, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.hasMoreAlerts">
+            <summary>
+            Check if there are more registered alerts that weren't popped from the queue yet
+            </summary>
+            <returns>true if there are more alerts in the queue</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.hasMoreGestures">
+            <summary>
+            Check if there are more registered alerts that weren't popped from the queue yet
+            </summary>
+            <returns>true if there are more gestures in the queue</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.popNextAlert">
+            <summary>
+            Get the next alert in the queue,
+            the developer should call releaseAlert to release the memory of this alert
+            </summary>
+            <returns>the next alert event in the queue</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.popNextGesture">
+            <summary>
+            Get the next gesture in the queue,
+            the developer should call releaseGesture to release the memory of this alert
+            </summary>
+            <returns>the next gesture event in the queue</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.releaseAlert(Omek.IFiredEvent)">
+            <summary>
+            Release the memory allocated for this alert
+            </summary>
+            <param name="pAlert">alert event that should be released</param>
+            <returns>OMK_SUCCESS if the memory was correctly released or an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.releaseGesture(Omek.IFiredEvent)">
+            <summary>
+            Release the memory allocated for this gesture
+            </summary>
+            <param name="pGesture">gesture that should be released</param>
+            <returns>OMK_SUCCESS if the memory was correctly released or an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.hasNewFrameData">
+            <summary>
+            check if there is a new frame information since the last call
+            </summary>
+            <returns>whether there is new information since the last call</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.processNextImage(System.Boolean,System.Boolean@)">
+            <summary>
+            This method works in two ways: *NOTE - currently only the second way is supported*
+            - If the "waitForImage" is turned on, the method will return only when a new image was processed
+            - If the "waitForImage" is turned off, the method will return immediately (check the hasNewImage flag in this case)
+            NOTE: You must not mix calls to "processNextImage" with calls to "run".
+            </summary>
+            <param name="waitForImage">decides if the method will wait for a new image, or return immediately</param>
+            <param name="hasNewImage">indicates if a new image was processed</param>
+            <returns>OMK_SUCCESS if a new image was fully processed, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.reset">
+            <summary>
+            Reset the tracking
+            </summary>
+            <returns>OMK_SUCCESS if reset was successful or an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.runTrackingThread">
+            <summary>
+            Start analyzer in Async mode.
+            Start a separate thread and process frames grabbed from the sensor asynchronously
+            </summary>
+            <seealso cref="!:stop"/>
+            <seealso cref="!:pause"/>
+            <seealso cref="!:resume"/>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.stopTrackingThread">
+            <summary>
+            stop the asynchronous processing thread started with <see cref="!:run"/>
+            </summary>
+            <seealso cref="!:run"/>
+            <seealso cref="!:pause"/>
+            <seealso cref="!:resume"/>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.pauseTrackingThread">
+            <summary>
+            pause the asynchronous processing thread started with <see cref="!:run"/>
+            </summary>
+            <seealso cref="!:run"/>
+            <seealso cref="!:stop"/>
+            <seealso cref="!:resume"/>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.resumeTrackingThread">
+            <summary>
+            resume the asynchronous processing thread paused with <see cref="!:pause"/>
+            </summary>
+            <seealso cref="!:stop"/>
+            <seealso cref="!:run"/>
+            <seealso cref="!:pause"/>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.recordSequence(System.String,System.Int32)">
+            <summary>
+            Record a sequence directly from the camera
+            </summary>
+            <param name="filename">the output file</param>
+            <param name="nFrames">number of frames to record. If nFrames is -1, recording will continue until stopRecording is called</param>
+            <returns>OMK_SUCCESS if the sequence was opened successfully, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.stopRecording">
+            <summary>
+            Stop recording a sequence previously started with recordSequence <see cref="M:Omek.IAnalyzer.recordSequence(System.String,System.Int32)"/>
+            </summary>
+            <returns>OMK_SUCCESS if the recording was stopped successfully, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.getSmoothStrength(System.UInt32,Omek.JointID)">
+            <summary>
+            Get the strength of smoothing for a specific joint
+            </summary>
+            <param name="trackedObjectID">the tracked object id to get the smooth of</param>
+            <param name="jointId">id of joint</param>
+            <returns></returns>
+        </member>
+        <member name="M:Omek.IAnalyzer.setSmoothStrength(System.UInt32,Omek.JointID,System.Single)">
+            <summary>
+            Set the strength of smoothing for a specific joint
+            </summary>
+            <param name="trackedObjectID">the tracked object id to set the smooth for</param>
+            <param name="jointId">id of joint</param>
+            <param name="smoothStrength">smooth value in the range of [0,1) (0 means no smooth --> higher values means stronger smoothing)</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="T:Omek.AlertEventType">
+            <summary>
+            Possible alert types
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_TooClose">
+            <summary>
+            Player is too close to the camera
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_TooFar">
+            <summary>
+            Player is too far from the camera	
+            </summary>			
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_CloseToSide">
+            <summary>
+            Player is too close to edges of the frame
+            </summary>	
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_GoodLocation">
+            <summary>
+            No problems in the player's position
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_CandidateEnters">
+            <summary>
+            A new Candidate (i.e new tracked object) was detected
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_CandidateLeaves">
+            <summary>
+            A Candidate (i.e tracked object) went outside the camera image
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_PlayerEnters">
+            <summary>
+            A new player (i.e tracked object with tracking enabled) was detected	
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_PlayerLeaves">
+            <summary>
+            A player (i.e tracked object with tracking enabled) went outside the camera image
+            </summary>	
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_LowFrameRate">
+            <summary>
+            The frame rate of the tracking is lower than expected
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_GoodFrameRate">
+            <summary>
+            The frame rate of the tracking is good
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_FrameLost">
+            <summary>
+            Tracking has lost a frame, according to the time-stamps
+            </summary>	
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_CalibrationBegun">
+            <summary>
+            calibration of player begun
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_CalibrationDone">
+            <summary>
+            calibration of player Done
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_SensorCamDisconnected">
+            <summary>
+            Camera was disconnected (cannot grab images)	
+            </summary>	
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_SensorSeqDisconnected">
+            <summary>
+            Sequence was disconnected (cannot grab images)
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_SensorReConnected">
+            <summary>
+            sensor was re-connected
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_SensorProblem">
+            <summary>
+            General sensor problem
+            </summary>
+        </member>
+        <member name="F:Omek.AlertEventType.Alert_None">
+            <summary>
+            Default value, indicating that no alert was assigned
+            </summary>
+        </member>
+        <member name="T:BeckonDotNet.BeckonWrapperPersonAnalyzer">
+            <summary>
+            A long range Analyzer that track persons
+            </summary>
+        </member>
+        <member name="T:Omek.IPersonAnalyzer">
+            <summary>
+            Describe an analyzer that perform a full body tracking for person from long range depth sensors
+            </summary>
+        </member>
+        <member name="M:Omek.IPersonAnalyzer.getPerson(System.UInt32,Omek.IPerson@)">
+            <summary>
+            Get the person object with the given unique id.
+            </summary>
+            <param name="uniqueID">uniqueID of a person</param>
+            <returns>OMK_SUCCESS on success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IPersonAnalyzer.getNumOfPersons">
+            <returns>number of currently tracked persons</returns>
+        </member>
+        <member name="M:Omek.IPersonAnalyzer.setMaxPersonsAndSkeletons(System.UInt32,System.UInt32)">
+            <summary>
+            set the maximum number of persons and skeletons that will be tracked
+            </summary>
+            <param name="maxPersons">the maximum number of persons that will be tracked</param>
+            <param name="maxSkeletonsToTrack">number of persons that will have full body skeleton available at once</param>
+            <returns>OMK_SUCCESS on success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IPersonAnalyzer.getMaxPersons(System.UInt32@)">
+            <summary>
+            Get the maximum number of persons that will be tracked
+            </summary>
+            <param name="maxPersons">the maximum number of persons that will be tracked</param>
+            <returns>OMK_SUCCESS on success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IPersonAnalyzer.getMaxSkeletonsToTrack(System.UInt32@)">
+            <summary>
+            Get the maximum number of persons that will have full body skeleton available at once
+            </summary>
+            <param name="maxSkeletons">number of persons that will have full body skeleton available at once</param>
+            <returns>OMK_SUCCESS on success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IPersonAnalyzer.retargetMotionFromSkeleton(System.String,Omek.ISkeleton,System.UInt32)">
+            <summary>
+            create a target to which a person motion will be retargeted each frame
+            </summary>
+            <param name="targetName">a unique name to identify the target</param>
+            <param name="targetTPoseSkeleton">must contain the target model dimensions in T pose </param>
+            <param name="PersonID">the person which motion will be retargeted to this target</param>
+            <returns>OMK_SUCCESS if the recording was stopped successfully, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IPersonAnalyzer.removeTarget(System.String)">
+            <summary>
+            remove a target created with retargetMotionFromSkeleton
+            </summary>
+            <param name="targetName">the target name to remove</param>
+            <returns>OMK_SUCCESS if the recording was stopped successfully, an error otherwise</returns>
+        </member>
+        <member name="M:Omek.IPersonAnalyzer.getRetargetedSkeleton(System.String,Omek.ISkeleton@)">
+            <summary>
+            get a retargeted skeleton
+            </summary>
+            <param name="targetName">the target ID</param>
+            <param name="outSkeleton">an instantiated skeleton interface, which will be filled by the method</param>
+            <returns>OMK_SUCCESS if the recording was stopped successfully, an error otherwise</returns>
+        </member>
+        <member name="F:BeckonDotNet.BeckonWrapperPersonAnalyzer.AlertsEnumToNamesDictionary">
+            <summary>
+            A dictionary mapping from the alert types to their respective string used to identify them in the SDK.
+            </summary>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.enableAlert(Omek.AlertEventType)">
+            <summary>
+            Enable the report of a specific alert
+            </summary>
+            <param name="alertEvent">alertEvent contains data on the event: name, id </param>
+            <returns>OMK_SUCCESS if registration to the alert succeeded or an error otherwise, could be one of the following:
+            OMK_ERROR_ALERT_MANAGER_INIT_FAILED in case of the alerts system failed to initialize
+            OMK_ERROR_ALERT_NOT_FOUND in case of the alertEvent is not found</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.disableAlert(Omek.AlertEventType)">
+            <summary>
+            Disable the report of a specific alert
+            </summary>
+            <param name="alertEvent">alertEvent contains data on the event: name, id</param>
+            <returns>OMK_SUCCESS if unregistering to the alert succeeded or an error otherwise, could be one of the following:
+            OMK_ERROR_ALERT_MANAGER_INIT_FAILED in case of the alerts system failed to initialize
+            OMK_ERROR_ALERT_NOT_FOUND in case of the alertEvent is not found</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.disableAllAlerts">
+            <summary>
+            Disable report of all alerts
+            </summary>
+            <returns>OMK_SUCCESS if unregistering to all alerts succeeded or an error otherwise, could be one of the following:
+            OMK_ERROR_ALERT_MANAGER_INIT_FAILED in case of the alerts system failed to initialize</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.hasMoreAlerts">
+            <summary>
+            Check if there are more registered alerts that weren't popped from the queue yet
+            </summary>
+            <returns>true if there are more alerts in the queue</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.popNextAlert">
+            <summary>
+            Get the next alert in the queue
+            </summary>
+            <see cref="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.releaseAlert(Omek.IFiredEvent)"/>
+            <returns>the next alert event in the queue</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.releaseAlert(Omek.IFiredEvent)">
+            <summary>
+            Release the memory allocated for this alert
+            </summary>
+            <param name="pAlert">pointer to the alert event that should be released</param>
+            <see cref="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.popNextAlert"/>
+            <returns>OMK_SUCCESS if the memory was correctly released or an error otherwise.</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.enableGesture(System.String)">
+            <summary>
+            Enable the report of a specific gesture
+            </summary>
+            <param name="gestureName">the gesture name to report</param>
+            <returns>OMK_SUCCESS if enableing the gesture succeeded or an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.disableGesture(System.String)">
+            <summary>
+            Disable the report of a specific gesture
+            </summary>
+            <param name="gestureName">the gesture name to disable </param>
+            <returns>OMK_SUCCESS if disabeling the gesture succeeded or an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.disableAllGestures">
+            <summary>
+            Disable report of all gestures
+            </summary>
+            <returns>OMK_SUCCESS if unregistering to all alerts succeeded or an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.hasMoreGestures">
+            <summary>
+            Check if there are more registered gestures that weren't popped from the queue yet
+            </summary>
+            <returns>true if there are more gestures in the queue</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.popNextGesture">
+            <summary>
+            Get the next gesture in the queue
+            </summary>
+            <see cref="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.releaseGesture(Omek.IFiredEvent)"/>
+            <returns></returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.releaseGesture(Omek.IFiredEvent)">
+            <summary>
+            Release the memory allocated for this gesture
+            </summary>
+            <param name="pGesture">pointer to the gesture event that should be released</param>
+            <see cref="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.popNextGesture"/>
+            <returns>OMK_SUCCESS if the memory was correctly released or an error otherwise.</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getGestureName(System.UInt32,Omek.ListGestureMode,System.String@)">
+            <summary>
+            return the name of a gesture by it index
+            </summary>
+            <param name="gestureIndex">the index of the gesture we're interested in</param>
+            <param name="isActived">should we get the indexed gesture from the list of active gesture or all gestures</param>
+            <param name="gestureName">the name of this gesture</param>
+            <returns>OMK_SUCCESS if getting the name succeeded or an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getNumOfGestures(Omek.ListGestureMode,System.UInt32@)">
+            <summary>
+            return the number of gesutes
+            </summary>
+            <param name="isActivated">what list of gestures we're interested in</param>
+            <param name="numOfGestures">number of gestures</param>
+            <returns>OMK_SUCCESS if geting the number of gesutres succeeded or an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getSensor(Omek.ISensor@)">
+            <summary>
+            Get a handle of the interface - ISensor
+            </summary>
+            <param name="sensor">the sensor</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getTrackedObject(System.UInt32,Omek.ITrackedObject@)">
+            <summary>
+            Get the tracked object with the given unique id.
+            </summary>
+            <param name="uniqueID">uniqueID of a tracked object</param>
+            <param name="trackedObject">the tracked object</param>
+            <returns>OMK_SUCCESS on success, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getTrackingOptions">
+            <summary>
+            Get the tracking mode
+            </summary>
+            <returns>the tracker mode</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.hasNewFrameData">
+            <summary>
+            check if there is a new frame information since the last call
+            </summary>
+            <returns>whether there is new information since the last call</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.reset">
+            <summary>
+            reset the Analyzer
+            </summary>
+            <param name="isBackground">should the background be reset</param>
+            <param name="isTracking">should the tracking be reset</param>
+            <returns>OMK_SUCCESS if geting the reset succeeded or an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.runTrackingThread">
+            <summary>
+            Start processing in a seperate thread
+            </summary>
+            <returns>OMK_SUCCESS if the run succeeded, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.pauseTrackingThread">
+            <summary>
+            pause the running of the processing thread, if it was started with run
+            </summary>
+            <returns>OMK_SUCCESS if pause succeeded or an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.resumeTrackingThread">
+            <summary>
+            resume the running of the processing thread, if it was started with run
+            </summary>
+            <returns>OMK_SUCCESS if the resume succeeded, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.stopTrackingThread">
+            <summary>
+            stop the running of the processing thread, if it was started with run
+            </summary>
+            <returns>OMK_SUCCESS if the stop succeeded, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.processNextImage(System.Boolean,System.Boolean@)">
+            <summary>
+            This method works in two ways:
+            - If the "waitForImage" is turned on, the method will return only when a new image was processed
+            - If the "waitForImage" is turned off, the method will return immediately (check the hasNewImage flag in this case)
+            NOTE: You must not mix calls to "processNextImage" with calls to "run".
+            </summary>
+            <param name="waitForImage">decides if the method will wait for a new image, or return immediately</param>
+            <param name="hasNewImage">indicates if a new image was processed</param>
+            <returns>MK_SUCCESS if a new image was fully processed, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.recordSequence(System.String,System.Int32)">
+            <summary>
+            Record a sequence directly from the camera
+            </summary>
+            <param name="filename">the output file</param>
+            <param name="nFrames">number of frames to record. If nFrames is -1, recording will continue until stopRecording is called</param>
+            <see cref="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.stopRecording"/>
+            <returns>OMK_SUCCESS if the sequence was opened successfully, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.stopRecording">
+            <summary>
+            Stop recording a sequence previously started with recordSequence
+            </summary>
+            <see cref="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.recordSequence(System.String,System.Int32)"/>
+            <returns>OMK_SUCCESS if the recording was stopped successfully, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.setTrackingOptions(Omek.TrackingMode)">
+            <summary>
+            Set tracking mode on the fly
+            </summary>
+            <param name="trackingMode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getSmoothStrength(System.UInt32,Omek.JointID)">
+            <summary>
+            Get the strength of smoothing for a specific joint
+            </summary>
+            <param name="trackedObjectID">the tracked object id to get the smooth of</param>
+            <param name="jointId">id of joint</param>
+            <returns></returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.setSmoothStrength(System.UInt32,Omek.JointID,System.Single)">
+            <summary>
+            Set the strength of smoothing for a specific joint
+            </summary>
+            <param name="trackedObjectID">the tracked object id to set the smooth for</param>
+            <param name="jointId">id of joint</param>
+            <param name="smoothStrength">smooth value in the range of [0,1) (0 means no smooth --> higher values means stronger smoothing)</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getPerson(System.UInt32,Omek.IPerson@)">
+            <summary>
+            Get the person object with the given unique id.
+            </summary>
+            <param name="uniqueID">uniqueID of a person</param>
+            <returns>OMK_SUCCESS on success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getNumOfPersons">
+            <returns>number of currently tracked persons</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.setMaxPersonsAndSkeletons(System.UInt32,System.UInt32)">
+            <summary>
+            set the maximum number of persons and skeletons that will be tracked
+            </summary>
+            <param name="maxPersons">the maximum number of persons that will be tracked</param>
+            <param name="maxSkeletonsToTrack">number of persons that will have full body skeleton available at once</param>
+            <returns>OMK_SUCCESS on sucess, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getMaxPersons(System.UInt32@)">
+            <summary>
+            Get the maximum number of persons that will be tracked
+            </summary>
+            <param name="maxPersons">the maximum number of persons that will be tracked</param>
+            <returns>OMK_SUCCESS on sucess, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getMaxSkeletonsToTrack(System.UInt32@)">
+            <summary>
+            Get the maximum number of persons that will have full body skeleton available at once
+            </summary>
+            <param name="maxSkeletons">number of persons that will have full body skeleton available at once</param>
+            <returns>OMK_SUCCESS on sucess, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.retargetMotionFromSkeleton(System.String,Omek.ISkeleton,System.UInt32)">
+            <summary>
+            create a target to which a person motion will be retargeted each frame
+            </summary>
+            <param name="targetName">a unique name to identify the target</param>
+            <param name="targetTPoseSkeleton">must contain the target model dimensions in T pose </param>
+            <param name="PersonID">the person which motion will be retargeted to this target</param>
+            <returns>OMK_SUCCESS if the recording was stopped successfully, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.removeTarget(System.String)">
+            <summary>
+            remove a target created with retargetMotionFromSkeleton
+            </summary>
+            <param name="targetName">the target name to remove</param>
+            <returns>OMK_SUCCESS if the recording was stopped successfully, an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPersonAnalyzer.getRetargetedSkeleton(System.String,Omek.ISkeleton@)">
+            <summary>
+            get a retargeted skeleton
+            </summary>
+            <param name="targetName">the target ID</param>
+            <param name="outSkeleton">an instantiated skeleton interface, which will be filled by the method</param>
+            <returns>OMK_SUCCESS if the recording was stopped successfully, an error otherwise</returns>
+        </member>
+        <member name="T:Omek.TrackingMode">
+            <summary>
+            Possible trackong modes
+            </summary>
+        </member>
+        <member name="F:Omek.TrackingMode.NoTracking">
+            <summary>
+            No Tracking mode
+            </summary>
+        </member>
+        <member name="F:Omek.TrackingMode.FullBody">
+            <summary>
+            Full body tracking
+            </summary>
+        </member>
+        <member name="F:Omek.TrackingMode.BasicMode">
+            <summary>
+            Only upper body tracking
+            </summary>
+        </member>
+        <member name="F:Omek.TrackingMode.ReadFromFile">
+            <summary>
+            Read tracking from file.
+            </summary>
+        </member>
+        <member name="T:Omek.Logging">
+            <summary>
+            Contains static help methods
+            </summary>
+        </member>
+        <member name="M:Omek.Logging.setVerbosityLevel(System.UInt32,System.String)">
+            <summary>
+            Set verbosity level of the SDK
+            All output will be written according to the	settings in the configuration file.
+            See an example file installed in /bin.
+            </summary>
+            <param name="level">0 = none, 1 = critical, 2 = errors, 3 = warnings, 4 = info, 5 = debug</param>
+            <param name="configFile">optional name of an output log file</param>
+            <returns>OMK_SUCCESS if the file could be updated and the level is supported, or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.Logging.getStatusMessage(Omek.OMKStatus)">
+            <summary>
+            translate an OMKStatus to a string
+            </summary>
+            <param name="status">the OMKStatus value needed to be translated</param>
+            <returns>a string representation of status</returns>
+        </member>
+        <member name="T:Omek.Factory">
+            <summary>
+            Used to create all needed BeckonWrapper interfaces
+            </summary>
+        </member>
+        <member name="M:Omek.Factory.createPersonAnalyzer(Omek.ISensor,Omek.OMKStatus@)">
+            <summary>
+            create a Person Analyzer
+            </summary>
+            <param name="sensor">a sensor pbject that was already created (live/sequence)</param>
+            <param name="result">the result status if the operation</param>
+            <returns>a pointer to the analyzer or null in case of failure</returns>
+        </member>
+        <member name="M:Omek.Factory.createLiveSensor(Omek.OMKStatus@)">
+            <summary>
+            Use IAnalyzer with a live feed of a depth camera.
+            Live camera mode is used for running the application with a connected depth camera.
+            This method will automatically detect the camera that is currently connected.
+            </summary>
+            <param name="result">he result status if the operation</param>
+            <returns>a pointer to the created sensor or null in case of failure</returns>
+        </member>
+        <member name="M:Omek.Factory.createSequenceSensor(System.String,Omek.OMKStatus@)">
+            <summary>
+            Get an instance of an offline sequence sensor. Sequence mode is useful for development and debugging
+            of applications. It allows the developer to run the application without a camera, based on an offline
+            pre-recorded file sequence.
+            </summary>
+            <param name="filePath">the directory in which the sequence resides (e.g. "C:\\data\\set1")</param>
+            <param name="result">the result status if the operation</param>
+            <returns>a pointer to the created Sensor, or null in case of failure</returns>
+        </member>
+        <member name="M:Omek.Factory.createSkeleton(Omek.OMKStatus@)">
+            <summary>
+            create a Skeleton
+            </summary>
+            <param name="result">the result status if the operation</param>
+            <returns>a pointer to the created Skeleton, or null in case of failure</returns>
+        </member>
+        <member name="M:Omek.Factory.createEditableSkeleton(Omek.OMKStatus@)">
+            <summary>
+            create a IEditableSkeleton
+            </summary>
+            <param name="result">the result status of the operation</param>
+            <returns>a pointer to the created Skeleton, or null in case of failure</returns>
+        </member>
+        <member name="M:Omek.Factory.releaseAnalyzer(Omek.IAnalyzer)">
+            <summary>
+            release an analyzer
+            </summary>
+            <param name="analyzer">The Analyzer to release</param>
+            <returns>the result status of the operation</returns>
+        </member>
+        <member name="M:Omek.Factory.releaseSensor(Omek.ISensor)">
+            <summary>
+            release a Sensor
+            </summary>
+            <param name="sensor">The Sensor to release</param>
+            <returns>the result status of the operation</returns>
+        </member>
+        <member name="M:Omek.Factory.releaseSkeleton(Omek.ISkeleton)">
+            <summary>
+            release a Skeleton
+            </summary>
+            <param name="skeleton">The Skeleton to release</param>
+            <returns>the result status of the operation</returns>
+        </member>
+        <member name="T:Omek.IFiredEvent">
+            <summary>
+            Describe an event return by the sdk
+            </summary>
+        </member>
+        <member name="M:Omek.IFiredEvent.createIFiredEvent">
+            <summary>
+            returns a new IFiredEvent, cloned from this instance
+            </summary>
+            <returns>the cloned IFiredEvent object</returns>
+        </member>
+        <member name="M:Omek.IFiredEvent.getConfidence">
+            <returns>the confidence of this event (when applicable)</returns>
+        </member>
+        <member name="M:Omek.IFiredEvent.getFrameNum">
+            <returns>the frame-number in which the event occurred</returns>
+        </member>
+        <member name="M:Omek.IFiredEvent.getId">
+            <returns>the unique ID of this event</returns>
+        </member>
+        <member name="M:Omek.IFiredEvent.getName">
+            <returns>a string representation of this event type</returns>
+        </member>
+        <member name="M:Omek.IFiredEvent.getNameLen">
+            <returns>the required size to hold the event name</returns>
+        </member>
+        <member name="M:Omek.IFiredEvent.getTrackedObjectId">
+            <returns>the ID of the relevant tracked object</returns>
+        </member>
+        <member name="M:Omek.IFiredEvent.getTimestamp">
+            <returns>the timestamp in which the event occurred</returns>
+        </member>
+        <member name="M:Omek.IFiredEvent.getType">
+            <summary>
+            the type of this event
+            </summary>
+            <returns>eEventType</returns>
+        </member>
+        <member name="T:Omek.ISensor">
+            <summary>
+            The ISensor class serves as both an interface to a connected 3D depth sensor, as well as a
+            virtual camera simulating a real camera by using a specified sequence.
+            </summary>
+        </member>
+        <member name="M:Omek.ISensor.getCameraName(System.Boolean)">
+            <summary>
+            Get the input sensor name.
+            Only applies for live sensor mode
+            </summary>
+            <param name="bShortName">"true" (default) will return the short (single word) version while "false" returns the full name</param>
+            <returns>the name of the current input sensor</returns>
+        </member>
+        <member name="M:Omek.ISensor.getFileName">
+            <summary>
+            Get the input sequence name.
+            Only applies for sequence mode.
+            </summary>
+            <returns>the name of the current input sequence </returns>
+        </member>
+        <member name="M:Omek.ISensor.getFrameNumber">
+            <returns>the current frame number</returns>
+        </member>
+        <member name="M:Omek.ISensor.getFrameRate">
+            <returns>the frames rate (number of frames per second)</returns>
+        </member>
+        <member name="M:Omek.ISensor.getFrameTimestamp">
+            <returns>the time stamp for the current frame (in milliseconds)</returns>
+        </member>
+        <member name="M:Omek.ISensor.copyImage(Omek.ImageType,System.Byte[])">
+            <summary>
+            fill the given image with the last captured image
+            </summary>
+            <param name="imageType">can be the depth image, the color image, or the flags image</param>
+            <param name="copyImage">a preallocated image buffer of appropriate dimensions and channels, should be big enough for the image</param>
+            <returns>if a current image exists and could be copied or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISensor.getImageDefinitions(Omek.ImageType,Omek.ImageDef@)">
+            <summary>
+            et the image definitions: width, height, number of channels and bpp.
+            </summary>
+            <param name="imageType">the imageType (color/ depth/ mask)</param>
+            <param name="imageDef">the color/depth/mask image definitions</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISensor.getNumOfFrames">
+            <returns>the total number of frames in a sequence, or 0 for error</returns>
+        </member>
+        <member name="M:Omek.ISensor.getStatus">
+            <returns>the current camera status - connected, not-connected, EOF, etc.</returns>
+        </member>
+        <member name="M:Omek.ISensor.goToFrame(System.UInt32)">
+            <summary>
+            Set the current frame number
+            </summary>
+            <param name="frameNum">the new frame-number to go to</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISensor.hasNewImage">
+            <summary>
+            Check if there is a new image to receive
+            </summary>
+            <returns>true if there is a new image or false if not</returns>
+        </member>
+        <member name="M:Omek.ISensor.isAlive">
+            <summary>
+            In sequence mode this will return false when reached the end of the sequence/or when there are no more frames to show
+            In camera mode this will return true unless an error occurred, or the camera was not connected
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Omek.ISensor.restartSequence">
+            <summary>
+            restart the sensor/sequence
+            </summary>
+            <returns>OMK_SUCCESS if restart succeeded or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISensor.setCameraParameter(System.String,System.Int32)">
+            <summary>
+            Set specific sensor parameters
+            </summary>
+            <param name="name">name can be one of the following values, depending on specific sensor: \n
+            "flipped" - set to 1 to flip raw data input horizontally (mirror), 0 for default \n
+            "enableRGB" - set to 1 to grab RGB or IR data (depending on camera), or 0 to grab depth only \n
+            "matchRGB" - set to 1 for a 1-to-1 pixel match of RGB and depth data, or 0 to disable. This is\n
+            typically a CPU heavy operation, and this is turned off by default.\n
+            "fps" - change the frame rate of the sensor</param>
+            <param name="value">the new value to set parameter to</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.ISensor.getCameraParameter(System.String,System.Int32@)">
+            <summary>
+            Get specific sensor parameters
+            </summary>
+            <param name="name">name can be one of the following values, depending on specific sensor:
+            "flipped" - 1 if raw data input is flipped horizontally (mirror), 0 otherwise
+            "enableRGB" - 1 sensor is grabbing RGB/IR, 0 otherwise
+            "fps" - get the frame rate of the sensor
+            "serial" - get the serial number for connected sensor, if supported </param>
+            <param name="value"></param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getCameraName(System.Boolean)">
+            <summary>
+            Get the input sensor name,
+            Only applies for live sensor mode
+            </summary>
+            <param name="bShortName">"true" (default) will return the short (single word) version, while "false" returns the full name</param>
+            <returns>the name of the current input sensor</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getCameraParameter(System.String,System.Int32@)">
+            <summary>
+            Get specific sensor parameters
+            </summary>
+            <param name="name">name can be one of the following values, depending on specific sensor:
+            "flipped" - 1 if raw data input is flipped horizontally (mirror), 0 otherwise
+            "enableRGB" - 1 sensor is grabbing RGB/IR, 0 otherwise
+            "fps" - get the frame rate of the sensor
+            "serial" - get the serial number for connected sensor, if supported</param>
+            <param name="value">the return value for the requested parameter</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getFileName">
+            <summary>
+            Get the input sequence name,Only applies for sequence mode
+            </summary>
+            <returns>the name of the current input sequence</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getFrameNumber">
+            <returns>the current frame number</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getFrameRate">
+            <returns>the frames rate (number of frames per second)</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getFrameTimestamp">
+            <returns>the time stamp for the current frame (in milliseconds)</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.copyImage(Omek.ImageType,System.Byte[])">
+            <summary>
+            Fill the given image with the last captured image
+            </summary>
+            <param name="imageType">can be the depth image, the color image, or the flags image</param>
+            <param name="copyImage">a preallocated image buffer of appropriate dimensions and channels</param>
+            <returns>MK_SUCCESS if a current image exists and could be copied or an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getImageDefinitions(Omek.ImageType,Omek.ImageDef@)">
+            <summary>
+            Get the image definitions: width, height, number of channels and bpp.
+            </summary>
+            <param name="imageType">he imageType (color/ depth/ mask)</param>
+            <param name="imageDef">the color/depth/mask image definitions</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getNumOfFrames">
+            <returns>the total number of frames in a sequence, or 0 for error</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.getStatus">
+            <returns>the current camera status - connected, not-connected, EOF, etc.</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.goToFrame(System.UInt32)">
+            <summary>
+            Set the current frame number
+            </summary>
+            <param name="frameNum">the new frame-number to go to</param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.hasNewImage">
+            <summary>
+            Check if there is a new image to receive
+            </summary>
+            <returns>true if there is a new image or false if not</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.isAlive">
+            <summary>
+            In sequence mode this will return false when reached the end of the sequence/or when there are no more frames to show
+            In camera mode this will return true unless an error occurred, or the camera was not connected
+            </summary>
+            <returns>true if more frames are available, false otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.restartSequence">
+            <summary>
+            estart the sensor/sequence
+            </summary>
+            <returns>OMK_SUCCESS if restart succeeded or an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.setCameraParameter(System.String,System.Int32)">
+            <summary>
+            Set specific sensor parameters
+            </summary>
+            <param name="name">name can be one of the following values, depending on specific sensor: \n
+            "flipped" - set to 1 to flip raw data input horizontally (mirror), 0 for default \n
+            "enableRGB" - set to 1 to grab RGB or IR data (depending on camera), or 0 to grab depth only \n
+            "matchRGB" - set to 1 for a 1-to-1 pixel match of RGB and depth data, or 0 to disable. This is\n
+             typically a CPU heavy operation, and this is turned off by default.\n
+            "fps" - change the frame rate of the sensor</param>
+            <param name="value">the new value to set parameter to </param>
+            <returns>OMK_SUCCESS for success, an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperSensor.backProject(System.Int32,System.Int32,System.Int32,System.Single@,System.Single@,System.Single@)">
+            <summary>
+            calculate the world coordinate from image coordinates
+            </summary>
+            <param name="xImage">the image x coordinate</param>
+            <param name="yImage">the image y coordinate</param>
+            <param name="zImage">the image z coordinate</param>
+            <param name="xWorld">the world x coordinate</param>
+            <param name="yWorld">the world y coordinate</param>
+            <param name="zWorld">the world z coordinate</param>
+            <returns></returns>
+        </member>
+        <member name="T:BeckonDotNet.BeckonWrapperPerson">
+            <summary>
+            Describe a Beckon tracked person
+            </summary>
+        </member>
+        <member name="T:Omek.IPerson">
+            <summary>
+            A type of ITrackedObject that represent a person
+            </summary>
+        </member>
+        <member name="M:Omek.IPerson.startTracking">
+            <summary>
+            start full body tracking for this person
+            </summary>
+            <returns>OMK_SUCCESS if tracking was started successfully or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IPerson.stopTracking">
+            <summary>
+            stop full body tracking for this persom
+            </summary>
+            <returns>OMK_SUCCESS if tracking was stopped successfully or an error code otherwise</returns>
+        </member>
+        <member name="M:Omek.IPerson.getBodyDimensions(Omek.BodyDimensions@)">
+            <summary>
+            Get the computed dimensions of the person bodyparts
+            </summary>
+            <param name="bodyDimensions">contain the output data</param>
+            <returns>OMK_SUCCESS if the data was retrevied successfully or an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.copyMask(System.Byte[])">
+             <summary>
+             Get a copy of the 2D blob of the hand
+            
+             In the output mask each pixel occupied by the ITrackedObject is white (value of 255) and all other pixels are black (value of 0)
+             </summary>
+             <param name="copyImage">he buffer to copy to</param>/// <param name="bufferSize">the size of the buffer, should be big enough <see cref="!:ISensor.getImageBufferSize"/></param>
+             <returns>OMK_SUCCESS if the mask was successfully copied or an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.getBoundingBox(System.Int32@,System.Int32@)">
+            <summary>
+            Get the 2D dimensions of the mask
+            </summary>
+            <param name="width">width of the mask's 2D bounding rectangle</param>
+            <param name="height">height of the mask's 2D bounding rectangle</param>
+            <returns>OMK_SUCCESS if computation was successful or an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.getCenterOfMass(System.Boolean,System.Single[])">
+            <summary>
+            Get the center of mass in world/image space
+            </summary>
+            <param name="worldSpace">Is world space, else – image space</param>
+            <param name="pnt">3D center of mass</param>
+            <returns>OMK_SUCCESS if computation was successful or an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.copySkeleton(Omek.ISkeleton)">
+            <summary>
+            Fill the given skeleton object with the current tracking data of the tracked object
+            </summary>
+            <param name="skeleton">an instantiated skeleton interface, which will be filled by the method</param>
+            <returns>OMK_SUCCESS if the skeleton was successfully filled or an error otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.hasMask">
+            <summary>
+            Check if a specific object has a mask (i.e. silhouette)
+            </summary>
+            <returns>true If the object has a mask or false otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.hasSkeleton">
+            <summary>
+            Check if a specific object is active
+            </summary>
+            <returns>If the object is active (i.e. have a skeleton information) </returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.getCircumference(System.Int32@)">
+            <summary>
+            Not avaliable at this version
+            </summary>
+            <param name="circumference"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.getID(System.UInt32@)">
+            <summary>
+            return this tracked object id
+            </summary>
+            <param name="id">out current object id</param>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.getState">
+            <summary>
+            Not avaliable at this version
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.startTracking">
+            <summary>
+            start full body tracking for this person
+            </summary>
+            <returns>OMK_SUCCESS if tracking was started successfully or an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.stopTracking">
+            <summary>
+            stop full body tracking for this persom
+            </summary>
+            <returns>OMK_SUCCESS if tracking was stopped successfully or an error code otherwise</returns>
+        </member>
+        <member name="M:BeckonDotNet.BeckonWrapperPerson.getBodyDimensions(Omek.BodyDimensions@)">
+            <summary>
+            Get the computed dimensions of the person bodyparts
+            </summary>
+            <param name="bodyDimensions">contain the output data</param>
+            <returns>OMK_SUCCESS if the data was retrevied successfully or an error code otherwise</returns>
+        </member>
+        <member name="T:Omek.JointID">
+            <summary>
+            An enum of the Joint IDs in the SDK.
+            These values and their orders must not be changed.
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.unknown">
+            <summary>
+            unknown
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.head">
+            <summary>
+            head
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.torso">
+            <summary>
+            torso
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.neck">
+            <summary>
+            neck
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.rightFingerTip">
+            <summary>
+            rightFingerTip
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.leftFingerTip">
+            <summary>
+            leftFingerTip
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.rightShoulder">
+            <summary>
+            rightShoulder
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.leftShoulder">
+            <summary>
+            leftShoulder
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.rightElbow">
+            <summary>
+            rightElbow
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.leftElbow">
+            <summary>
+            leftElbow
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.rightCollar">
+            <summary>
+            rightCollar
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.leftCollar">
+            <summary>
+            leftCollar
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.hips">
+            <summary>
+            hips
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.rightKnee">
+            <summary>
+            rightKnee
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.leftKnee">
+            <summary>
+            leftKnee
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.rightFoot">
+            <summary>
+            rightFoot
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.leftFoot">
+            <summary>
+            leftFoot
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.rightHip">
+            <summary>
+            rightHip
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.leftHip">
+            <summary>
+            leftHip
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.spine1">
+            <summary>
+            spine1
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.spine2">
+            <summary>
+            spine2
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.spine3">
+            <summary>
+            spine3
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.spine4">
+            <summary>
+            spine4
+            </summary>
+        </member>
+        <member name="F:Omek.JointID.waist">
+            <summary>
+            waist
+            </summary>
+        </member>
+        <member name="T:Omek.OMKStatus">
+            <summary>
+            Possible return statuses of methods
+            </summary>
+        </member>
+        <member name="T:Omek.eEventType">
+            <summary>
+            Decribe the type of event
+            </summary>
+        </member>
+    </members>
+</doc>

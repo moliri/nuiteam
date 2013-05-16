@@ -1,0 +1,2333 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BeckonDotNetFramework</name>
+    </assembly>
+    <members>
+        <member name="T:OmekFramework.Beckon.Main.BeckonSessionConfiguration">
+            <summary>
+            Specifies the current framework session configuration.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonSessionConfiguration.TrackingMode">
+            <summary>
+            The tracking mode to be used.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonSessionConfiguration.CameraParams">
+            <summary>
+            The parameters of the camera to be entered.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonSessionConfiguration.MaxPersons">
+            <summary>
+            The maximum number of persons to be allowed in the system.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonSessionConfiguration.MaxPersonsWithAutomaticSkeletons">
+            <summary>
+            Maximum number of players to set. If 0 the FrameWork player selection will be used.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonSessionConfiguration.UseSDKPlayerSelection">
+            <summary>
+            Use the SDK player selection or use the FrameWork player selection.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonSessionConfiguration.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.BeckonSessionConfiguration.CameraParam">
+            <summary>
+            Camera parameter structure to initialze camera parameters.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonSessionConfiguration.CameraParam.SensorParamType">
+            <summary>
+            The camera parameter to set.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonSessionConfiguration.CameraParam.ParamValue">
+            <summary>
+            The value to give the camera parameter.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonSessionConfiguration.CameraParam.#ctor(OmekFramework.Beckon.Main.BeckonSessionConfiguration.CameraParam.CameraParamOptions,System.Int32)">
+            <summary>
+            Constructor that constructs a single camera parameter and its value.
+            </summary>
+            <param name="in_SensorParamType">The camera option to set</param>
+            <param name="in_ParamValue">Its new value</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonSessionConfiguration.CameraParam.#ctor">
+            <summary>
+            Constructor that constructs a single camera parameter and its value to not flipped.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.BeckonSessionConfiguration.CameraParam.CameraParamOptions">
+            <summary>
+            The different camera parameter options.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.HandPrioritySorter">
+            <summary>
+            Decide on how to determine hand priorities.
+            That is, sort the hands according to a certain priority order.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandPrioritySorter.IsHandAvailable(System.UInt32,Omek.HandType)">
+            <summary>
+            Indicates if a hand is available for the person and hand side.
+            </summary>
+            <param name="personID">The person ID</param>
+            <param name="handSide">The hand side to check</param>
+            <returns>True if the hand is considered as available</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandPrioritySorter.AllocateHandPriorities(System.UInt32)">
+            <summary>
+            Allocates a list of hand priorities according to hand availablity.
+            </summary>
+            <param name="personID">The person id</param>
+            <returns>Returns a list of hand priorities according to hand availablity</returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.HandPrioritySorter.IHandPrioritySorter">
+            <summary>
+            An interface for a a sort class, sorting hands in different ways.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandPrioritySorter.IHandPrioritySorter.SortHands(System.UInt32,System.Collections.Generic.List{Omek.HandType}@)">
+            <summary>
+            Sorts the hand of the given person and ouput them in a list indicating their order
+            </summary>
+            <param name="personID">The person ID</param>
+            <param name="handsPriorities">(Output) A list of the sorted hands, at the head is the higher prioritized hand</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.HandPrioritySorter.ConfidenceHandSorter">
+            <summary>
+            A sorter according to the confidence of the hands.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandPrioritySorter.ConfidenceHandSorter.SortHands(System.UInt32,System.Collections.Generic.List{Omek.HandType}@)">
+            <summary>
+            Sorts the hand of the given person according to their confidence and outputs them in a list indicating their order
+            </summary>
+            <param name="personID">The person ID</param>
+            <param name="handsPriorities">(Output) A list of the sorted hands, at the head is the higher prioritized hand</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.HandPrioritySorter.RaisedHandSorter">
+            <summary>
+            A sorter according to the height of the hands.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandPrioritySorter.RaisedHandSorter.SortHands(System.UInt32,System.Collections.Generic.List{Omek.HandType}@)">
+            <summary>
+            Sorts the hand of the given person according to their their height and ouputs them in a list indicating their order
+            </summary>
+            <param name="personID">The person ID</param>
+            <param name="handsPriorities">(Output) A list of the sorted hands, at the head is the higher prioritized hand</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.BeckonPointerManager">
+            <summary>
+            Manages the current BeckonPointers:
+            Checks which players have a pointer, assigns pointers to valid hands, updates the pointers and provides access to them.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.NON_ASSIGNED_HAND">
+            <summary>
+            Static value for a non assigned hand.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.DEFAULT_RIGHT_HAND_MOVEMENT_BOX">
+            <summary>
+            Default movement box for the right hand.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.DEFAULT_LEFT_HAND_MOVEMENT_BOX">
+            <summary>
+            Default movement box for the left hand.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_overrideOSCursor">
+            <summary>
+            Set OS pointer position with pointer position
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_maxPointersPerPerson">
+            <summary>
+            The hand amount to try to get per person (clamped from 0-2).
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_handSelectionStrategy">
+            <summary>
+            The current hand selection strategy
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_attachmentPendingTime">
+            <summary>
+            How much time is there between the time a valid hand is discovered and to when it is attached to a pointer
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_pointerLossTimeout">
+            <summary>
+            How much time is given from when an attached pointer hand disappears to when that pointer is removed.
+            (this time allows for a recovery of the hand).
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_currentHandSelection">
+            <summary>
+            The current hand selection for each pointer controlling person returned by the strategy
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_badHands">
+            <summary>
+            Hands indicated as bad for each pointer controlling person.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_handStates">
+            <summary>
+            The current HandState for each pointer controlling person.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_expectedPointerCount">
+            <summary>
+            The needed pointer amount
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_pointersInSystem">
+            <summary>
+            The current pointers in system
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_osPointerReference">
+            <summary>
+            The OS pointer reference
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_missingPointerIndices">
+            <summary>
+            The current missing pointer indices
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.m_currentPointerConfiguration">
+            <summary>
+            The current pointer configuration
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.GetPointer(System.UInt32)">
+            <summary>
+            Returns the Pointer in the specified index.
+            </summary>
+            <param name="pointerID">The ID of the pointer</param>
+            <returns>The Pointer</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.GetPointer(System.UInt32,Omek.HandType)">
+            <summary>
+            Returns the Pointer assigned for the given person and hand.
+            If no such Pointer is found, null is returned.
+            </summary>
+            <param name="personID">The person ID</param>
+            <param name="handSide">The hand side</param>
+            <returns>The Pointer assigned for the given person and hand</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.HasPointer(System.UInt32,Omek.HandType)">
+            <summary>
+            Returns true if the given person and hand combination has a pointer assigned to it.
+            </summary>
+            <param name="personID">The person ID</param>
+            <param name="handSide">The hand side</param>
+            <returns>True if the given person and hand combination has a pointer assigned to it</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.OverrideOSCursor(System.Boolean,System.Double,System.Double)">
+            <summary>
+            Set the OS cursor override state, according to the given screen dimensions
+            </summary>
+            <param name="updateOSCursor">Should the OS cursor be overriden</param>
+            <param name="screenWidth">The width of the screen</param>
+            <param name="screenHeight">The height of the screen</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.OverideOSCursor(System.Boolean,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Set the OS cursor override state, according to the given screen dimensions
+            </summary>
+            <param name="updateOSCursor">Should the OS cursor be overriden</param>
+            <param name="screenWidth">The width of the screen</param>
+            <param name="screenHeight">The height of the screen</param>
+            <param name="leftCorner">The x position of the top left corner of the area the pointer may move to</param>
+            /// <param name="topCorner">The y position of the top left corner of the area the pointer may move to</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.RegisterGestureToPointerAction(System.String,OmekFramework.Common.Pointer.PointerAction)">
+            <summary>
+            Invoke the specified OS pointer action when the specifed gesture occurs.
+            </summary>
+            <param name="gestureName">The gesture which invokes the pointer action</param>
+            <param name="pa">The pointer action (left click, right click, etc.) to invoke</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.UnregisterGesture(System.String)">
+            <summary>
+            Unregister the gesture from invoking any OS pointer action.
+            </summary>
+            <param name="gestureName"></param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.UnregisterAllGestures">
+            <summary>
+            Unregister all gestures from invoking any pointer action.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.IsOSCursorOverriden">
+            <summary>
+            Indicates if the OS cursor is overriden
+            </summary>
+            <returns>True if the OS cursor is overriden</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.UpdateState">
+            <summary>
+            Updates the state of pointer manager (should be called on a new found image).
+            This update has to happen after the player selection update.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.GetHandStates(System.UInt32)">
+            <summary>
+            Returns the hand states of the given person.
+            </summary>
+            <param name="personID">The person id to get the hand states of</param>
+            <returns>The hand states of the person</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.PersonHandSelection(System.UInt32)">
+            <summary>
+            Returns the current hand selection for the given person.
+            </summary>
+            <param name="personID">The person id to return the hand selection for</param>
+            <returns>The hand selection for the person</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.IsBadHand(System.UInt32,Omek.HandType)">
+            <summary>
+            Indicates if the given combination of person and hand are mapped to a hand indicated as bad.
+            </summary>
+            <param name="personID">The person id</param>
+            <param name="handSide">The hand side</param>
+            <returns>True if the given combination of person and hand are mapped to a hand indicated as bad</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.InitializeStaticMembers">
+            <summary>
+            Initaliaze default values for movment boxes
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.HasPointerInSystem(System.UInt32,Omek.HandType)">
+            <summary>
+            Returns true if the given person and hand combination has a pointer assigned to it.
+            </summary>
+            <param name="personID">The person ID</param>
+            <param name="handSide">The hand side</param>
+            <returns>True if the given person and hand combination has a pointer assigned to it</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.Initialize">
+            <summary>
+            Initialize the system.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.RemoveMissingPersons(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Updates the missing persons, removing them from system
+            </summary>
+            <param name="curCursorControllingBlobs">The current pointer controlling persons</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.UpdateHandSelection">
+            <summary>
+            Updates the hand selection state according to the PointerControllingBlobs of the player selection.
+            This results in an indication of which hands are selected for each PointerControllingBlob.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.AttachPointers">
+            <summary>
+            Attach pointers to hands
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.UpdatePointerStatus">
+            <summary>
+            Update pointer status of the pointer in the system.
+            Indicates if there are unassigned pointer indices.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.AssignMissingPointers">
+            <summary>
+            Assign available hands to missing pointers.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.DetachPointer(System.Int32)">
+            <summary>
+            Detach the given pointer from the pointers in system and indicate it as missing.
+            </summary>
+            <param name="pointerIndex">The pointer index to detach</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.UpdatePointer">
+            <summary>
+            Updates a pointer's state.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.instance">
+            <summary>
+            Instance
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.#ctor">
+            <summary>
+            Ctor
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.HandSelectionStrategy">
+            <summary>
+            The current hand selection strategy
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.ExpectedPointerCount">
+            <summary>
+            The needed pointer amount.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.MaxPointersPerPerson">
+            <summary>
+            The hand amount to try to get per person (clamped from 0-2).
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.CurrentPointers">
+            <summary>
+            The current pointers in system
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.CurrentPointerConfiguration">
+            <summary>
+            Returns the current pointer configuration
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.AttachmentPendingTime">
+            <summary>
+            How much time is there between the time a valid hand is discovered and to when it is attached to a pointer
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerLossTimeout">
+            <summary>
+            Returns the amount of time needed to loss a bad pointer
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.Instance">
+            <summary>
+            Singleton instance.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration">
+            <summary>
+            Represents the default configuration given to any pointer.
+            If a value is changed in this configuration, the value is changed for all pointers in the system.
+            If the a value is changed within the pointer itself, it will not be changed here.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_rightHandMovementBox">
+            <summary>
+            The movement box for the right hand
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_leftHandMovementBox">
+            <summary>
+            The movement box for the left hand
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_useAdaptivePointerPrecision">
+            <summary>
+            Indicates if there should be a slow down in the pointer movement as there are more subtle movements of the
+            controlling joint. This option is helpful when there is a visible pointer, and the user can use finer
+            control when using small movements, allowing to user to correct his movements according to the display.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_useClickLock">
+            <summary>
+            Indicates if there should be a slow down in the pointer movement when there is a fast change in depth values.
+            This option should be used to enforce less pointer movement when the user changes the depth while intending to
+            remain in the same pointer position (e.g. clicking on a button in a menu).
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_pointerSmoothingScheme">
+            <summary>
+            The current smoothing scheme
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_customSmoothingParams">
+            <summary>
+            The custom smoothing parameters to be used
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_usingAbsoluteAnchorPosition">
+            <summary>
+            Indicates if absolute anchor position should be used (not relative to a joint)
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_anchorJoint">
+            <summary>
+            The joint to be used as the anchor for the movement
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.m_absoluteAnchorPosition">
+            <summary>
+            The absolute position to be used for the anchor position
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.SetCustomSmoothingParameters(OmekFramework.Common.Pointer.Pointer.SmoothingParameters)">
+            <summary>
+            Set custom smoothing to be used with the given parameters.
+            </summary>
+            <param name="smoothingParams">The smoothing parameters to be used</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.UseAbsoluteAnchorPosition(OmekFramework.Common.BasicTypes.SpaceTypes.Vector3)">
+            <summary>
+            Set the anchor position at an absolute position in real space.
+            This anchor determines the position in which the MovementBox is placed.
+            </summary>
+            <param name="absoluteAnchorPos">The absolute position in real space at which to position the anchor</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.SetAnchorToJoint(Omek.JointID)">
+            <summary>
+            Set the anchor position to the specified joint.
+            This anchor determines the position in which the MovementBox is placed.
+            </summary>
+            <param name="jointID">The joint to position the anchor at</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.ConfigureBeckonPointer(OmekFramework.Beckon.Pointer.BeckonPointer)">
+            <summary>
+            Configure the a certain BeckonPointer with the set configuration.
+            </summary>
+            <param name="pointer">The pointer to apply the configuration for</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.GetCurrentPointers">
+            <summary>
+            Returns the current pointers available.
+            </summary>
+            <returns>The current pointers available</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.RightHandMovementBox">
+            <summary>
+            The movement box for the right hand
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.LeftHandMovementBox">
+            <summary>
+            The movement box for the left hand
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.UseAdaptivePointerPrecision">
+            <summary>
+            Indicates if there should be a slow down in the pointer movement as there are more subtle movements of the
+            controlling joint. This option is helpful when there is a visible pointer, and the user can use finer
+            control when using small movements, allowing to user to correct his movements according to the display.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.UseClickLock">
+            <summary>
+            Indicates if there should be a slow down in the pointer movement when there is a fast change in depth values.
+            This option should be used to enforce less pointer movement when the user changes the depth while intending to
+            remain in the same pointer position (e.g. clicking on a button in a menu).
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.PointerSmoothingScheme">
+            <summary>
+            The current smoothing scheme
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.CustomSmoothingParams">
+            <summary>
+            The custom smoothing parameters to be used
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.UsingAbsoluteAnchorPosition">
+            <summary>
+            Indicates if absolute anchor position should be used (not relative to a joint)
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.AnchorJoint">
+            <summary>
+            The joint to be used as the anchor for the movement
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerConfiguration.AbsoluteAnchorPosition">
+            <summary>
+            The absolute position to be used for the anchor position
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper">
+            <summary>
+            Wraps the pointer data.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.m_personID">
+            <summary>
+            The person id for which this pointer is assigned
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.m_handSide">
+            <summary>
+            The hand side of the pointer
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.m_pointerState">
+            <summary>
+            The current pointer attachement state.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.m_stateSetTime">
+            <summary>
+            The time at which the last state was set
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.m_pointer">
+            <summary>
+            The wrapped Pointer
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.#ctor(System.UInt32,Omek.HandType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="personId">The person id for which this pointer is assigned</param>
+            <param name="handSide">The hand side of the pointer</param>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.PointerState">
+            <summary>
+            The current pointer attachement state.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.StateSetTime">
+            <summary>
+            The time at which the last state was set
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.Pointer">
+            <summary>
+            The wrapped Pointer
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.PersonID">
+            <summary>
+            The person id for which this pointer is assigned
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.HandSide">
+            <summary>
+            The hand side of the pointer
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.BeckonPointerManager.PointerWrapper.PointerAttachmentState">
+            <summary>
+            Indicates the current attachment state of the pointer.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Data.BodyDimensionsGetter">
+            <summary>
+            Obtains the body dimensions
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Data.IBodyDimensionsGetter">
+            <summary>
+            Obtains the body dimensions
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.IBodyDimensionsGetter.Get(Omek.BodyDimensions@)">
+            <summary>
+            Gets the body dimensions
+            </summary>
+            <param name="outPos">(output) the body dimensions</param>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.BodyDimensionsGetter.m_lastReturnCode">
+            <summary>
+            The last acquired return code
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.BodyDimensionsGetter.m_bodyDimensions">
+            <summary>
+            The last acquired body dimensions
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.BodyDimensionsGetter.m_trackedObjectIndex">
+            <summary>
+            The trackedObject index used
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.BodyDimensionsGetter.m_lastRequestUpdateTime">
+            <summary>
+            The last time at which the center was acquired successfuly
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.BodyDimensionsGetter.#ctor(System.UInt32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="trackedObjectIndex">The trackedObject index for the getter</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.BodyDimensionsGetter.Get(Omek.BodyDimensions@)">
+            <summary>
+            Gets the body dimensions
+            </summary>
+            <param name="outPos">(output) the body dimensions</param>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.BodyDimensionsGetter.Update">
+            <summary>
+            Updates the center position
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Data.IPerson">
+            <summary>
+            A high level class used to easily obtain references to Person specific information
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.IPerson.BodyDimensions">
+            <summary>
+            A reference to the person's body dimensions getter
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.IPerson.CenterOfMass2D">
+            <summary>
+            A reference to the person's 2D center of mass getter
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.IPerson.CenterOfMass3D">
+            <summary>
+            A reference to the person's 3D center of mass getter
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.AbstractPlayerSelectionStrategy">
+            <summary>
+            A class that encapsulates the different modes of the player index manager.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.AbstractPlayerSelectionStrategy.ChoosePlayers">
+            <summary>
+            Provide a list of person ids that are determined as the players according to the set strategy.
+            </summary>
+            <returns>A list where the index signifies the player index and the value the corresponding person.
+            PlayerSelection.NON_ASSIGNED_PLAYER signifies missing person.
+            </returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StrategyWithExpectedPlayers">
+            <summary>
+            Parent for gestures that have a defined expected number of players
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StrategyWithExpectedPlayers.ExpectedPlayersCount">
+            <summary>
+            How many players should there be?
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedPlayerSelectionStrategy">
+            <summary>
+            Determines the players at one point and then keeps those players as long as they don't exit
+            or more players are needed.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedPlayerSelectionStrategy.SystemJoinTime">
+            <summary>
+            A threshold in time for a player to be assigned.
+            A person that joined the system earlier than this time will be rejected.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedPlayerSelectionStrategy.SortStrategy">
+            <summary>
+            The sorting strategy to decide on person priority
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedPlayerSelectionStrategy.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedPlayerSelectionStrategy.ChoosePlayers">
+            <summary>
+            Provide a list of person ids that are determined as the players according to the set strategy.
+            </summary>
+            <returns>A list where the index signifies the player index and the value the corresponding person.
+            PlayerSelection.NON_ASSIGNED_PLAYER signifies missing person.
+            </returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedPlayerSelectionStrategy.SetSystemJoinTimeToNow">
+            <summary>
+            Set the time threshold to now
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedPlayerSelectionStrategy.ShouldChangeAssignment">
+            <summary>
+            Returns true if there should be a change in the player assignment.
+            </summary>
+            <returns>True if there should be a change in the player assignment</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedPlayerSelectionStrategy.DeterminePlayers(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Determine players. Add players to existing player if needed or remove if needed. Add person according to the sortedPersons list.
+            </summary>
+            <param name="currentAssignment">The current player assignment</param>
+            <param name="sortedPersons">The sorted persons</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.AlwaysReconsiderPlayerSelectionStrategy">
+            <summary>
+            Reconsider all the players every time ChoosePlayers is called. That is, every time ChoosePlayers
+            is called, the persons are sorted and picked for players according to their highest order.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.AlwaysReconsiderPlayerSelectionStrategy.SortStrategy">
+            <summary>
+            The sorting strategy to decide on person priority
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.AlwaysReconsiderPlayerSelectionStrategy.ChoosePlayers">
+            <summary>
+            Provide a list of person ids that are determined as the players according to the set strategy.
+            </summary>
+            <returns>A list where the index signifies the player index and the value the corresponding person.
+            PlayerSelection.NON_ASSIGNED_PLAYER signifies missing person.
+            </returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy">
+            <summary>
+            Used to determine which person should control the pointers.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.PlayerSwitchTimeThreshold">
+            <summary>
+            How much time has to pass between the main player not having his hand up
+            until another player becoming the main player?
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.PlayerMinimumTimeThreshold">
+            <summary>
+            What is the minimal amount of time that a main player can a main player?
+            (To allow calibration of the new main player)
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.SortStrategy">
+            <summary>
+            The sorting strategy to decide on person priority
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.m_timingData">
+            <summary>
+            Mapping between person indices to their PlayerTimeData.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.ChoosePlayers">
+            <summary>
+            Provide a list of person ids that are determined as the players controlling the pointer/s according to the set strategy.
+            </summary>
+            <returns>A list where the index signifies the player index and the value the corresponding person.
+            PlayerSelection.NON_ASSIGNED_PLAYER signifies missing person.
+            </returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.HandVisible(System.UInt32)">
+            <summary>
+            Returns true if the given personID has any hand visible.
+            </summary>
+            <param name="personID">The personID</param>
+            <returns>True if the given personID has any hand visible</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.GetPersonTimeData(System.Int32)">
+            <summary>
+            Return the PersonTimeData object for the requested player.
+            If the player is new, then create a new PersonTimeData with the current time.
+            </summary>
+            <param name="currentPlayer">index of the player</param>
+            <returns>The PlayerTimeData</returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.StandardPointerSelectionStrategy.PersonTimeData">
+            <summary>
+            A class representing data about a person's times in the system.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PointerControlledByPlayers">
+            <summary>
+            Used to choose the same persons chosen by the player selection strategy to control the pointers.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PointerControlledByPlayers.ChoosePlayers">
+            <summary>
+            Provide a list of person ids that are determined as the players controlling the pointer/s according to the set strategy.
+            </summary>
+            <returns>A list where the index signifies the player index and the value the corresponding person.
+            PlayerSelection.NON_ASSIGNED_PLAYER signifies missing person.
+            </returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PointerControllersFirst">
+            <summary>
+            Player selection characteristic of a menu.
+            This is similar to ReconsiderClosestToCamera but pointer controlling persons are guaranteed to be selected as players
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PointerControllersFirst.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.ReconsiderClosestToCamera">
+            <summary>
+            Reconsider the players every frame and chooses the closest to camera (then order them from left to right)
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.ReconsiderClosestToCamera.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedClosestToCamera">
+            <summary>
+            Players are determined once, and don't change them.
+            When there is a need to choose players, the players closest to camera are chosen.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.PreDeterminedClosestToCamera.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.NoChange">
+            <summary>
+            There will be no change to the selected player.
+            The only possible change while this strategy is selected is to player leave the sensor field of view
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.NoChange.ChoosePlayers">
+            <summary>
+            Provide a list of person ids that are determined as the players according to the set strategy.
+            </summary>
+            <returns>A list where the index signifies the player index and the value the corresponding person.
+            PlayerSelection.NON_ASSIGNED_PLAYER signifies missing person.
+            </returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelectionStrategy.GestureEnabled">
+            <summary>
+            Person are (un)selected to be a player by performing a defined gesture
+            Using this strategy automatically cause each person to be tracked - so all gesture will be enabled for it
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.GestureEnabled.SelectPlayerGesture">
+            <summary>
+            A gesture used to select a person as an active player
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelectionStrategy.GestureEnabled.UnselectPlayerGesture">
+            <summary>
+            a gesture used to unselect an active player
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.GestureEnabled.#ctor(System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="continueCurrentState">should we create this gesture with the currently active player or start from scratch</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.GestureEnabled.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Create GestureEnabled player selection strategy
+            </summary>
+            <param name="selectPlayerGesture">the gesture used to select a person</param>
+            <param name="unselectPlayerGesture">the gesture used to unselect a player</param>
+            <param name="continueCurrentState">should we create this gesture with the currently active player or start from scratch</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.GestureEnabled.ChoosePlayers">
+            <summary>
+            Provide a list of person ids that are determined as the players according to the set strategy.
+            </summary>
+            <returns>A list where the index signifies the player index and the value the corresponding person.
+            PlayerSelection.NON_ASSIGNED_PLAYER signifies missing person.
+            </returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelectionStrategy.GestureEnabled.isNonAssignedPlayer(System.Int32)">
+            <summary>
+            Determines whether the specified a is not assigned as player.
+            </summary>
+            <param name="a">A.</param>
+            <returns>
+              <c>true</c> if the specified a is non assigned player otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.BasicTypes.BeckonDefines">
+            <summary>
+            Includes common definitions used in the Beckon framework.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.BasicTypes.BeckonDefines.MAX_SKELETONS">
+            <summary>
+            A default number of the Max Skeletons to be tracked.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.BasicTypes.BeckonDefines.HandToJoint">
+            <summary>
+            A dictionary mapping from the hand side to it's joint id.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.HandSelectionStrategy">
+            <summary>
+            Strategy by which a hand is selected.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandSelectionStrategy.ChooseHands(System.UInt32)">
+            <summary>
+            Choose the hands for the given person.
+            The amount of hands returned is between 0-2 in dependence of the ExpectedHandAmount set
+            </summary>
+            <param name="personID">The person id for which to choose hands</param>
+            <returns>The chosen hands for the given person</returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.PreDeterminedHandSelectionStrategy">
+            <summary>
+            Strategy by which a hand is selected and not lot go unless it is considered a bad hand.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.PreDeterminedHandSelectionStrategy.m_sortStrategy">
+            <summary>
+            The sorting strategy to decide on hand priority
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.PreDeterminedHandSelectionStrategy.ChooseHands(System.UInt32)">
+            <summary>
+            Choose the hands for the given person.
+            Once a hand is selected, it remains until it is considered a bad hand.
+            The amount of hands returned is between 0-2 in dependence of the ExpectedHandAmount set
+            </summary>
+            <param name="personID">The person id for which to choose hands</param>
+            <returns>The chosen hands for the given person</returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.ConstantHandSideStrategy">
+            <summary>
+            Choose a single defined hand.
+            This basically means that the hand is given if it is not in a bad state.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.ConstantHandSideStrategy.m_neededSide">
+            <summary>
+            The needed constant hand side.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.ConstantHandSideStrategy.#ctor(Omek.HandType)">
+            <summary>
+            Constructor. Indicates the needed constant hand side.
+            </summary>
+            <param name="neededHandSide">The needed constant hand side</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.ConstantHandSideStrategy.ChooseHands(System.UInt32)">
+            <summary>
+            Choose a single defined hand for the given person.
+            This basically means that the hand is given if it is not in a bad state.
+            </summary>
+            <param name="personID">The person id for which to choose hands</param>
+            <returns>The chosen hands for the given person</returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonPrioritySorter">
+            <summary>
+            Decide on how to determine persons priorities.
+            That is, sort the persons according to a certain priority order.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonPrioritySorter.PersonPos(System.Int32)">
+            <summary>
+            Get a person's 3D position
+            </summary>
+            <param name="personID">The person ID</param>
+            <returns>The person 3D position</returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonPrioritySorter.PrioritySorter">
+            <summary>
+            An interface for a a sort class, sorting persons in different ways.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonPrioritySorter.PrioritySorter.SortPersons(System.Collections.Generic.List{System.Int32},System.Int32)">
+            <summary>
+            Sort persons by a certain priority order.
+            </summary>
+            <param name="personPriorities">A list of person ids that is to be sorted</param>
+            <param name="numActivePlayers">The number of active players needed</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonPrioritySorter.ClosestPlayerSorter">
+            <summary>
+            Sort persons according to their distance from the sensor.
+            Giving precedence to the pointer controllering player if specified.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PersonPrioritySorter.ClosestPlayerSorter.m_isPointerControllingPersonFirst">
+            <summary>
+            Indicates if the pointer controlling person should be the first in the sort no matter what.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonPrioritySorter.ClosestPlayerSorter.SortPersons(System.Collections.Generic.List{System.Int32},System.Int32)">
+            <summary>
+            Sort persons according to their distance from the sensor.
+            Giving precedence to the pointer controllering player if specified.
+            </summary>
+            <param name="personPriorities">A list of person ids that is to be sorted</param>
+            <param name="numActivePlayers">The number of active players needed</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonPrioritySorter.CombinedPlayerSorter">
+            <summary>
+            Sorts the persons according to their distance from camera, and then sorts according to X.
+            That is, persons are sorted according to distance from camera, and then, the active persons are sorted
+            according to their X order (active persons - determined by the best numActivePlayers ordered by Z).
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonPrioritySorter.CombinedPlayerSorter.SortPersons(System.Collections.Generic.List{System.Int32},System.Int32)">
+            <summary>
+            Sorts the persons according to their distance from camera, and then sorts according to X.
+            That is, persons are sorted according to distance from camera, and then the active persons are sorted
+            according to their X order (active persons - determined by the best numActivePlayers ordered by Z).
+            </summary>
+            <param name="personPriorities">A list of person ids that is to be sorted</param>
+            <param name="numActivePlayers">The number of active players needed</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonPrioritySorter.MenuPlayerSorter">
+            <summary>
+            Default menu sorter: Sorts players according to their Z distance and X ordering but gives the priority to the pointer controlling player.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonPrioritySorter.MenuPlayerSorter.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonPrioritySorter.LeftmostPlayerSorter">
+            <summary>
+            Sorts persons according to their X position.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonPrioritySorter.LeftmostPlayerSorter.SortPersons(System.Collections.Generic.List{System.Int32},System.Int32)">
+            <summary>
+            Sorts persons according to their X position.
+            </summary>
+            <param name="personPriorities">A list of person ids that is to be sorted</param>
+            <param name="numActivePlayers">The number of active players needed</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Data.BeckonData">
+            <summary>
+            Used to obtain high level data in a comfortable fashion
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.BeckonData.m_persons">
+            <summary>
+            Contain the Persons in the system
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.BeckonData.m_personsAccessor">
+            <summary>
+            An accessor to m_persons
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.BeckonData.m_playersAccessor">
+            <summary>
+            An accessor to m_persons by player id
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.BeckonData.m_image">
+            <summary>
+            contains a reference to the RGB and Depth images
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.BeckonData.#ctor">
+            <summary>
+            private constructor to prevent creation of instance
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.BeckonData.#cctor">
+            <summary>
+            Static constructor
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.BeckonData.Persons">
+            <summary>
+            An indexer for easy access to the Persons in the system
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.BeckonData.Players">
+            <summary>
+            A indexer for the person in the system by their player ID
+            if such player doesn't exist, return a dummy person which will fail all operations
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.BeckonData.Image">
+            <summary>
+            contains a reference to the RGB and Depth images
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Data.BeckonData.PersonsAccessor">
+            <summary>
+            An accessor to persons' data.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.BeckonData.PersonsAccessor.ContainsKey(System.UInt32)">
+            <summary>
+            Determines whether a person with the given id has data accessor.
+            note: it still might be that the accessor will return some error code because the person isn't available
+            </summary>
+            <param name="personID">The person id</param>
+            <returns>
+            true iff person with given id exist
+            </returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.BeckonData.PersonsAccessor.Item(System.UInt32)">
+            <summary>
+            get a person data by its ID 
+            </summary>
+            <param name="id">the person id</param>
+            <returns>the person data</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.BeckonData.PersonsAccessor.Count">
+            <summary>
+            Returns the number of persons in the system
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Data.BeckonData.PlayersAccessor">
+            <summary>
+            A indexer for the person in the system by their player ID
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.BeckonData.PlayersAccessor.ContainsKey(System.UInt32)">
+            <summary>
+            Determines whether player with the given id exist.
+            </summary>
+            <param name="playerID">The player ID</param>
+            <returns>
+            true iff a player with this id exist
+            </returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.BeckonData.PlayersAccessor.Item(System.UInt32)">
+            <summary>
+            Get a person data by it player iD
+            </summary>
+            <param name="playerId">the player id</param>
+            <returns>person data</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.BeckonData.PlayersAccessor.Count">
+            <summary>
+            Returns the number of players in the system as determined by the PlayerSelection.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Data.Person">
+            <summary>
+            A high level class used to easily obtain references to Person specific information
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.Person.m_centerOfMass2DGetter">
+            <summary>
+            A reference to the person's 2D center of mass getter
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.Person.m_centerOfMass3DGetter">
+            <summary>
+            A reference to the person's 3D center of mass getter
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Data.Person.m_bodyDimensionsGetter">
+            <summary>
+            A reference to the person's body dimensions of mass getter
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Data.Person.#ctor(System.UInt32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="personIndex">The person's index</param>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.Person.CenterOfMass2D">
+            <summary>
+            A reference to the person's 2D center of mass getter
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.Person.CenterOfMass3D">
+            <summary>
+            A reference to the person's 3D center of mass getter
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Data.Person.BodyDimensions">
+            <summary>
+            A reference to the person's body dimensions getter
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.HandState">
+            <summary>
+            Indicates the state of a hand.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_personID">
+            <summary>
+            The person ID of the hand
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_hand">
+            <summary>
+            The side of the hand
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_jointID">
+            <summary>
+            The joint id of the hand
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_handViability">
+            <summary>
+            The current hand state.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_handStateConditions">
+            <summary>
+            The hand's HandStateConditions determining it's hand state.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_confidence">
+            <summary>
+            The current hand confidence.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_position">
+            <summary>
+            The current hand position.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_jointerConfidenceGetter">
+            <summary>
+            A caching of the joint confidence getter
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_jointerPositionGetter">
+            <summary>
+            A caching of the joint position getter.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.m_timeOfStateChange">
+            <summary>
+            The time at which there was change in the HandViability
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandState.#ctor(System.UInt32,Omek.HandType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="personID">The person ID of the hand</param>
+            <param name="handSide">The side of the hand</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandState.UpdateState">
+            <summary>
+            Update the current hand state.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandState.UpdateHandData">
+            <summary>
+            Update the hand data.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandState.UpdateHandState">
+            <summary>
+            Update the current hand state according to the hand state conditions.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandState.PersonID">
+            <summary>
+            The person ID of the hand
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandState.Hand">
+            <summary>
+            The side of the hand
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandState.JointID">
+            <summary>
+            The joint id of the hand
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandState.HandStateConditions">
+            <summary>
+            The hand's HandStateConditions determining it's hand state.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandState.Confidence">
+            <summary>
+            The current hand confidence.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandState.Position">
+            <summary>
+            The current hand position.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandState.TimeOfStateChange">
+            <summary>
+            The time at which there was change in the HandViability
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandState.HandViability">
+            <summary>
+            The person position type that takes into account the current information of the person.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.HandState.ViabilityState">
+            <summary>
+            The state of the hand.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.ViabilityState.NO_STATE">
+            <summary>
+            Hand has no state
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.ViabilityState.BAD">
+            <summary>
+            Bad
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.ViabilityState.WARNING">
+            <summary>
+            Warning
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandState.ViabilityState.GOOD">
+            <summary>
+            Good
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonState">
+            <summary>
+            Indicates the PersonState
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PersonState.START_TRACKING_TIMEOUT">
+            <summary>
+            Start tracking timeout constant (for blacklisting)
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PersonState.m_lastStartTrackingTime">
+            <summary>
+            The last time StartTracking was requested for the person.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PersonState.m_wantsTracking">
+            <summary>
+            Indicates if the person needs tracking. If it does, then StartTracking will be requested.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.#ctor(System.UInt32)">
+            <summary>
+            C'tor
+            </summary>
+            <param name="trackedObjectID"></param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.TrackedObjectEnters">
+            <summary>
+            Handle candidate enters
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.TrackedObjectLeaves">
+            <summary>
+            Handle candidate leaves
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.SkeletonEnters">
+            <summary>
+            Handle tracked person enters
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.SkeletonLeaves">
+            <summary>
+            Handle tracked person leaves
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.UpdateTrackedObjectInfferedState">
+            <summary>
+            Update the current person data from the BeckonModule.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.UpdateTrackedObjectTrackingMode">
+            <summary>
+            Update the person tracking mode.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.StartTracking">
+            <summary>
+            Start tracking on the person.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonState.StopTracking">
+            <summary>
+            Stop tracking on the person.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PersonState.WantsTracking">
+            <summary>
+            Indicates if the person needs tracking. If it does, then StartTracking will be requested.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonMonitor">
+            <summary>
+            Monitors the states of the persons in the system and dispatches msgs to them.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonMonitor.SetPersonTrackingMode(System.UInt32,System.Boolean)">
+            <summary>
+            Set the tracking mode for the given person.
+            </summary>
+            <param name="personId">The person id</param>
+            <param name="enableTracking">true if tracking should be enabled</param>
+            <returns>True if the tracking mode was changed successfully</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonMonitor.SetPersonTrackingMode(System.Int32,System.Boolean)">
+            <summary>
+            Set the tracking mode for the given person.
+            </summary>
+            <param name="personId">The person id</param>
+            <param name="enableTracking">true if tracking should be enabled</param>
+            <returns>True if the tracking mode was changed successfully</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonMonitor.Reset">
+            <summary>
+            Reset the current PersonMonitor state.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonMonitor.ProcessSkeletonEnters">
+            <summary>
+            Process the player entrance alerts.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonMonitor.ProcessSkeletonLeaves">
+            <summary>
+            Process the player leaves alerts.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonMonitor.HasTrackedPersonsEntered(System.Collections.Generic.List{OmekFramework.Common.BasicTypes.CommonDefines.EventNotification}@)">
+            <summary>
+            Get list of playerEnters alerts from the sdk or if DontUseAlerts is true, by compering lists of current and last frame persons
+            </summary>
+            <param name="trackedPersonNotifications">(Output)list of playerEnters alerts</param>
+            <returns>true is there are new alerts</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonMonitor.HasTrackedPersonsLeft(System.Collections.Generic.List{OmekFramework.Common.BasicTypes.CommonDefines.EventNotification}@)">
+            <summary>
+            Get list of playerLeave alerts from the sdk or if DontUseAlerts is true, by compering lists of current and last frame persons
+            </summary>
+            <param name="trackedPersonNotifications">(Output)list of playerLeave alerts</param>
+            <returns>true is there are new alerts</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PersonMonitor.Instance">
+            <summary>
+            Singleton instance.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PersonMonitor.IsControllingTracking">
+            <summary>
+            Return whether the PersonMonitor control the tracking or the SDK is in automatic mode
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.BeckonManager">
+            <summary>
+            A manager for the operation of the sensor and SDK.
+            Meant to initialize the sensor according to a given configuration and update its state.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonManager.RECORDING_SUFFIX">
+            <summary>
+            Inidicates the recording suffix
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonManager.m_personAnalyzer">
+            <summary>
+            Reference to the IPersonAnalyzer
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.BeckonManager.m_usingSDKPlayerSelection">
+            <summary>
+            Does the SDK automatic player selection is used.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.CreateSensor(OmekFramework.Common.Main.SessionConfiguration)">
+            <summary>
+            Create the sensor according to the entered SessionConfiguration.
+            </summary>
+            <param name="conf">A struct the describing the the configuration of the sensor run</param>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.ResetState">
+            <summary>
+            Reset the state of all different components
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.GetTrackedObjectsInSystem(System.Collections.Generic.List{System.UInt32}@)">
+            <summary>
+            Return a list of curently tracked objects ID's
+            </summary>
+            <param name="trackedObjectsIDs">list of curently tracked objects ID's</param>
+            <returns>ReturnCode describing the rum of the method</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.SDKSpecificUpdateState">
+            <summary>
+            Updates the current system state for the Beckon Framework. Must be run to advance the state.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.InitSDKAnalyzer">
+            <summary>
+            Initializes the SDK specific analyzer
+            </summary>
+            <returns>OMKStatus indiciating the state of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.ReleaseAll">
+            <summary>
+            Release all references in manager.
+            </summary>
+            <returns>ReturnCode indicating the state of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.CreateSensorAccordingToTrackedObjectType``1(OmekFramework.Common.Main.SessionConfiguration)">
+            <summary>
+            Create the sensor according to the entered SessionConfiguration.
+            </summary>
+            <typeparam name="T">A type implementing IPersonAnalyzer</typeparam>
+            <param name="conf">A class the describing the the configuration of the sensor run</param>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.GetRecordingSuffix">
+            <summary>
+            Returns the recording suffix
+            </summary>
+            <returns>The recording suffix</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.CreateSpecificSDKSensor(OmekFramework.Beckon.Main.BeckonSessionConfiguration)">
+            <summary>
+            Create the SDK specificSensor
+            </summary>
+            <param name="conf">The configuration for this session</param>
+            <returns>ReturnCode indicating the state of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BeckonManager.DealWithErrorInInit(Omek.OMKStatus)">
+            <summary>
+            Deal with an error in the initialization
+            </summary>
+            <param name="errorRC">The OMKStatus error</param>
+            <returns>The ReturnCode wrapping the OMKStatus error</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.BeckonManager.BeckonInstance">
+            <summary>
+            A singleton instance.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.BeckonManager.UsingSDKPlayerSelection">
+            <summary>
+            Does the SDK automatic player selection is used.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.BeckonManager.PersonMonitor">
+            <summary>
+            Reference to the PersonMonitor singleton
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.BeckonManager.PlayerSelection">
+            <summary>
+            Reference to the PlayerSelection singleton
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.BeckonManager.PersonProperties">
+            <summary>
+            Reference to the PersonProperties singleton
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.BeckonManager.PointerManager">
+            <summary>
+            Reference to the PointerManager singleton
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.BeckonManager.PersonAnalyzer">
+            <summary>
+            Reference to the IPersonAnalyzer
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.BeckonPointer">
+            <summary>
+            Provides coordinates mapping between a certain Beckon joint to a pointer normalized to it's set space.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.m_torsoStabilizationThreshold">
+            <summary>
+            The stabilization value for the torso joint.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.m_nonPointerStabilizationFrames">
+            <summary>
+            Stabilization frame history for other non pointer joints
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.m_nonJointWeightedAverages">
+            <summary>
+            Weighted average parameters for non pointer joints.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.m_smoothingSchemesNamesMap">
+            <summary>
+            A mapping between the smoothing schemes and scheme names
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.INIT_MEASUREMENT_UNIT">
+            <summary>
+            The initial value for the measuring unit.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.m_measuringUnitSmoother">
+            <summary>
+            The noise reduced measuring unit smoother.
+            This measuring unit is the height / 2. This distance is very close to half the distance between the person's outstretched hands,
+            giving a good measuring unit to the person's arm reach (which is a good normalization unit for a person's movements).
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.m_currentSmoothingScheme">
+            <summary>
+            The current selected smoothing scheme
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointer.#ctor(System.UInt32,Omek.JointID,OmekFramework.Common.BasicTypes.MovementBox)">
+            <summary>
+            Constructs a Beckon Pointer
+            </summary>
+            <param name="trackedObjectID">The person ID for which to create the pointer</param>
+            <param name="pointerJoint">The joint of the person to map this pointer</param>
+            <param name="movementBox">The movement box in which this pointer is normalized</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointer.GetNormalSmoothingParamsInstance">
+            <summary>
+            Returns a normal smoothing parameters instance
+            </summary>
+            <returns>A normal smoothing parameters instance</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointer.GetSuperSmoothParamsInstance">
+            <summary>
+            Returns a normal smoothing parameters instance
+            </summary>
+            <returns>A normal smoothing parameters instance</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointer.UpdateFromTracking">
+            <summary>
+            Update according to new data from the camera
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointer.UpdateMeasuringUnit">
+            <summary>
+            Update the measuring unit.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointer.InitSmoothers">
+            <summary>
+            Initialize the smoothers.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointer.OnSmoothingSchemeChanged">
+            <summary>
+            Update the smoothing parameters.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.BeckonPointer.GetMeasuringUnit">
+            <summary>
+            return the measuring unit used to normalize all pointer position data
+            </summary>
+            <returns>the measuring unit (in cm)</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.BeckonPointer.CurrentSmoothingScheme">
+            <summary>
+            The current selected smoothing scheme
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.BeckonPointer.SmoothingSchemes">
+            <summary>
+            The smoothing schemes used
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.SmoothingSchemes.Normal">
+            <summary>
+            Normal usage
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.SmoothingSchemes.SuperSmooth">
+            <summary>
+            Super smooth pointer
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.BeckonPointer.SmoothingSchemes.Custom">
+            <summary>
+            Custom usage, working according to the set custom smoothing parameters
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.HandStateCondition">
+            <summary>
+            A coded condition for a person, determining a severity that the person gets for that condition.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Pointer.HandStateCondition.m_hand">
+            <summary>
+            The person to which the condtion refers to
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandStateCondition.#ctor(OmekFramework.Beckon.Pointer.HandState)">
+            <summary>
+            Constructor. Sets the hand and resets the hand state condition.
+            </summary>
+            <param name="in_handState">The hand state to work on</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.HandStateCondition.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Pointer.HandStateCondition.CurHandState">
+            <summary>
+            The person to which the condtion refers to
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.ConfidenceCondition">
+            <summary>
+            A coded conidition, checking that the confidence of the hand is above a certain threshold
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.ConfidenceCondition.#ctor(OmekFramework.Beckon.Pointer.HandState)">
+            <summary>
+            Constructor. Sets the person and resets the person state condition.
+            </summary>
+            <param name="in_handState">The person state to work on</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.ConfidenceCondition.UpdateState">
+            <summary>
+            Updates the state
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.ConfidenceCondition.Init">
+            <summary>
+            Inits the threshold to what is needed
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Pointer.AboveHipCondition">
+            <summary>
+            A hand state condition checking that the hand is above the hip
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.AboveHipCondition.#ctor(OmekFramework.Beckon.Pointer.HandState,OmekFramework.Common.BasicTypes.MovementBox)">
+            <summary>
+            Constructor. Sets the person and resets the person state condition.
+            </summary>
+            <param name="in_handState">The person state to work on</param>
+            <param name="in_neededMovementBox">describe the legal movmenent area of the hand</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.AboveHipCondition.UpdateState">
+            <summary>
+            Updates the state
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Pointer.AboveHipCondition.Init">
+            <summary>
+            Inits the threshold to what is needed
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelection">
+            <summary>
+            A class managing the different persons in the world vs the logical players in the game
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.NON_ASSIGNED_PLAYER">
+            <summary>
+            A const indicating a non existing player
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_playerSelectionStrategy">
+            <summary>
+            The current player selection strategy
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_pointerSelectionStrategy">
+            <summary>
+            The current pointer selection strategy
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_removeBadPositionDuration">
+            <summary>
+            How much time does a player need to be in a bad position to be considered as a player that left the game
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_removeNoPositionDuration">
+            <summary>
+            How much time does a player need to not be recognized to be considered as a player that left the game
+            (This is not zero to account for possible SDK hiccups)
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_playerIdOfTrackedObjectId">
+            <summary>
+            A map from the person index (received from the SDK) to the player in the game
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_trackedObjectIdOfPlayerId">
+            <summary>
+            A map from a player index to its label in the SDK.
+            The opposite map of m_personIndexToPlayerIndex.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_currentPlayerSelection">
+            <summary>
+            The current player selection returned by the strategy
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_currentPointerControllingTrackedObjects">
+            <summary>
+            A list of players that control the pointer
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_playerEntryTimes">
+            <summary>
+            The times in which each playered entered
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_playersTurnBadTimes">
+            <summary>
+            Indicates when a player got a status as a bad or non exiting player.
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_previousUsingSDKPlyerSelection">
+            <summary>
+            used to get back to previous SDK selection mode after removing GestureEnabled strategy
+            set to true so it wont do anything by default
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PlayerSelection.m_previousMaxPlayers">
+            <summary>
+            used to get back to previous SDK selection mode after removing GestureEnabled strategy
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.TrackedObjectIdOfPlayerId(System.Int32)">
+            <summary>
+            Get the person index of a logical player index
+            </summary>
+            <param name="playerIndex">The ID of the logical player</param>
+            <returns>The matching person index</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.IsPlayer(System.Int32)">
+            <summary>
+            Returns true if the person index given is a player in the system.
+            </summary>
+            <param name="personIndex">The person index</param>
+            <returns>True if the person index given is a player in the system.</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.PlayerIdOfTrackedObjectId(System.Int32)">
+            <summary>
+            Get the player logical index for a person
+            </summary>
+            <param name="personIndex">The person index</param>
+            <returns>The matching logical ID (NON_ASSIGNED_PLAYER if none)</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.GetPersonEntryTime(System.Int32)">
+            <summary>
+            Get the time the given person index became valid
+            </summary>
+            <param name="personIndex">The person index</param>
+            <returns>The person entry time (NON_ASSIGNED_PLAYER if not available)</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.IsPointerControlling(System.Int32)">
+            <summary>
+            Returns true if the person index given is controlling a pointer.
+            </summary>
+            <param name="personIndex">The person index</param>
+            <returns>True if the person index given is controlling a pointer.</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.GetPersonIDState(System.Int32)">
+            <summary>
+            Returns different levels of a person involvement in the scene
+            </summary>
+            <param name="personID">the person index</param>
+            <returns>PersonIDState which indicate how much the person is involved in the scene</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.Reset">
+            <summary>
+            Reset the player selection state.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.ResetAssignments">
+            <summary>
+            Reset the assignments between persons and player IDs.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.UpdateState">
+            <summary>
+            Updates the state of the player selection. Must be run to update its state.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.SetPlayerSelectionStrategy(OmekFramework.Beckon.Main.PlayerSelectionStrategy.AbstractPlayerSelectionStrategy)">
+            <summary>
+            Set the player selection strategy.
+            </summary>
+            <param name="playerSelectionStrategy">The new player selection strategy to set.</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.GetCurrentPlayerSelectionStrategy">
+            <summary>
+            return the current PlayerSelectionStrategy
+            </summary>
+            <returns>the current PlayerSelectionStrategy</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.SetPointerSelectionStrategy(OmekFramework.Beckon.Main.PlayerSelectionStrategy.AbstractPlayerSelectionStrategy)">
+            <summary>
+            Set the pointer selection strategy.
+            </summary>
+            <param name="playerSelectionStrategy">The new pointer selection strategy to set</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.GetCurrentPointerSelectionStrategy">
+            <summary>
+            return the current PointerSelectionStrategy
+            </summary>
+            <returns>the current PointerSelectionStrategy</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.CheckForAutomaticPlayerSelection">
+            <summary>
+            check if the current player selection strategy need the SDK automatic player selection On
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.Initialize">
+            <summary>
+            Initialize the player selection instance.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.OnPersonPositionTypeChanged(System.UInt32,OmekFramework.Common.Main.TrackedObjectState.PositionType,OmekFramework.Common.Main.TrackedObjectState.PositionType)">
+            <summary>
+            Occurs when there is a change in the person position type.
+            Used to update person states according to this change.
+            </summary>
+            <param name="in_personID">The person ID</param>
+            <param name="newType">The new player position type</param>
+            <param name="oldType">The old player position type</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.OnPersonEnters(System.Int32)">
+            <summary>
+            Handles the entrance of a new person.
+            </summary>
+            <param name="personIndex">The person index</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.OnPlayerLeaves(System.Int32)">
+            <summary>
+            Handles the occurrence that a player leaves.
+            </summary>
+            <param name="personIndex">The person index of the player</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.ChangePlayersAssignment">
+            <summary>
+            Apply the player selection as selected by the PlayerSelectionStrategy
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.SetPersonActiveMode(System.Int32,System.Boolean)">
+            <summary>
+            Sets the person active mode
+            </summary>
+            <param name="personID">The person to set</param>
+            <param name="isActive">The new active set</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.UpdatePointerControl">
+            <summary>
+            Update the pointer control
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.UpdatePlayerSelection">
+            <summary>
+            Update the player selection according to the player selection strategy
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.RemoveBadPlayers">
+            <summary>
+            Remove bad players that are a long time in a bad position or in a no position mode.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PlayerSelection.GetVerifiedNonFrameworkPersonIDs">
+            <summary>
+            Returns person ids in the SDK that are also verified as persons according to the framework.
+            </summary>
+            <returns>Person ids in the SDK that are also verified as persons according to the framework</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.Instance">
+            <summary>
+            Singleton instance.
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.VerifiedPersonCount">
+            <summary>
+            Get the number of persons in the system
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.PlayerCount">
+            <summary>
+            Get the number of players that have actual tracked human persons assigned to them
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.VerifiedPersonIds">
+            <summary>
+            Get an enumeration of the persons currently in the system
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.PlayerIds">
+            <summary>
+            Get an enumeration of the players which are assigned to persons
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.IsAssignedAsExpected">
+            <summary>
+            Do all needed player have an assigned person
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.PointerControllingTrackedObjects">
+            <summary>
+            Get an enumeration of tracked objects controlling a pointer
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.ExpectedPlayerCount">
+            <summary>
+            Get the number of player wanted by the current selection strategy
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.RemoveBadPositionDuration">
+            <summary>
+            How much time does a player need to be in a bad position to be considered as a player that left the game
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PlayerSelection.RemoveNoPositionDuration">
+            <summary>
+            How much time does a player need to not be recognized to be considered as a player that left the game
+            (This is not zero to account for possible SDK hiccups)
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PlayerSelection.PersonIDState">
+            <summary>
+            Represents the state of a person index in the system.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonProperties">
+            <summary>
+            A class managing person IDs assignments used for getting unique properties for the person.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonProperties.UpdateState">
+            <summary>
+            Update the state of this class
+            </summary>
+            <returns>ReturnCode </returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonProperties.GetPropertyOfPerson``1(System.UInt32,OmekFramework.Beckon.Main.PersonProperties.StatePropertiesLists{``0},OmekFramework.Beckon.Main.PersonProperties.IndexingScheme,System.Boolean)">
+            <summary>
+            return the propery of a specific person
+            </summary>
+            <typeparam name="T">the type of properties handled</typeparam>
+            <param name="personIndex">the person index</param>
+            <param name="statePropertiesLists">property lists that contain all possible values for every person state</param>
+            <param name="scheme">inedexing scheme that control how properties are assigned to persons</param>
+            <param name="usePointerControllingPool">should we used the PointerControllingPool or use the PlayerPool for all player</param>
+            <returns>The relevant property of the person</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonProperties.GetPropertyOfPerson``1(System.UInt32,OmekFramework.Beckon.Main.PersonProperties.StatePropertiesLists{``0},System.Boolean)">
+            <summary>
+            return the propery of a specific person using the UseConsistentIDs indexing scheme
+            </summary>
+            <typeparam name="T">the type of properties handled</typeparam>
+            <param name="statePropertiesLists">property lists that contain all possible values for every person state</param>
+            <param name="personIndex">the person index</param>
+            <param name="usePointerControllingPool">should we used the PointerControllingPool or use the PlayerPool for all player</param>
+            <returns>The relevant property of the person</returns>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.PersonProperties.Instance">
+            <summary>
+            Singleton instance.
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonProperties.IndexingScheme">
+            <summary>
+            Possible method to index person colors
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.PersonProperties.StatePropertiesLists`1">
+            <summary>
+            base type for actual property list used with PersonProperties
+            </summary>
+            <typeparam name="T">the type of object in the property list</typeparam>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PersonProperties.StatePropertiesLists`1.m_nonPlayer">
+            <summary>
+            properties relevant to persons that arent players
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PersonProperties.StatePropertiesLists`1.m_player">
+            <summary>
+            properties relevant to persons that are players but do not control a pointer
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.PersonProperties.StatePropertiesLists`1.m_pointerControllingPlayer">
+            <summary>
+            properties relevant to persons that control a pointer
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonProperties.StatePropertiesLists`1.GetPoolOfState(OmekFramework.Beckon.Main.PlayerSelection.PersonIDState,System.Boolean)">
+            <summary>
+            return the relevnt property list for a given plaer state
+            </summary>
+            <param name="state">the relevant state</param>
+            <param name="usePointerControllingPool">should we used the PointerControllingPool or use the PlayerPool for all player</param>
+            <returns>the wanted list of properties </returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.PersonProperties.StatePropertiesLists`1.GetProperty(OmekFramework.Beckon.Main.PlayerSelection.PersonIDState,System.Int32,System.Boolean)">
+            <summary>
+            get a specific propery by index
+            </summary>
+            <param name="state">the relevant state</param>
+            <param name="index">the index of the wanted property</param>
+            <param name="usePointerControllingPool">should we used the PointerControllingPool or use the PlayerPool for all player</param>
+            <returns></returns>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.OccludedCondition">
+            <summary>
+            Checks the expected player width to its actual width to determine if he is occluded.
+            A measure of the ratio between the above parameters determines the severity.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.OccludedCondition.#ctor">
+            <summary>
+            Constructor. Resets the person state condition.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.OccludedCondition.UpdateState">
+            <summary>
+            Updates the condition severity according to the percent of the expected and actual person width.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.OccludedCondition.Init">
+            <summary>
+            Inits the thresholds
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.TrapezoidCondition">
+            <summary>
+            Determines if the person is within a certain trapezoid defined in the X,Z dimensions.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.TrapezoidCondition.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor. Sets the trapezoid dimensions.
+            </summary>
+            <param name="nearWidth">The width of the trapezoid at the close to sensor side</param>
+            <param name="farWidth">The width of the trapezoid at the far from sensor side</param>
+            <param name="nearPlane">The near plane (closest valid distance from sensor)</param>
+            <param name="farPlane">The far plane (furthest valid distance from sensor)</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.TrapezoidCondition.Clone">
+            <summary>
+            Clones this person condition.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.TrapezoidCondition.Contains(OmekFramework.Common.BasicTypes.SpaceTypes.Vector3)">
+            <summary>
+            Does this trapezoid contain a point? Only the X,Z coordinates matter.
+            </summary>
+            <param name="point">A 3D point</param>
+            <returns>True if contained, false otherwise</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.TrapezoidCondition.UpdateState">
+            <summary>
+            Updates the condition severity according to the percent of the expected and actual person width.
+            </summary>
+            <returns>ReturnCode indicating status of the run</returns>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.TrapezoidCondition.Init">
+            <summary>
+            Inits the thresholds
+            </summary>
+        </member>
+        <member name="P:OmekFramework.Beckon.Main.TrapezoidCondition.TrapezoidDimensionsRef">
+            <summary>
+            References TrapezoidDimensions
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.TrapezoidCondition.TrapezoidDimensions">
+            <summary>
+            Describe the dimension of  a trapezoid
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.TrapezoidCondition.TrapezoidDimensions.NearWidth">
+            <summary>
+            The width of the trapezoid at the closest distance to sensor side
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.TrapezoidCondition.TrapezoidDimensions.FarWidth">
+            <summary>
+            The width of the trapezoid at the side far from sensor side
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.TrapezoidCondition.TrapezoidDimensions.NearPlane">
+            <summary>
+            The near plane (closest valid distance from sensor)
+            </summary>
+        </member>
+        <member name="F:OmekFramework.Beckon.Main.TrapezoidCondition.TrapezoidDimensions.FarPlane">
+            <summary>
+            The far plane (furthest valid distance from sensor)
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.TrapezoidCondition.TrapezoidDimensions.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="in_nearWidth">The width of the trapezoid at the closest distance to sensor</param>
+            <param name="in_farWidth">The width of the trapezoid at the side far from sensor</param>
+            <param name="in_nearPlane">The near plane (closest valid distance from sensor)</param>
+            <param name="in_farPlane">The far plane (furthest valid distance from sensor)</param>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.WarningTrapezoidCondition">
+            <summary>
+            Determines if the person is within a certain trapezoid defined in the X,Z dimensions and if not its state is a warning.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.WarningTrapezoidCondition.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor. Sets the trapezoid dimensions.
+            </summary>
+            <param name="nearWidth">The width of the trapezoid at the close to sensor side</param>
+            <param name="farWidth">The width of the trapezoid at the far from sensor side</param>
+            <param name="nearPlane">The near plane (closest valid distance from sensor)</param>
+            <param name="farPlane">The far plane (furthest valid distance from sensor)</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.WarningTrapezoidCondition.Init">
+            <summary>
+            Inits the thresholds
+            </summary>
+        </member>
+        <member name="T:OmekFramework.Beckon.Main.BadTrapezoidCondition">
+            <summary>
+            Determines if the person is within a certain trapezoid defined in the X,Z dimensions and if not its state is bad.
+            </summary>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BadTrapezoidCondition.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor. Sets the trapezoid dimensions.
+            </summary>
+            <param name="nearWidth">The width of the trapezoid at the close to sensor side</param>
+            <param name="farWidth">The width of the trapezoid at the far from sensor side</param>
+            <param name="nearPlane">The near plane (closest valid distance from sensor)</param>
+            <param name="farPlane">The far plane (furthest valid distance from sensor)</param>
+        </member>
+        <member name="M:OmekFramework.Beckon.Main.BadTrapezoidCondition.Init">
+            <summary>
+            Inits the thresholds
+            </summary>
+        </member>
+    </members>
+</doc>
