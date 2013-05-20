@@ -2,20 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Movement.cs">
     <Files>
-      <File FileName="Assets\Movement.cs" Line="9" Column="49" />
+      <File FileName="Assets\Movement.cs" Line="24" Column="62" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Movement.cs" selected="True" />
-            </Node>
-          </Node>
-          <Node name="Assembly-UnityScript-firstpass" expanded="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
