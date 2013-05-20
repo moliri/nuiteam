@@ -4,7 +4,7 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
     public int LRForce = 50;
-	public int UDForce = 10;
+	public int UDForce = 25;
 	public int weakForce = 2;
 	public int jumpForce = 20;
 	//public float jumpHeight = 30f*Time.deltaTime;
@@ -32,7 +32,6 @@ public class Movement : MonoBehaviour {
         if (Input.GetKey(KeyCode.UpArrow)) {
             if (rigidbody.velocity.z > 0 && IsGrounded==false) {
                 rigidbody.AddForce(Vector3.forward*weakForce);
-				//rigidbody.AddForce(Vector3.forward*weakForce);
 				//rigidbody.AddForce(-Vector3.forward*(weakForce-5));
             }
 			else if (rigidbody.velocity.z > 0  && IsGrounded) {
