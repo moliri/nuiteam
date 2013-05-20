@@ -4,7 +4,7 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
     public int LRForce = 50;
-	public int UDForce = 20;
+	public int UDForce = 10;
 	public int weakForce = 2;
 	public int jumpForce = 20;
 	//public float jumpHeight = 30f*Time.deltaTime;
