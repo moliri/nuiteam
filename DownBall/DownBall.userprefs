@@ -1,9 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\WorkingSplitScreenAssets\Destroy.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\p2move.cs">
     <Files>
-      <File FileName="Assets\WorkingSplitScreenAssets\Destroy.js" Line="1" Column="8" />
+      <File FileName="Assets\p2move.cs" Line="4" Column="1" />
+      <File FileName="Assets\SpawnBlock.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="p2move.cs" selected="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-UnityScript-firstpass" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

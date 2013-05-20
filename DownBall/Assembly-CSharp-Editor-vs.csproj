@@ -68,23 +68,23 @@
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.Graphs">
- <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
- </Reference>
- <Reference Include="BeckonDotNetWrapper">
- <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetWrapper.dll</HintPath>
- </Reference>
- <Reference Include="log4net">
- <HintPath>Assets\MotionToolkit\Plugins\log4net.dll</HintPath>
- </Reference>
  <Reference Include="BeckonDotNet">
  <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNet.dll</HintPath>
  </Reference>
  <Reference Include="BeckonDotNetFramework">
  <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetFramework.dll</HintPath>
  </Reference>
+ <Reference Include="BeckonDotNetWrapper">
+ <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetWrapper.dll</HintPath>
+ </Reference>
  <Reference Include="CommonFrameworkForBeckon">
  <HintPath>Assets\MotionToolkit\Plugins\CommonFrameworkForBeckon.dll</HintPath>
+ </Reference>
+ <Reference Include="log4net">
+ <HintPath>Assets\MotionToolkit\Plugins\log4net.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
