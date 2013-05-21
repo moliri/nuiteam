@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour {
 	public float maxTime;
 	void Start(){
 		myFontSize = 60;
-		maxTime = 10F;
+		maxTime = 60F;
 	}
 	
 	void OnGUI () {
