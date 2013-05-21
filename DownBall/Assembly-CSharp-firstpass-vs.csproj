@@ -49,32 +49,7 @@
      <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
-     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNetFramework.xml" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
-     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\rightswiperight.xml" />
-     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNet.xml" />
-     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\leftswipeleft.xml" />
-     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\rightclick.xml" />
-     <None Include="Assets\MotionToolkit\Plugins\CommonFrameworkForBeckon.xml" />
-     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\leftclick.xml" />
-     <None Include="Assets\MotionToolkit\Prefabs\Images\Shaders\PlayerMaskShaderPlusGlowForPlanes.shader" />
-     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNetWrapper.xml" />
-     <None Include="Assets\MotionToolkit\Prefabs\Images\Shaders\PlayerMaskShaderGlowForPlanes.shader" />
- <Reference Include="BeckonDotNet">
- <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNet.dll</HintPath>
- </Reference>
- <Reference Include="BeckonDotNetFramework">
- <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetFramework.dll</HintPath>
- </Reference>
- <Reference Include="BeckonDotNetWrapper">
- <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetWrapper.dll</HintPath>
- </Reference>
- <Reference Include="CommonFrameworkForBeckon">
- <HintPath>Assets\MotionToolkit\Plugins\CommonFrameworkForBeckon.dll</HintPath>
- </Reference>
- <Reference Include="log4net">
- <HintPath>Assets\MotionToolkit\Plugins\log4net.dll</HintPath>
- </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
