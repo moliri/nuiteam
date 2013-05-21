@@ -44,9 +44,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraScript.cs" />
-     <Compile Include="Assets\CameraScript1.cs" />
-     <Compile Include="Assets\FollowCamera.cs" />
      <Compile Include="Assets\Kinect\DepthWrapper.cs" />
      <Compile Include="Assets\Kinect\DeviceOrEmulator.cs" />
      <Compile Include="Assets\Kinect\DisplayColor.cs" />
@@ -58,11 +55,14 @@
      <Compile Include="Assets\Kinect\KinectRecorder.cs" />
      <Compile Include="Assets\Kinect\KinectSensor.cs" />
      <Compile Include="Assets\Kinect\SkeletonWrapper.cs" />
-     <Compile Include="Assets\Movement.cs" />
-     <Compile Include="Assets\RollingControllin.cs" />
-     <Compile Include="Assets\SpawnBlock.cs" />
-     <Compile Include="Assets\Timer.cs" />
-     <Compile Include="Assets\p2move.cs" />
+     <Compile Include="Assets\Scripts\CameraScript.cs" />
+     <Compile Include="Assets\Scripts\CameraScript1.cs" />
+     <Compile Include="Assets\Scripts\FollowCamera.cs" />
+     <Compile Include="Assets\Scripts\Movement.cs" />
+     <Compile Include="Assets\Scripts\RollingControllin.cs" />
+     <Compile Include="Assets\Scripts\SpawnBlock.cs" />
+     <Compile Include="Assets\Scripts\Timer.cs" />
+     <Compile Include="Assets\Scripts\p2move.cs" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
