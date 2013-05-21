@@ -55,6 +55,7 @@
      <Compile Include="Assets\Kinect\KinectRecorder.cs" />
      <Compile Include="Assets\Kinect\KinectSensor.cs" />
      <Compile Include="Assets\Kinect\SkeletonWrapper.cs" />
+     <Compile Include="Assets\MakeFood.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\CameraScript1.cs" />
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
