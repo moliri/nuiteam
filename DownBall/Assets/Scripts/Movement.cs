@@ -3,53 +3,61 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
-    public int LRForce;
-	public int UDForce;
-	public int weakForce;
-	public int jumpForce;
-	//public float jumpHeight = 30f*Time.deltaTime;
+    public int navForce;
+	public int fwdForce;
+	public int breakForce;
+	public Vector3 jumpVelocity;
 	public bool IsGrounded;
 	
 	// Use this for initialization
 	void Start () {
-		LRForce = 50;
-		UDForce = 10;
-		weakForce = 2;
-		jumpForce = 20;
+		fwdForce = 10;
+		breakForce = 100;
+		jumpVelocity = new Vector3(0, 15, 5);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+		//Left Key
         if (Input.GetKey(KeyCode.LeftArrow) && IsGrounded) {
-            rigidbody.AddForce(-Vector3.right*LRForce);
-			//rigidbody.velocity = new Vector3(-25,0,0);
-        }
+			for (navForce=500; navForce>0; navForce -= 10)	{
+				rigidbody.AddForce(-Vector3.right*navForce*Time.deltaTime);
+			}
+		}
+	
+		//Right Key
         if (Input.GetKey(KeyCode.RightArrow) && IsGrounded) {
-            rigidbody.AddForce(Vector3.right*LRForce);
-			//rigidbody.velocity = new Vector3(25,0,0);
+			for (navForce=500; navForce>0; navForce -= 10)	{
+            	rigidbody.AddForce(Vector3.right*navForce*Time.deltaTime);
+			}
         }
+		
+		//Down Key
         if (Input.GetKey(KeyCode.DownArrow) && IsGrounded) {
             if (rigidbody.velocity.z > 0) {
-                rigidbody.AddForce(-Vector3.forward*LRForce);
-	            } 
-        }
+				rigidbody.AddForce(-Vector3.forward*breakForce);
+	        }
+		}
+        
+		//Up Key
         if (Input.GetKey(KeyCode.UpArrow)) {
             if (rigidbody.velocity.z > 0 && IsGrounded==false) {
-                rigidbody.AddForce(Vector3.forward*weakForce);
+                rigidbody.AddForce(Vector3.forward*0);
 				//rigidbody.velocity = new Vector3(0,15,0);
 				//rigidbody.AddForce(Vector3.forward*weakForce);
 				//rigidbody.AddForce(-Vector3.forward*(weakForce-5));
             }
 			else if (rigidbody.velocity.z > 0  && IsGrounded) {
-				rigidbody.AddForce(Vector3.forward*UDForce);
+				rigidbody.AddForce(Vector3.forward*fwdForce);
 			}
         }
 		
 		if (Input.GetKey(KeyCode.Space)) {
 			if (IsGrounded){
 				//rigidbody.AddForce(Vector3.up*jumpHeight,ForceMode.Impulse);
-				rigidbody.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
+				//rigidbody.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
+				rigidbody.AddForce(jumpVelocity,ForceMode.VelocityChange);
 			}
 		}
 	}

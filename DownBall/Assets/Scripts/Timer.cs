@@ -17,6 +17,7 @@ public class Timer : MonoBehaviour {
 		}
 		else if (atCheckpoint) {
 			Time.timeScale = 0;
+			GUI.Label (new Rect (0,0,200,200), Time.time.ToString().Substring(0,4));
 			rigidbody.AddForce(-Vector3.forward*50);
 		}
 		else if (Time.time <= maxTime) {

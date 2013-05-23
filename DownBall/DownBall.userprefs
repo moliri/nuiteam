@@ -1,13 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Timer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Movement.cs">
     <Files>
-      <File FileName="Assets\Scripts\Movement.cs" Line="37" Column="45" />
-      <File FileName="Assets\Scripts\Timer.cs" Line="25" Column="3" />
+      <File FileName="Assets\Scripts\Movement.cs" Line="19" Column="36" />
+      <File FileName="Assets\Scripts\Timer.cs" Line="19" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" />
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Movement.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
