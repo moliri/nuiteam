@@ -21,6 +21,9 @@ void Start () {
 void Update () {
 	newpos = target.transform.position;
 	xmod.x = transform.position.x;//for movement limits
+	xmod.y = transform.position.y;
+	xmod.z = transform.position.z;
+
 
 	if (transform.position.x <= newpos.x +100){
 		if (transform.position.x >= newpos.x - 100){
@@ -42,8 +45,29 @@ void Update () {
 		xmod.x -=1;
 	}
 	
-	newpos.y += -22.63086f; //-24+2
-	newpos.z += 31.590771f;
+	if (transform.position.z <= newpos.z +50){
+			if (transform.position.z >= newpos.z -5){
+				if (Input.GetKey("w")){
+					xmod.y += -2.263086f;
+					xmod.z += 3.1590771f;
+				}
+				if (Input.GetKey ("s")){
+					xmod.y += 2.263086f;
+					xmod.z += -3.1590771f;
+				}
+			}
+			else{
+				xmod.y	= newpos.y;
+				xmod.z  = newpos.z -5;
+			}
+	}
+	else{
+		xmod.y	+= (2.263086f)/2;
+		xmod.z  += -(3.1590771f)/3;		
+	}
+	
+	newpos.y = xmod.y; //+= -22.63086f; //-24+2
+	newpos.z = xmod.z;//+= 31.590771f;
 	newpos.x = xmod.x;
 	
 	transform.position = newpos;//follow down track
