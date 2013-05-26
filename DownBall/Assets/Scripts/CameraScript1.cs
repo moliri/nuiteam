@@ -23,6 +23,7 @@ using System.Collections;
             RaycastHit[] hits;
             hits = Physics.RaycastAll(transform.position, temp2, 50F);
             int i = 0;
+            /*
             while(i < hits.Length) {
                 RaycastHit hit = hits[i];
                 Renderer renderer = hit.collider.renderer;
@@ -35,5 +36,6 @@ using System.Collections;
                 }
                 i++;
             }
+            */
         }
     }
