@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_2;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_3;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -44,44 +44,21 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MotionToolkit\Editor\EditorGUIUtils.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\JointPositionTransformerInspector.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\OmekAbout.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\SensorImageConfiguratorInspector.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\SerializedObjectUtils.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\SkeletonTrackingAnimationInspector.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\UIAdditions.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\UnityBeckonManagerInspector.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\UnityPlayerManagementInspector.cs" />
-     <Compile Include="Assets\MotionToolkit\Editor\UnityPointerManagerInspector.cs" />
-     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNetFramework.xml" />
+     <Compile Include="Assets\Editor\BuildScenes.cs" />
+     <None Include="Assets\ObstacleShader.shader" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
-     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\rightswiperight.xml" />
-     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNet.xml" />
-     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\leftswipeleft.xml" />
-     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\rightclick.xml" />
-     <None Include="Assets\MotionToolkit\Plugins\CommonFrameworkForBeckon.xml" />
-     <None Include="Assets\MotionToolkit\Resources\Classifiers\BasicGesturePack\leftclick.xml" />
-     <None Include="Assets\MotionToolkit\Prefabs\Images\Shaders\PlayerMaskShaderPlusGlowForPlanes.shader" />
-     <None Include="Assets\MotionToolkit\Plugins\BeckonDotNetWrapper.xml" />
-     <None Include="Assets\MotionToolkit\Prefabs\Images\Shaders\PlayerMaskShaderGlowForPlanes.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
- <Reference Include="BeckonDotNet">
- <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNet.dll</HintPath>
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
  </Reference>
- <Reference Include="BeckonDotNetFramework">
- <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetFramework.dll</HintPath>
+ <Reference Include="OpenNI.Net">
+ <HintPath>Assets\ZigFu\Scripts\_Internal\OpenNI.Net.dll</HintPath>
  </Reference>
- <Reference Include="BeckonDotNetWrapper">
- <HintPath>Assets\MotionToolkit\Plugins\BeckonDotNetWrapper.dll</HintPath>
- </Reference>
- <Reference Include="CommonFrameworkForBeckon">
- <HintPath>Assets\MotionToolkit\Plugins\CommonFrameworkForBeckon.dll</HintPath>
- </Reference>
- <Reference Include="log4net">
- <HintPath>Assets\MotionToolkit\Plugins\log4net.dll</HintPath>
+ <Reference Include="ZDK">
+ <HintPath>Assets\ZigFu\Scripts\_Internal\ZDK.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>

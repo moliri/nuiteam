@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_2;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_3;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -66,10 +66,45 @@
      <Compile Include="Assets\Scripts\SpawnBlock.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\p2move.cs" />
+     <Compile Include="Assets\ZigFu\SampleScenes\_Data\Scripts\ExitOnEscape.cs" />
+     <Compile Include="Assets\ZigFu\SampleScenes\_Data\Scripts\HSBColor.cs" />
+     <Compile Include="Assets\ZigFu\SampleScenes\_Data\Scripts\MenuController.cs" />
+     <Compile Include="Assets\ZigFu\SampleScenes\_Data\Scripts\RandomHSV.cs" />
+     <Compile Include="Assets\ZigFu\SampleScenes\_Data\Scripts\animatedTexture.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UISessionControls\ZigFader.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UISessionControls\ZigFollowHandPoint.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UISessionControls\ZigPushDetector.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UISessionControls\ZigSteadyDetector.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UISessionControls\ZigSwipeDetector.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UISessionControls\ZigWaveDetector.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UserControls\ZigHandRaiseDetector.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UserControls\ZigHandSessionDetector.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UserControls\ZigMapJointToSession.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UserControls\ZigSkeleton.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UserEngagers\ZigEngageAllUsers.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UserEngagers\ZigEngageSingleSession.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UserEngagers\ZigEngageSingleUser.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\UserEngagers\ZigEngageSplitScreen.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\Viewers\ZigDepthViewer.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\Viewers\ZigDepthmapToParticles.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\Viewers\ZigImageViewer.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\Viewers\ZigUserViewer.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\Viewers\ZigUsersRadar.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\Zig.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\_Internal\Matrix3.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\_Internal\TimedBuffer.cs" />
+     <Compile Include="Assets\ZigFu\Scripts\_Internal\kinectSpecific.cs" />
      <None Include="Assets\ObstacleShader.shader" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
+ <Reference Include="OpenNI.Net">
+ <HintPath>Assets\ZigFu\Scripts\_Internal\OpenNI.Net.dll</HintPath>
+ </Reference>
+ <Reference Include="ZDK">
+ <HintPath>Assets\ZigFu\Scripts\_Internal\ZDK.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
