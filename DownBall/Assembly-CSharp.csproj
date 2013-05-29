@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\HideObjects.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
+     <Compile Include="Assets\Scripts\Movement1.cs" />
      <Compile Include="Assets\Scripts\P2ObstacleMovement.cs" />
      <Compile Include="Assets\Scripts\RollingControllin.cs" />
      <Compile Include="Assets\Scripts\SpawnBlock.cs" />
