@@ -8,9 +8,12 @@ public class Movement1 : MonoBehaviour {
 	public int breakForce;
 	public Vector3 jumpVelocity;
 	public bool IsGrounded;
-    public GameObject Shoulder_Left;
-    public GameObject Shoulder_Right;
-    public int tolerance;
+    public GameObject Left;
+    public GameObject Right;
+    public GameObject ForwardBreak;    
+    public GameObject FBReference;
+    public int tolerance1;
+    public int tolerance2;
 	
 	// Use this for initialization
 	void Start () {
@@ -22,9 +25,9 @@ public class Movement1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-        if((Shoulder_Left.transform.position.y + tolerance) >= Shoulder_Right.transform.position.y && (Shoulder_Left.transform.position.y - tolerance) <= Shoulder_Right.transform.position.y){
+        if((Left.transform.position.y + tolerance1) >= Right.transform.position.y && (Left.transform.position.y - tolerance1) <= Right.transform.position.y){
             //No Direction
-        }else if(Shoulder_Left.transform.position.y < Shoulder_Right.transform.position.y){
+        }else if(Left.transform.position.y < Right.transform.position.y){
             //leaning left
             for (int i=navForce; i>0; i -= 10)	{
 				rigidbody.AddForce(-Vector3.right*i*Time.deltaTime);
@@ -35,41 +38,28 @@ public class Movement1 : MonoBehaviour {
             	rigidbody.AddForce(Vector3.right*i*Time.deltaTime);
 			}
         }
-        /*
-		//Left Key
-        if (Input.GetKey(KeyCode.LeftArrow) && IsGrounded) {
-			for (navForce=500; navForce>0; navForce -= 10)	{
-				rigidbody.AddForce(-Vector3.right*navForce*Time.deltaTime);
-			}
-		}
-	
-		//Right Key
-        if (Input.GetKey(KeyCode.RightArrow) && IsGrounded) {
-			for (navForce=500; navForce>0; navForce -= 10)	{
-            	rigidbody.AddForce(Vector3.right*navForce*Time.deltaTime);
-			}
+        if((ForwardBreak.transform.position.z + tolerance2) >= FBReference.transform.position.z && (ForwardBreak.transform.position.z - tolerance2) <= FBReference.transform.position.z){
+            //No Direction
         }
-		
-		//Down Key
-        if (Input.GetKey(KeyCode.DownArrow) && IsGrounded) {
-            if (rigidbody.velocity.z > 0) {
-				rigidbody.AddForce(-Vector3.forward*breakForce);
-	        }
-		}
-        
-		//Up Key
-        if (Input.GetKey(KeyCode.UpArrow)) {
+        else if (ForwardBreak.transform.position.z > FBReference.transform.position.z)
+        {
+            //Leaning forward
             if (rigidbody.velocity.z > 0 && IsGrounded==false) {
                 rigidbody.AddForce(Vector3.forward*0);
-				//rigidbody.velocity = new Vector3(0,15,0);
-				//rigidbody.AddForce(Vector3.forward*weakForce);
-				//rigidbody.AddForce(-Vector3.forward*(weakForce-5));
             }
 			else if (rigidbody.velocity.z > 0  && IsGrounded) {
 				rigidbody.AddForce(Vector3.forward*fwdForce);
 			}
         }
-		
+        else
+        {
+            //Leaning back
+            if (rigidbody.velocity.z > 0) {
+				rigidbody.AddForce(-Vector3.forward*breakForce);
+	        }
+        }
+        
+        /*
 		if (Input.GetKey(KeyCode.Space)) {
 			if (IsGrounded){
 				//rigidbody.AddForce(Vector3.up*jumpHeight,ForceMode.Impulse);

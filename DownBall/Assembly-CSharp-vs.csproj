@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\CameraScript1.cs" />
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\HideObjects.cs" />
+     <Compile Include="Assets\Scripts\Kinect_Debugging.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\Movement1.cs" />
      <Compile Include="Assets\Scripts\P2ObstacleMovement.cs" />
