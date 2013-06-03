@@ -10,8 +10,8 @@ public class Movement1 : MonoBehaviour {
 	public bool IsGrounded;
     public GameObject Left;
     public GameObject Right;
-    public GameObject ForwardBreak;    
-    public GameObject FBReference;
+    public GameObject Head;    
+    public GameObject HeadReference;
     public int tolerance1;
     public int tolerance2;
 	
@@ -38,10 +38,10 @@ public class Movement1 : MonoBehaviour {
             	rigidbody.AddForce(Vector3.right*i*Time.deltaTime);
 			}
         }
-        if((ForwardBreak.transform.position.z + tolerance2) >= FBReference.transform.position.z && (ForwardBreak.transform.position.z - tolerance2) <= FBReference.transform.position.z){
+        if((Head.transform.position.z + tolerance2) >= HeadReference.transform.position.z && (Head.transform.position.z - tolerance2) <= HeadReference.transform.position.z){
             //No Direction
         }
-        else if (ForwardBreak.transform.position.z > FBReference.transform.position.z)
+        else if (Head.transform.position.z > HeadReference.transform.position.z)
         {
             //Leaning forward
             if (rigidbody.velocity.z > 0 && IsGrounded==false) {
@@ -58,16 +58,17 @@ public class Movement1 : MonoBehaviour {
 				rigidbody.AddForce(-Vector3.forward*breakForce);
 	        }
         }
-        
-        /*
-		if (Input.GetKey(KeyCode.Space)) {
-			if (IsGrounded){
-				//rigidbody.AddForce(Vector3.up*jumpHeight,ForceMode.Impulse);
-				//rigidbody.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
+        if(((Left.transform.position.y + tolerance3) >= Head.transform.position.y && (Right.transform.position.y + tolerance3) >= Head.transform.position.y) && ((Left.transform.position.y - tolerance3) <= Head.transform.position.y && (Right.transform.position.y - tolerance3) <= Head.transform.position.y))
+        {
+            
+        }
+        else if (Left.transform.position.y > Head.transform.position.y && Right.transform.position.y > Head.transform.position.y)
+        {
+            if (IsGrounded)
+            {
 				rigidbody.AddForce(jumpVelocity,ForceMode.VelocityChange);
 			}
-		}
-        */
+        }
 	}
 	
 	void OnCollisionStay(Collision collisionInfo) {
