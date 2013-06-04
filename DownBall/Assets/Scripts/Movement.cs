@@ -4,16 +4,13 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
     public int navForce;
-	public int fwdForce;
-	public int breakForce;
-	public Vector3 jumpVelocity;
+	public int fwdForce=10;
+	public int breakForce=100;
+	public Vector3 jumpVelocity = new Vector3(0,15,5);
 	public bool IsGrounded;
 	
 	// Use this for initialization
 	void Start () {
-		fwdForce = 10;
-		breakForce = 100;
-		jumpVelocity = new Vector3(0, 15, 5);
 	}
 	
 	// Update is called once per frame
