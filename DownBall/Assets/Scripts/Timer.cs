@@ -30,7 +30,7 @@ public class Timer : MonoBehaviour {
     }
 		
 	void OnCollisionEnter(Collision collisionInfo) {
-		if(collisionInfo.gameObject.tag == "checkpoint")  {
+		if(collisionInfo.gameObject.tag == "Checkpoint")  {
 			atCheckpoint = true;
 		}
 	}

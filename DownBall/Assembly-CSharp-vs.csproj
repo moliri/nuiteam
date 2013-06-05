@@ -44,8 +44,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DisappearObjects.cs" />
-     <Compile Include="Assets\InvisibleObstacles.cs" />
      <Compile Include="Assets\Kinect\DepthWrapper.cs" />
      <Compile Include="Assets\Kinect\DeviceOrEmulator.cs" />
      <Compile Include="Assets\Kinect\DisplayColor.cs" />
@@ -59,14 +57,16 @@
      <Compile Include="Assets\Kinect\SkeletonWrapper.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\CameraScript1.cs" />
+     <Compile Include="Assets\Scripts\DisappearObjects.cs" />
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\HideObjects.cs" />
+     <Compile Include="Assets\Scripts\InvisibleObstacles.cs" />
      <Compile Include="Assets\Scripts\Kinect_Debugging.cs" />
      <Compile Include="Assets\Scripts\MakeFood.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\Movement1.cs" />
+     <Compile Include="Assets\Scripts\MovingObstacles.cs" />
      <Compile Include="Assets\Scripts\P2ObstacleMovement.cs" />
-     <Compile Include="Assets\Scripts\RepeatingObstacles.cs" />
      <Compile Include="Assets\Scripts\RollingControllin.cs" />
      <Compile Include="Assets\Scripts\SpawnBlock.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
@@ -99,7 +99,7 @@
      <Compile Include="Assets\ZigFu\Scripts\_Internal\Matrix3.cs" />
      <Compile Include="Assets\ZigFu\Scripts\_Internal\TimedBuffer.cs" />
      <Compile Include="Assets\ZigFu\Scripts\_Internal\kinectSpecific.cs" />
-     <None Include="Assets\ObstacleShader.shader" />
+     <None Include="Assets\Materials\ObstacleShader.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">

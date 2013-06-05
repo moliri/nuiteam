@@ -60,7 +60,7 @@ public class Movement : MonoBehaviour {
 	}
 	
 	void OnCollisionStay(Collision collisionInfo) {
-		if(collisionInfo.gameObject.tag == "ground")  {
+		if(collisionInfo.gameObject.tag == "Ground")  {
 			IsGrounded = true;
 		}
 	}
