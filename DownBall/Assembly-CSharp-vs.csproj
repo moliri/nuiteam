@@ -64,7 +64,6 @@
      <Compile Include="Assets\Scripts\Kinect_Debugging.cs" />
      <Compile Include="Assets\Scripts\MakeFood.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
-     <Compile Include="Assets\Scripts\MovingObstacles.cs" />
      <Compile Include="Assets\Scripts\P2ObstacleMovement.cs" />
      <Compile Include="Assets\Scripts\Player2Camera.cs" />
      <Compile Include="Assets\Scripts\RollingControllin.cs" />
