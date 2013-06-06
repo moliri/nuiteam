@@ -71,9 +71,13 @@
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\p2move.cs" />
      <Compile Include="Assets\Scripts\spawnBlockWithEnergy.cs" />
+     <None Include="Assets\Models\Virus models\Virus\Virus.txt" />
      <None Include="Assets\Materials\ObstacleShader.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Models\Virus models\SYAgileTongueExtras\Documentation\license.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\Models\Virus models\SYAgileTongueExtras\Documentation\AgileTongueExtrasReadme.txt" />
+     <None Include="Assets\Sounds\8 Bit Retro Rampage Free\Readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
