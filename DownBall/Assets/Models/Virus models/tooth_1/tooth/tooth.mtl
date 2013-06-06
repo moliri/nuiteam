@@ -1,0 +1,14 @@
+newmtl tooth
+d 1
+Kd 1 1 1
+map_Kd "P:/export/tooth.jpg"
+
+newmtl Default
+d 1
+Ns 1
+Ni 0
+Ka 0 0 0
+Kd 1 1 1
+Ks 0.6 0.6 0.6
+Km 0
+

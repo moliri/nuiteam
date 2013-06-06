@@ -28,7 +28,7 @@ float timer;
 	
 		if(Input.GetKeyDown("c")){
 			if(timer == 100){
-				Instantiate (blox, transform.position, transform.rotation);
+				Destroy(Instantiate (blox, transform.position, transform.rotation),3);
 				timer -= 100;
 			}
 		}
@@ -36,7 +36,7 @@ float timer;
 		{
 			if(timer == 100)
 			{
-				Instantiate (blox1, transform.position, transform.rotation);
+				Destroy(Instantiate (blox1, transform.position, transform.rotation),3);
 				timer -= 100;
 			}
 		}

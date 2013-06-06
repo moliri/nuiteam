@@ -1,0 +1,40 @@
+Greetings,
+
+Here's an upload of a virus. It was initially based on the influenza virus, but there are a lot of interpretations as to what it looks like. 
+
+It was created in Max 2011. The .obj file doesn't map very well and the .3ds doesn't map at all. Probably because I have a raytraced reflection, the Bump is a Mix and the main Diffuse is a Falloff w/the front being Noise.
+
+Standard fare: Free for commercial and non-commercial rendering, but don't sell the model itself; just send more people to ShareCG. :)
+
+Credits are nice, but not necessary.
+
+File list:
+
+Map__5_Mix.tga
+Map__6_Falloff.tga
+Map__9_Raytrace.tga
+MAX_Render.jpg
+virus.3ds
+Virus.max [2011]
+Virus.mtl
+Virus.obj
+Virus.txt [duh]
+
+
+
+Enjoy!
+
+
+Thunderossa
+(KC Taylor)
+
+thunderossa@gmail.com
+
+
+Video Demo Reel Playlist: http://www.youtube.com/playlist?list=PLA29A59DA45DDD495
+Design Gallery: http://thunderossa.deviantart.com/gallery/
+Music: http://www.reverbnation.com/kctaylor
+
+and my OLD youtube (pre-2009) with some crudely animated comedy shorts.
+http://www.youtube.com/user/Thunderossa
+
