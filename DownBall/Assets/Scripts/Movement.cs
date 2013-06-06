@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
-    public int navForce=500;
+    public int navForce=1000;
 	public int fwdForce=10;
 	public int breakForce=100;
 	public Vector3 jumpVelocity = new Vector3(0,15,5);
@@ -15,7 +15,6 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 		//Left Key
         if (Input.GetKey(KeyCode.LeftArrow) && IsGrounded) {
 			for (int i = navForce; i>0; i -= 10)	{
