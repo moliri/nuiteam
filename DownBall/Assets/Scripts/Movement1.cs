@@ -8,6 +8,7 @@ public class Movement1 : MonoBehaviour {
 	public int breakForce;
 	public Vector3 jumpVelocity;
 	public bool IsGrounded;
+    public int decrement;
     public GameObject Left;
     public GameObject Right;
     public GameObject Head;    
@@ -27,12 +28,12 @@ public class Movement1 : MonoBehaviour {
             //No Direction
         }else if((Left.transform.position.y < Right.transform.position.y) && IsGrounded) {
             //leaning left
-            for (int i=navForce; i>0; i -= 10)	{
+            for (int i=navForce; i>0; i -= decrement)	{
 				rigidbody.AddForce(-Vector3.right*i*Time.deltaTime);
 			}
         }else if((Left.transform.position.y > Right.transform.position.y) && IsGrounded) {
             //leaning right
-            for (int i=navForce; i>0; i -= 10)	{
+            for (int i=navForce; i>0; i -= decrement)	{
             	rigidbody.AddForce(Vector3.right*i*Time.deltaTime);
 			}
         }

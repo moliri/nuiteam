@@ -38,7 +38,7 @@ public class HideObjects : MonoBehaviour {
         //Loop through all overlapping objects and disable their mesh renderer
         if(hits.Length > 0){
             foreach(RaycastHit hit in hits){
-                if(hit.collider.gameObject.transform != WatchTarget && hit.collider.transform.root != WatchTarget) 
+                if(hit.collider.gameObject.transform != WatchTarget && hit.collider.transform.root != WatchTarget && hit.collider.gameObject.tag != "Wall") 
                 {
                     _LastTransforms.Add(hit.collider.gameObject.transform, hit.collider.gameObject.renderer.material.shader);
                     hit.collider.gameObject.renderer.material.shader = HiderShader;
