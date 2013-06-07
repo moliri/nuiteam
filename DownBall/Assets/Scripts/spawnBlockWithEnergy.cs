@@ -26,13 +26,13 @@ float timer;
 			timer = 100;
 		}
 	
-		if(Input.GetKeyDown("c")){
+		if(Input.GetKeyDown("x")){
 			if(timer == 100){
 				Destroy(Instantiate (blox, transform.position, transform.rotation),3);
 				timer -= 100;
 			}
 		}
-		if(Input.GetKeyDown("x"))
+		if(Input.GetKeyDown("c"))
 		{
 			if(timer == 100)
 			{
