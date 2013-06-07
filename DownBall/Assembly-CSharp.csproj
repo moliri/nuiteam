@@ -71,6 +71,8 @@
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\p2move.cs" />
      <Compile Include="Assets\Scripts\spawnBlockWithEnergy.cs" />
+     <Compile Include="Assets\flicker.cs" />
+     <Compile Include="Assets\menupress.cs" />
      <None Include="Assets\Models\Virus models\Virus\Virus.txt" />
      <None Include="Assets\Materials\ObstacleShader.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
