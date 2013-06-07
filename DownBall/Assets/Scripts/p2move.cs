@@ -29,21 +29,21 @@ void Update () {
 	if (transform.position.x <= newpos.x +100){
 		if (transform.position.x >= newpos.x - 100){
 			if (Input.GetKey("a")) {
-			xmod.x -= 3;
+			xmod.x -= 4;
 			//rigidbody.AddForce(-Vector3.right*force*5);
 			}
 			if (Input.GetKey("d")) {
-			xmod.x += 3;
+			xmod.x += 4;
 			//rigidbody.AddForce(Vector3.right*force*5);
 			}
 
 		}
 			else{
-		xmod.x += 1;
+		xmod.x += 4;
 		}
 	}
 	else{
-		xmod.x -=1;
+		xmod.x -=4;
 	}
 	
 	/*if (transform.position.z <= newpos.z +50){

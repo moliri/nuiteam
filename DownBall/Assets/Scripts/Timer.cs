@@ -60,7 +60,7 @@ public class Timer : MonoBehaviour {
 				if (Application.loadedLevelName == "Mouth")//advance for mouth
 				{
 					Time.timeScale = loltime;
-					Application.LoadLevel("Stomach");//loads stomach
+					Application.LoadLevel("Intestines");//loads stomach
 				}
 				if (Application.loadedLevelName == "Stomach")//advance for stomach
 				{
@@ -70,13 +70,13 @@ public class Timer : MonoBehaviour {
 				if (Application.loadedLevelName == "Intestines")//advance for intestinces
 				{
 					Time.timeScale = loltime;
-					Application.LoadLevel("Blood");// loads blood
+					Application.LoadLevel("Menu");// loads blood
 				}
-				if (Application.loadedLevelName == "Blood")//advance for blood
+				/*if (Application.loadedLevelName == "Blood")//advance for blood
 				{
 					Time.timeScale = loltime;
 					//Application.LoadLevel("GameOver"); //if exists
-				}
+				} */
 			}
 			
 		}

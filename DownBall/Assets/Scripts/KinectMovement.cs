@@ -23,18 +23,18 @@ public class KinectMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		float magnitude = 3/2*Mathf.Min(Mathf.Abs(Left.transform.position.y - Right.transform.position.y)/20, 1);
         if((Left.transform.position.y + tolerance1) >= Right.transform.position.y && (Left.transform.position.y - tolerance1) <= Right.transform.position.y){
             //No Direction
         }else if((Left.transform.position.y < Right.transform.position.y) && IsGrounded) {
             //leaning left
             for (int i=navForce; i>0; i -= decrement)	{
-				rigidbody.AddForce(-Vector3.right*i*Time.deltaTime);
+				rigidbody.AddForce(-Vector3.right*i*Time.deltaTime*magnitude);
 			}
         }else if((Left.transform.position.y > Right.transform.position.y) && IsGrounded) {
             //leaning right
             for (int i=navForce; i>0; i -= decrement)	{
-            	rigidbody.AddForce(Vector3.right*i*Time.deltaTime);
+            	rigidbody.AddForce(Vector3.right*i*Time.deltaTime*magnitude);
 			}
         }
         if((Head.transform.position.z + tolerance2) >= HeadReference.transform.position.z && (Head.transform.position.z - tolerance2) <= HeadReference.transform.position.z){
