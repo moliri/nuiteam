@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour {
     public int navForce=1000;
 	public int fwdForce=10;
 	public int breakForce=100;
+	public int decrement = 20;
 	public Vector3 jumpVelocity = new Vector3(0,15,5);
 	public bool IsGrounded;
 	
@@ -17,14 +18,14 @@ public class Movement : MonoBehaviour {
 	void Update () {
 		//Left Key
         if (Input.GetKey(KeyCode.LeftArrow) && IsGrounded) {
-			for (int i = navForce; i>0; i -= 10)	{
+			for (int i = navForce; i>0; i -= decrement)	{
 				rigidbody.AddForce(-Vector3.right*i*Time.deltaTime);
 			}
 		}
 	
 		//Right Key
         if (Input.GetKey(KeyCode.RightArrow) && IsGrounded) {
-			for (int i = navForce; i>0; i -= 10)	{
+			for (int i = navForce; i>0; i -= decrement)	{
             	rigidbody.AddForce(Vector3.right*i*Time.deltaTime);
 			}
         }

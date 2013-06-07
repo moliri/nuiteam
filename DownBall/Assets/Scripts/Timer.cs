@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour {
 	float loltime;
 	void Start(){
 		myFontSize = 60;
-		maxTime = 60F;
+		maxTime = 99F;
 		loltime = Time.timeScale;
 	}
 	Vector3 newpos;
@@ -24,10 +24,10 @@ public class Timer : MonoBehaviour {
 			rigidbody.AddForce(-Vector3.forward*50);
 			
 			if (Input.GetKey("r")){//reset key once level ends to position based on level
-				if (Application.loadedLevelName == "Test")//reset for tutorial level
+				if (Application.loadedLevelName == "Demo")//reset for tutorial level
 				{
 					Time.timeScale = loltime;//starts time again
-					Application.LoadLevel("Test");//reloads level
+					Application.LoadLevel("Demo");//reloads level
 				}
 				if (Application.loadedLevelName == "Mouth")//reset for mouth
 				{
@@ -52,7 +52,7 @@ public class Timer : MonoBehaviour {
 			}
 			
 			if (Input.GetKey("t")){//advance to next level
-				if (Application.loadedLevelName == "Test")//advance for tutorial level
+				if (Application.loadedLevelName == "Demo")//advance for tutorial level
 				{
 					Time.timeScale = loltime;//starts time again
 					Application.LoadLevel("Mouth");//loads mouth
