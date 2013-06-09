@@ -7,8 +7,8 @@ public class Timer : MonoBehaviour {
 	public float maxTime;
 	float loltime;
 	void Start(){
-		myFontSize = 60;
 		maxTime = 99F;
+		myFontSize = 60;
 		loltime = Time.timeScale;
 	}
 	Vector3 newpos;

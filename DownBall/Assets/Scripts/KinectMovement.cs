@@ -5,7 +5,7 @@ public class KinectMovement : MonoBehaviour {
 
     public int navForce;
 	public int fwdForce;
-	public int breakForce;
+	public int breakForce=100;
 	public Vector3 jumpVelocity;
 	public bool IsGrounded;
     public int decrement;
